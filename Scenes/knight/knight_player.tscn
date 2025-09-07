@@ -3114,6 +3114,7 @@ debug_color = Color(0.619411, 0.534763, 3.85046e-07, 0.42)
 position = Vector2(0, -18)
 collision_mask = 256
 monitoring = false
+hurtbox_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(4, -1)

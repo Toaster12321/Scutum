@@ -300,9 +300,9 @@ shape = SubResource("RectangleShape2D_lwf2y")
 debug_color = Color(1, 0.00784314, 0.0431373, 0.407843)
 
 [node name="AttackHurtbox" parent="." instance=ExtResource("3_0yts2")]
-visible = false
 position = Vector2(-78, -25)
 monitoring = false
+hurtbox_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHurtbox"]
 position = Vector2(20, 0)

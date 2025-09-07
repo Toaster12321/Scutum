@@ -76,8 +76,10 @@ func physics_process( _delta : float ) -> KnightState:
 
 func _damage_blocked( _hurtbox : Hurtbox ) -> void:
 	hurtbox = _hurtbox #get passed hurtbox
-	_blocked = true #we blocked the attack
+	if hurtbox.hurtbox_type == Hurtbox.HurtboxType.BODY: #if we are hitting the body hitbox dont deflect
+		return
 	
+	_blocked = true #we blocked the attack
 	if state_machine.current_state != deflect: #prevent multiple animations
 		_next_state = deflect #deflect
 	pass

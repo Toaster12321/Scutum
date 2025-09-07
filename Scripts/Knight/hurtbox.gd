@@ -3,7 +3,12 @@ class_name Hurtbox extends Area2D
 signal did_damage #signal that calls if damage was dished out
 signal blocked #signal that calls if damage was blocked
 
+enum HurtboxType { BODY, WEAPON }
+
+@export var hurtbox_type : HurtboxType = HurtboxType.BODY
 @export var damage : int = 1 #variable damage int
+
+
 
 func _ready() -> void:
 	area_entered.connect( entered_area ) # if the hurtbox has been entered call the entered area function
