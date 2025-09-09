@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+KnightHud="*res://Scenes/GUI/knight_hud.tscn"
 GlobalPlayerManager="*res://Scripts/globals/global_player_manager.gd"
 
 [display]

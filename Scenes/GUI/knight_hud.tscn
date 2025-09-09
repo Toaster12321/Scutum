@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://oxt5541jjuur"]
+
+[ext_resource type="PackedScene" uid="uid://btmp2t1immgq" path="res://Scenes/GUI/shield_life.tscn" id="1_abr8p"]
+[ext_resource type="Script" uid="uid://bpep5kh5d6icx" path="res://Scripts/gui/knight_hud.gd" id="1_em4ri"]
+
+[node name="KnightHUD" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_em4ri")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="Control"]
+layout_mode = 1
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 160.0
+offset_bottom = 42.0
+
+[node name="ShieldLife" parent="Control/HFlowContainer" instance=ExtResource("1_abr8p")]
+layout_mode = 2
+
+[node name="ShieldLife2" parent="Control/HFlowContainer" instance=ExtResource("1_abr8p")]
+layout_mode = 2
+
+[node name="ShieldLife3" parent="Control/HFlowContainer" instance=ExtResource("1_abr8p")]
+layout_mode = 2

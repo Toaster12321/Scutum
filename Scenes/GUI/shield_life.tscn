@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://btmp2t1immgq"]
+
+[ext_resource type="Script" uid="uid://dj4hhi4xj4kiq" path="res://Scripts/gui/shield_gui.gd" id="1_3m1by"]
+[ext_resource type="Texture2D" uid="uid://dxw8sk7i4k27s" path="res://Sprites/GUI/shield_life.png" id="1_8fxgr"]
+
+[node name="ShieldLife" type="Control"]
+custom_minimum_size = Vector2(17, 17)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 1.0
+offset_right = 17.0
+offset_bottom = 18.0
+script = ExtResource("1_3m1by")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_8fxgr")
+hframes = 3
+region_rect = Rect2(3, 2, 48, 16)

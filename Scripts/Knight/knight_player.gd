@@ -33,6 +33,7 @@ var hp : int = 6
 var max_hp : int = 6
 
 func _ready() -> void:
+	GlobalPlayerManager.knight = self #initialize player manager reference
 	knight_state_machine.init(self) #inistialize state machine to player
 	default_cam_position = camera_2d.position.y #get default camera y placement
 	hitbox.damaged.connect( _take_damage ) #connect take damage function if hitbox has been entered
@@ -105,6 +106,7 @@ func _block_damage( hurtbox : Hurtbox ) -> void:
 
 func update_hp( _delta : int ) -> void: #increases or decreases knights hp
 	hp = clampi( hp + _delta, 0, max_hp ) #clamp to make sure hp stays between 0 and max
+	KnightHud.update_hp( hp , max_hp ) #send hp and max hp to our player hud for life bar
 	pass
 
 
