@@ -32,6 +32,7 @@ func exit() -> void:
 func process( _delta : float ) -> EnemyState:
 	if _can_see_player == false: #if we cant see the enemy start timer
 		_timer -= _delta
+		
 		if _timer <= 0: #once out go to idle
 			return idle
 	else:

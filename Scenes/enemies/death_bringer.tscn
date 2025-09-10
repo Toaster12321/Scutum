@@ -128,10 +128,10 @@ tracks/1/path = NodePath("AttackHurtbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4, 0.45),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -143,7 +143,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(38, -25)]
+"values": [Vector2(28, -25)]
 }
 
 [sub_resource type="Animation" id="Animation_h1v3h"]
@@ -253,7 +253,7 @@ height = 50.0
 size = Vector2(38, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_icyi2"]
-size = Vector2(78, 50)
+size = Vector2(68, 50)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gmc07"]
 radius = 23.0
@@ -305,7 +305,7 @@ monitoring = false
 hurtbox_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHurtbox"]
-position = Vector2(20, 0)
+position = Vector2(25, 0)
 shape = SubResource("RectangleShape2D_icyi2")
 debug_color = Color(1, 0.00784314, 0.0431373, 0.407843)
 

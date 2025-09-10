@@ -1,0 +1,2 @@
+@tool
+class_name EnemyBehaviorPatrol extends EnemyBehavior
