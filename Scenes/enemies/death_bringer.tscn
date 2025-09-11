@@ -300,6 +300,7 @@ shape = SubResource("RectangleShape2D_lwf2y")
 debug_color = Color(1, 0.00784314, 0.0431373, 0.407843)
 
 [node name="AttackHurtbox" parent="." instance=ExtResource("3_0yts2")]
+visible = false
 position = Vector2(-78, -25)
 monitoring = false
 hurtbox_type = 1
@@ -326,6 +327,9 @@ script = ExtResource("7_h1v3h")
 [node name="Wander" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("8_m3dfb")
+
+[node name="Timer" type="Timer" parent="EnemyStateMachine/Wander"]
+one_shot = true
 
 [node name="Hurt" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true

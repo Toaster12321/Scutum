@@ -3,7 +3,6 @@ class_name Enemy extends CharacterBody2D
 signal direction_changed( new_direction : Vector2 )
 signal enemy_damaged( hurt_box : Hurtbox )
 signal enemy_destroyed( hurt_box : Hurtbox )
-signal do_behavior_enabled
 
 @export var hp : int = 5
 
@@ -29,7 +28,6 @@ func _ready() -> void:
 	enemy_state_machine.init( self ) #initialize state machine
 	knight = GlobalPlayerManager.knight
 	hitbox.damaged.connect( _take_damage ) #if enemy hitbox has been entered by a hurtbox connect damaged function
-	do_behavior_enabled.emit() #emit behavior signal if we have the behavior node
 	pass
 
 

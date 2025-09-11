@@ -3,6 +3,10 @@ class_name PatrolLocation extends Node2D
 
 signal transform_changed
 
+@export var node_number_text : String = "": #node number, uses setter function to update anywhere
+	set( v ):
+		node_number_text = v
+		_update_label()
 @export var wait_time : float = 0.0: #variable wait time, uses setter function to update anywhere
 	set( v ):
 		wait_time = v
@@ -21,8 +25,9 @@ func _notification(what: int) -> void:
 
 
 func _ready() -> void:
-	target_position = global_position #set target position on editor to global position
+	target_position = global_position #set position
 	_update_wait_time_label() #set wait time label
+	_update_label()
 	
 	if Engine.is_editor_hint(): #dont play this script in game
 		return
@@ -30,14 +35,10 @@ func _ready() -> void:
 	$Sprite2D.queue_free() #hide the sprite for this node in game
 
 
-func update_label( _s : String ) -> void:
-	$Sprite2D/Label.text = _s #update number of node (starts at 0)
+func _update_label() -> void:
+	if Engine.is_editor_hint():
+		$Sprite2D/Label.text = node_number_text #update number of node (starts at 0)
 	pass
-
-
-func update_line( next_location : Vector2 ) -> void:
-	var line : Line2D = $Sprite2D/Line2D #get line variable
-	line.points[ 1 ] = next_location - position # the second point is the next location - the old position
 
 
 func _update_wait_time_label() -> void:

@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://byr35ggjm2nf1" path="res://Sprites/TileMaps/Tiles.png" id="7_wrinw"]
 [ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="10_af3po"]
 [ext_resource type="PackedScene" uid="uid://crxu0j537bvmp" path="res://Scenes/enemies/death_bringer.tscn" id="10_chwpn"]
-[ext_resource type="PackedScene" uid="uid://dxakwu5pplaxr" path="res://Scenes/enemies/enemy_behavior_patrol.tscn" id="10_sskdo"]
+[ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6ioyp"]
 texture = ExtResource("1_xrdnt")
@@ -942,9 +942,17 @@ position = Vector2(152, 70)
 texture = ExtResource("5_uy8f0")
 
 [node name="DeathBringer" parent="." instance=ExtResource("10_chwpn")]
-position = Vector2(193, 233)
+position = Vector2(206, 170)
 
-[node name="EnemyBehaviorPatrol" parent="DeathBringer" instance=ExtResource("10_sskdo")]
+[node name="PatrolLocation" parent="DeathBringer" instance=ExtResource("11_sskdo")]
+position = Vector2(-38, 7)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="DeathBringer" instance=ExtResource("11_sskdo")]
+position = Vector2(47, 11)
+node_number_text = "2"
+wait_time = 1.0
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
 position = Vector2(-7, 155)
