@@ -3,6 +3,7 @@ class_name EnemyStateAttack extends EnemyState
 @export var vision_area : VisionArea #enemy vision
 @export var state_aggro_duration : float = 0.5 #duration of aggro
 
+var deceleration : float = 10.0
 var _timer : float = 0.0
 var _can_see_player : bool = false
 
@@ -41,7 +42,7 @@ func process( _delta : float ) -> EnemyState:
 
 
 func physics_process( _delta : float ) -> EnemyState:
-	enemy.velocity = Vector2.ZERO #attacking still
+	enemy.update_velocity( 0, deceleration )
 	return null
 
 

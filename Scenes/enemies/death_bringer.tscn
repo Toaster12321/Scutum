@@ -288,6 +288,13 @@ vframes = 6
 position = Vector2(35, 46)
 shadow_size = Vector2(0.8, 0.09)
 
+[node name="VisionArea" parent="Sprite" instance=ExtResource("12_lbltc")]
+position = Vector2(0, -24)
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
+position = Vector2(0, 9)
+polygon = PackedVector2Array(0, 0, 0, -20, -80, -49, -80, 27)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -25)
 shape = SubResource("CapsuleShape2D_nlvty")
@@ -338,15 +345,8 @@ script = ExtResource("9_rnrj7")
 [node name="Attack" type="Node2D" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area")]
 unique_name_in_owner = true
 script = ExtResource("11_lwf2y")
-vision_area = NodePath("../../VisionArea")
+vision_area = NodePath("../../Sprite/VisionArea")
 
 [node name="Death" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("10_rnrj7")
-
-[node name="VisionArea" parent="." instance=ExtResource("12_lbltc")]
-position = Vector2(0, -24)
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="VisionArea"]
-position = Vector2(0, 9)
-polygon = PackedVector2Array(0, 0, 0, -20, -80, -49, -80, 27)

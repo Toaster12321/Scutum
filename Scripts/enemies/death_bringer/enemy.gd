@@ -70,3 +70,8 @@ func anim_direction() -> String: #returns a left or right based on the current d
 		return "left"
 	else:
 		return "right"
+
+
+func update_velocity( _velocity : float, _acceleration : float ) -> void:
+	velocity.x = move_toward( velocity.x, _velocity, _acceleration ) #updates velocity in the x axis from base velocity to max velocity passed in at a delta value of acceleration
+	pass

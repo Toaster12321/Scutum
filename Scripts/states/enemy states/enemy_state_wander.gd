@@ -1,8 +1,6 @@
 class_name EnemyStateWander extends EnemyState
 
-const COLORS = [ Color(1,0,0), Color(1,1,0), Color(0,1,0), Color(0,1,1), Color(0,0,1), Color(1,0,1) ] #colors for editor patrol locations
-
-@export var wander_speed : float = 20.0 
+@export var wander_speed : float = 30.0 
 
 var _direction : Vector2
 var patrol_locations : Array[ PatrolLocation ]
@@ -19,8 +17,11 @@ func init() -> void:
 
 func enter() -> void:
 	print("enetered wander")
-	gather_patrol_locations() #gather nodes
 	
+	gather_patrol_locations() #gather nodes
+	if patrol_locations.size() < 2:
+		return
+		
 	if Engine.is_editor_hint():
 		child_entered_tree.connect( gather_patrol_locations ) #gather patrol locations when a new node enters the tree
 		child_order_changed.connect( gather_patrol_locations )  #gather patrol locations when a new node changes in the tree
@@ -30,9 +31,16 @@ func enter() -> void:
 		process_mode = Node.PROCESS_MODE_DISABLED
 		return
 		
-	current_location_index = 0 #set index to beginning
 	target = patrol_locations[ 0 ] #target location is the first node
-	idling() #start by idling
+	
+	if has_started == true:
+		print("idle over")
+		if timer.time_left == 0:
+			walking()
+		return
+	
+	has_started = true
+	walking()
 	pass
 
 
@@ -42,7 +50,8 @@ func exit() -> void:
 
 
 func process( _delta : float ) -> EnemyState:
-	
+	if enemy.global_position.distance_to( target.target_position ) < 4:
+		idling()
 	return null
 
 
@@ -58,15 +67,7 @@ func gather_patrol_locations( _n : Node = null ) -> void:
 	pass
 
 
-func _get_color_by_index( i : int ) -> Color:
-	var color_count : int = COLORS.size() #get size of color list
-	while i > color_count -1: #while there are colors available
-		i -= color_count #go through each color in order
-	return COLORS[ i ] #return color based on current index
-
-
 func idling() -> void:
-	enemy.global_position = target.target_position #our global position is the position of the location node
 	enemy.velocity = Vector2.ZERO #stop moving
 	enemy.animation_player.play("idle") #play idle animation
 	
@@ -91,6 +92,7 @@ func walking() -> void:
 	enemy.direction = _direction 
 	enemy.velocity = _direction * wander_speed #set velocity
 	
-	enemy.set_direction( target.target_position ) #set left or right direction
+	enemy.set_direction( _direction ) #set left or right direction
+	print(_direction)
 	enemy.animation_player.play("walk")
 	pass

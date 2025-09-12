@@ -54,7 +54,7 @@ func start() -> void:
 	
 	if has_started == true:
 		if timer.time_left == 0:
-			enemy.enemy_state_machine.change_state(idle)
+			pass
 
 
 func _get_color_by_index( i : int ) -> Color:
