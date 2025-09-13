@@ -7,6 +7,7 @@ static var state_machine : EnemyStateMachine
 static var direction : Vector2
 
 @onready var idle: EnemyStateIdle = %Idle
+@onready var patrol: EnemyStatePatrol = %Patrol
 @onready var wander: EnemyStateWander = %Wander
 @onready var hurt: EnemyStateHurt = %Hurt
 @onready var death: EnemyStateDeath = %Death

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://crxu0j537bvmp"]
+[gd_scene load_steps=27 format=3 uid="uid://crxu0j537bvmp"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/death_bringer/enemy.gd" id="1_nlvty"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="3_0yts2"]
@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="5_tso1k"]
 [ext_resource type="Script" uid="uid://b7vgrscwhy7v2" path="res://Scripts/states/enemy states/enemy_state_machine.gd" id="6_tso1k"]
 [ext_resource type="Script" uid="uid://bo2glx64vqkv5" path="res://Scripts/states/enemy states/enemy_state_idle.gd" id="7_h1v3h"]
-[ext_resource type="Script" uid="uid://c1ng7e2bggiqp" path="res://Scripts/states/enemy states/enemy_state_wander.gd" id="8_m3dfb"]
+[ext_resource type="Script" uid="uid://px770x5r2xtn" path="res://Scripts/states/enemy states/enemy_state_wander.gd" id="8_m3dfb"]
 [ext_resource type="Script" uid="uid://cwevmwbd0sed" path="res://Scripts/states/enemy states/enemy_state_hurt.gd" id="9_rnrj7"]
+[ext_resource type="Script" uid="uid://c1ng7e2bggiqp" path="res://Scripts/states/enemy states/enemy_state_patrol.gd" id="10_r1akx"]
 [ext_resource type="Script" uid="uid://w03eaurolq66" path="res://Scripts/states/enemy states/enemy_state_death.gd" id="10_rnrj7"]
 [ext_resource type="Script" uid="uid://dfqpf2m80wjex" path="res://Scripts/states/enemy states/enemy_state_attack.gd" id="11_lwf2y"]
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="12_lbltc"]
@@ -335,7 +336,11 @@ script = ExtResource("7_h1v3h")
 unique_name_in_owner = true
 script = ExtResource("8_m3dfb")
 
-[node name="Timer" type="Timer" parent="EnemyStateMachine/Wander"]
+[node name="Patrol" type="Node2D" parent="EnemyStateMachine"]
+unique_name_in_owner = true
+script = ExtResource("10_r1akx")
+
+[node name="Timer" type="Timer" parent="EnemyStateMachine/Patrol"]
 one_shot = true
 
 [node name="Hurt" type="Node2D" parent="EnemyStateMachine"]

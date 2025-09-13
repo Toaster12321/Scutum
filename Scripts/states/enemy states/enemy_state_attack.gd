@@ -16,6 +16,7 @@ func init() -> void:
 
 
 func enter() -> void:
+	print("enter attack")
 	_can_see_player = true #enemy sees the player
 	_timer = state_aggro_duration #timer is equal to our aggro duration
 	enemy.update_animation("attack") #play attack animation
@@ -25,6 +26,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	print("exit attack")
 	_can_see_player = false #enemy cant see player
 	enemy.animation_player.animation_finished.disconnect( _on_attack_finished ) #disconnect signal
 	pass
@@ -42,7 +44,7 @@ func process( _delta : float ) -> EnemyState:
 
 
 func physics_process( _delta : float ) -> EnemyState:
-	enemy.update_velocity( 0, deceleration )
+	enemy.update_velocity( enemy.velocity.x , deceleration )
 	return null
 
 
@@ -63,7 +65,7 @@ func _on_player_exited() -> void:
 
 func _on_attack_finished( _anim : String ) -> void:
 	if GlobalPlayerManager.knight.hp <= 0: # if player has no hp go to wander
-		state_machine.change_state(wander)
+		state_machine.change_state(patrol)
 		return
 
 	if _can_see_player != false: #if enemy is still inside vision after an attack, attack again

@@ -1,98 +1,37 @@
 class_name EnemyStateWander extends EnemyState
 
-@export var wander_speed : float = 30.0 
+@export var wander_speed : float = 30.0
+@export var state_animation_duration : float = 0.5
+@export var state_cycles_min : int = 1
+@export var state_cycles_max : int = 3
 
-var _direction : Vector2
-var patrol_locations : Array[ PatrolLocation ]
-var current_location_index : int = 0
-var target : PatrolLocation
-var has_started : bool = false
-var last_phase : String = ""
-
-@onready var timer: Timer = $Timer
+var _timer : float = 0.0
+var _direction : Array[ Vector2 ]
 
 func init() -> void:
 	pass
 
 
 func enter() -> void:
-	print("enetered wander")
-	
-	gather_patrol_locations() #gather nodes
-	if patrol_locations.size() < 2:
-		return
-		
-	if Engine.is_editor_hint():
-		child_entered_tree.connect( gather_patrol_locations ) #gather patrol locations when a new node enters the tree
-		child_order_changed.connect( gather_patrol_locations )  #gather patrol locations when a new node changes in the tree
-		return
-	
-	if patrol_locations.size() == 0: #if array is empty disable node
-		process_mode = Node.PROCESS_MODE_DISABLED
-		return
-		
-	target = patrol_locations[ 0 ] #target location is the first node
-	
-	if has_started == true:
-		print("idle over")
-		if timer.time_left == 0:
-			walking()
-		return
-	
-	has_started = true
-	walking()
+	_timer = randi_range( state_cycles_min, state_cycles_max) * state_animation_duration
+	_direction = [Vector2.RIGHT, Vector2.LEFT]
+	var rand = randi_range(0,1)
+	var rand_direction = _direction[ rand ]
+	enemy.velocity = rand_direction * wander_speed
+	enemy.set_direction( rand_direction )
 	pass
 
 
 func exit() -> void:
-	print("exited wander")
 	pass
 
 
 func process( _delta : float ) -> EnemyState:
-	if enemy.global_position.distance_to( target.target_position ) < 4:
-		idling()
+	_timer -= _delta
+	if _timer <= 0:
+		return idle
 	return null
 
 
 func physics_process( _delta : float ) -> EnemyState:
 	return null
-
-
-func gather_patrol_locations( _n : Node = null ) -> void:
-	patrol_locations = [] #set array to empty
-	for c in enemy.get_children(): # append each location in the array
-		if c is PatrolLocation:
-			patrol_locations.append( c )
-	pass
-
-
-func idling() -> void:
-	enemy.velocity = Vector2.ZERO #stop moving
-	enemy.animation_player.play("idle") #play idle animation
-	
-	var wait_time : float = target.wait_time
-	
-	current_location_index += 1 #add 1 to the location index
-	if current_location_index >= patrol_locations.size(): #wrap the array if neccessary
-		current_location_index = 0
-	
-	target = patrol_locations[ current_location_index ] #change target to new index
-	
-	if wait_time > 0: #if we have time
-		timer.start( wait_time ) #start idle timer till timeout
-		await timer.timeout
-	
-	walking() #go to walking
-	pass
-
-
-func walking() -> void:
-	_direction = global_position.direction_to( target.target_position ) #our direction is towards the location node
-	enemy.direction = _direction 
-	enemy.velocity = _direction * wander_speed #set velocity
-	
-	enemy.set_direction( _direction ) #set left or right direction
-	print(_direction)
-	enemy.animation_player.play("walk")
-	pass

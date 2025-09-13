@@ -5,12 +5,14 @@ signal enemy_damaged( hurt_box : Hurtbox )
 signal enemy_destroyed( hurt_box : Hurtbox )
 
 @export var hp : int = 5
+@export var patrol_range : int = 130
 
 var gravity : float = 980 #9.81m/s gravity speed
 var gravity_multiplier : float = 1
 var direction : Vector2 = Vector2.ZERO
 var knight : Knight
 var invulnerable : bool = false
+
 
 const DIR_2 = [ Vector2.LEFT, Vector2.RIGHT ] #enemies two directions
 
