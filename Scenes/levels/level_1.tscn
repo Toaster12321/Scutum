@@ -935,7 +935,7 @@ tile_map_data = PackedByteArray("AAD//wcAAAAFAAMAAAAAAAYAAAAGAAIAAAAAAAcAAAAGAAM
 [node name="Parallax2D" type="Parallax2D" parent="."]
 z_index = -100
 scroll_scale = Vector2(0.2, 0.2)
-scroll_offset = Vector2(124, 82)
+scroll_offset = Vector2(69, 79)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 position = Vector2(152, 70)

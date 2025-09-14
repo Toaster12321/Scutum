@@ -41,7 +41,7 @@ func exit() -> void: #disable crouch collision and revert to normal collision
 	
 	if knight.camera_2d.position.y != knight.default_cam_position: #if the camera is not in the right position tween back up
 		var tween  = get_tree().create_tween() #tween for smoothing
-		tween.tween_property(camera_2d, "position:y", knight.default_cam_position, 0.2) #move camera back up to default position in 0.2s for a fast return
+		tween.tween_property(camera_2d, "position:y", knight.default_cam_position, 0.1) #move camera back up to default position in 0.2s for a fast return
 	
 	pass
 

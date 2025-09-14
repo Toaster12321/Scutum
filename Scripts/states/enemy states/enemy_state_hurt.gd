@@ -43,11 +43,13 @@ func exit() -> void:
 func process( _delta : float ) -> EnemyState:
 	if _animation_finished == true:  #return the attack state when animation is over
 		return attack #retaliate
-	enemy.velocity -= enemy.velocity * decelerate_speed * _delta #deceleration speed
+	enemy.update_velocity( 0, decelerate_speed ) #deceleration speed
 	return null
 
 
 func physics_process( _delta : float ) -> EnemyState:
+	if not enemy.is_on_floor():
+		return wander
 	return null
 
 

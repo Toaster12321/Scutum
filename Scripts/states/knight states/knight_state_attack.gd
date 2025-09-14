@@ -2,12 +2,13 @@ class_name KnightStateAttack extends KnightState
 
 var attacking : bool = false
 
+@export var attack_sound : AudioStream
+@export var attack_2_sound : AudioStream
 @export var deceleration : float = 4
+
+
+@onready var audio: AudioStreamPlayer2D = $"../../AudioStreamPlayer2D"
 @onready var hurtbox: Hurtbox = $"../../Hurtbox"
-
-func ready() -> void:
-	pass
-
 
 func init() -> void:
 	pass
@@ -17,6 +18,12 @@ func enter() -> void:
 	knight.update_animation("attack") #call update animation for animation + direction
 	knight.animation_player.animation_finished.connect( end_attack ) #signal to show when the attack has finished
 	
+	if not audio.playing: #make sure player cant spam sounds
+		audio.stream = attack_sound #play sound effect
+		audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
+		audio.play()
+	
+
 	attacking = true
 	await get_tree().create_timer( 0.075 ).timeout #creates slight delay before hitting
 	if attacking:
@@ -34,6 +41,9 @@ func exit() -> void:
 func handle_input( _event : InputEvent ) -> KnightState:
 	if _event.is_action_pressed("attack"): #if attack is called during this state the second attack animation is played
 		knight.update_animation("attack_2")#call update animation for animation + direction
+		audio.stream = attack_sound #play sound effect
+		audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
+		audio.play()
 	return null
 
 
@@ -57,4 +67,6 @@ func physics_process( _delta : float ) -> KnightState:
 
 func end_attack(_anim_name: StringName) -> void: #animation name parameter avoids method expected error
 	attacking = false #show that animation has finished and we are not attacking anymore
+	await get_tree().create_timer( 0.1 ).timeout #creates slight delay before stopping audio
+	audio.stop()
 	pass

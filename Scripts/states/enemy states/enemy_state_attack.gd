@@ -3,7 +3,7 @@ class_name EnemyStateAttack extends EnemyState
 @export var vision_area : VisionArea #enemy vision
 @export var state_aggro_duration : float = 0.5 #duration of aggro
 
-var deceleration : float = 10.0
+var deceleration : float = 30.0
 var _timer : float = 0.0
 var _can_see_player : bool = false
 
@@ -21,7 +21,8 @@ func enter() -> void:
 	_timer = state_aggro_duration #timer is equal to our aggro duration
 	enemy.update_animation("attack") #play attack animation
 	
-	enemy.animation_player.animation_finished.connect( _on_attack_finished ) #connect to attack finished function after 1st attack
+	if not enemy.animation_player.animation_finished.is_connected( _on_attack_finished ):#make sure it isnt connected
+		enemy.animation_player.animation_finished.connect( _on_attack_finished ) #connect to attack finished function after 1st attack
 	pass
 
 
@@ -44,7 +45,10 @@ func process( _delta : float ) -> EnemyState:
 
 
 func physics_process( _delta : float ) -> EnemyState:
-	enemy.update_velocity( enemy.velocity.x , deceleration )
+	if not enemy.is_on_floor():
+		return wander
+		
+	enemy.update_velocity( 0 , deceleration )
 	return null
 
 
@@ -70,4 +74,6 @@ func _on_attack_finished( _anim : String ) -> void:
 
 	if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
 		enemy.update_animation("attack")
+	else:
+		state_machine.change_state(idle)
 	pass

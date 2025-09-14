@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://bj4rkw7gwpm65"]
+[gd_scene load_steps=56 format=3 uid="uid://bj4rkw7gwpm65"]
 
 [ext_resource type="Script" uid="uid://c1iascmee6h4m" path="res://Scripts/Knight/knight_player.gd" id="1_5m4qd"]
 [ext_resource type="Script" uid="uid://8ctg2co4oaal" path="res://Scripts/states/knight states/knight_state_machine.gd" id="2_vggyu"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://cdajuvoxupyl3" path="res://Scripts/states/knight states/knight_state_attack.gd" id="8_y66y0"]
 [ext_resource type="Texture2D" uid="uid://8y62mivsvsun" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Idle.png" id="9_58ol3"]
 [ext_resource type="Script" uid="uid://q5o8ixdfo73n" path="res://Scripts/states/knight states/knight_state_shield.gd" id="9_vggyu"]
+[ext_resource type="AudioStream" uid="uid://ubp87yb1y5l6" path="res://Audio/Used Tracks/DSGNMisc_MELEE-Sword Slash_HY_PC-004.wav" id="9_y66y0"]
+[ext_resource type="AudioStream" uid="uid://jcn0jh7qtmd3" path="res://Audio/Used Tracks/DSGNMisc_MELEE-Sword Slash_HY_PC-006.wav" id="10_58ol3"]
 [ext_resource type="Texture2D" uid="uid://nd7qtovppi37" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Run.png" id="10_a5jte"]
 [ext_resource type="Script" uid="uid://cjvm7kic0qnx1" path="res://Scripts/states/knight states/knight_state_hit.gd" id="10_t2eej"]
 [ext_resource type="Script" uid="uid://cb21tm6pfscmg" path="res://Scripts/states/knight states/knight_state_deflect.gd" id="10_xpw4a"]
@@ -3098,7 +3100,8 @@ shape = SubResource("RectangleShape2D_agcwe")
 disabled = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-max_polyphony = 4
+max_polyphony = 6
+bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -51)
@@ -3138,6 +3141,8 @@ hit_from_inside = true
 [node name="Attack" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("8_y66y0")
+attack_sound = ExtResource("9_y66y0")
+attack_2_sound = ExtResource("10_58ol3")
 
 [node name="Shield" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true

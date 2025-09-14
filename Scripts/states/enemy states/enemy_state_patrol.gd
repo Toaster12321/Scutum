@@ -58,7 +58,6 @@ func process( _delta : float ) -> EnemyState:
 	if enemy.global_position.distance_to( target.target_position ) > enemy.patrol_range:
 		return wander
 	
-	print(enemy.global_position.distance_to(target.target_position))
 	return null
 
 
