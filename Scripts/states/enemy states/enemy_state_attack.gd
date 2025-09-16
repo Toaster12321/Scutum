@@ -2,6 +2,7 @@ class_name EnemyStateAttack extends EnemyState
 
 @export var vision_area : VisionArea #enemy vision
 @export var state_aggro_duration : float = 0.5 #duration of aggro
+@export var attack_audio : AudioStream
 
 var deceleration : float = 30.0
 var _timer : float = 0.0
@@ -16,7 +17,7 @@ func init() -> void:
 
 
 func enter() -> void:
-	print("enter attack")
+	enemy.play_audio(attack_audio)
 	_can_see_player = true #enemy sees the player
 	_timer = state_aggro_duration #timer is equal to our aggro duration
 	enemy.update_animation("attack") #play attack animation
@@ -27,7 +28,6 @@ func enter() -> void:
 
 
 func exit() -> void:
-	print("exit attack")
 	_can_see_player = false #enemy cant see player
 	enemy.animation_player.animation_finished.disconnect( _on_attack_finished ) #disconnect signal
 	pass
@@ -68,12 +68,15 @@ func _on_player_exited() -> void:
 
 
 func _on_attack_finished( _anim : String ) -> void:
+	enemy.audio.stop()
+	
 	if GlobalPlayerManager.knight.hp <= 0: # if player has no hp go to wander
 		state_machine.change_state(patrol)
 		return
 
 	if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
 		enemy.update_animation("attack")
+		enemy.play_audio(attack_audio)
 	else:
 		state_machine.change_state(idle)
 	pass

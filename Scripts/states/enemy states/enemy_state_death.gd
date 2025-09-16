@@ -2,6 +2,7 @@ class_name EnemyStateDeath extends EnemyState
 
 @export var knockback_speed : float = 200.0
 @export var decelerate_speed : float = 10.0
+@export var death_noise : AudioStream
 
 var _damage_position : Vector2
 var _direction : Vector2
@@ -13,8 +14,10 @@ func init() -> void:
 
 func enter() -> void:
 	enemy.invulnerable = true #cant be hit when dead
-	
 	_direction = enemy.global_position.direction_to( _damage_position ) #get direction based on global position of damage position
+	
+	enemy.audio.stream = death_noise
+	enemy.audio.play()
 	
 	enemy.set_direction( _direction ) #set direction to face the attacking knight
 	enemy.velocity = _direction * -knockback_speed #push enemy backwards

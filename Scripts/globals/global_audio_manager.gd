@@ -31,7 +31,7 @@ func play_music( _audio : AudioStream ) -> void:
 	
 	var old_player = music_players[ 1 ] #set old player 
 	if current_music_player == 1:
-		old_player == music_players[ 0 ]
+		old_player = music_players[ 0 ]
 	
 	fade_out_and_stop( old_player ) 
 

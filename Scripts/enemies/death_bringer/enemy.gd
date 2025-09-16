@@ -17,6 +17,7 @@ var invulnerable : bool = false
 const DIR_2 = [ Vector2.LEFT, Vector2.RIGHT ] #enemies two directions
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var wander: EnemyStateWander = %Wander
 @onready var hurt: EnemyStateHurt = %Hurt
 @onready var death: EnemyStateDeath = %Death
@@ -76,4 +77,13 @@ func anim_direction() -> String: #returns a left or right based on the current d
 
 func update_velocity( _velocity : float, _acceleration : float ) -> void:
 	velocity.x = move_toward( velocity.x, _velocity, _acceleration ) #updates velocity in the x axis from base velocity to max velocity passed in at a delta value of acceleration
+	pass
+
+
+func play_audio( _audio : AudioStream ) -> void: #function to play audio streams
+	if audio == null:
+		return
+	
+	audio.stream = _audio
+	audio.play()
 	pass

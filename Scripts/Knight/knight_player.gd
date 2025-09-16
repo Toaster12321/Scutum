@@ -2,7 +2,7 @@ class_name Knight extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var camera_2d: Camera2D = $Camera2D
 @onready var idle: KnightStateIdle = %Idle
 @onready var run: KnightStateRun = %Run
@@ -57,11 +57,11 @@ func update_velocity( _velocity : float, _acceleration : float ) -> void:
 	pass
 
 
-func play_audio( audio : AudioStream ) -> void: #function to play audio streams
+func play_audio( _audio : AudioStream ) -> void: #function to play audio streams
 	if audio == null:
 		return
 	
-	audio_stream_player_2d.stream = audio
+	audio.stream = _audio
 	audio.play()
 	pass
 

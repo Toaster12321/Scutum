@@ -21,3 +21,13 @@ func add_player_instance() -> void:
 func set_player_position( _new_pos : Vector2 ) -> void: #function that sets the knight at a set of coords
 	knight.global_position = _new_pos
 	pass
+
+
+func set_as_parent( _p : Node2D ) -> void:
+	if knight.get_parent(): #if we have an instance of the knight set it as the parent node
+		knight.get_parent().remove_child( knight )
+	_p.add_child( knight )
+
+
+func unparent_player( _p : Node2D ) -> void: 
+	_p.remove_child( knight ) #unparent knight

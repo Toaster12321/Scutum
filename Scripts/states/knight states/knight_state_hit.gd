@@ -3,6 +3,7 @@ class_name KnightStateHit extends KnightState
 @export var knockback_speed : float = 200.0 #knockback speed when hit
 @export var decelerate_speed : float = 10.0 #how fast velocity slows
 @export var invulnerable_duration : float = 1.0 #invincible for 1s by default
+@export var hit_audio : AudioStream
 
 var hurtbox : Hurtbox
 var _direction : Vector2
@@ -18,6 +19,10 @@ func init() -> void:
 
 func enter() -> void:
 	_anim_finished = false #animation not finished
+	
+	knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
+	knight.play_audio( hit_audio )
+	
 	knight.animation_player.animation_finished.connect( _animation_finished ) #connect function for when animation is finished
 	
 	_direction = knight.global_position.direction_to( hurtbox.global_position ) #get the direction towards the hurtbox from the knight

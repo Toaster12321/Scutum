@@ -1,5 +1,7 @@
 class_name KnightStateDeath extends KnightState
 
+@export var death_audio : AudioStream
+
 var deceleration : float = 10.0
 
 func init() -> void:
@@ -8,6 +10,7 @@ func init() -> void:
 
 func enter() -> void:
 	knight.animation_player.play("death")
+	knight.play_audio(death_audio)
 	pass
 
 

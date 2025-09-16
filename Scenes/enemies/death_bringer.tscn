@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://crxu0j537bvmp"]
+[gd_scene load_steps=29 format=3 uid="uid://crxu0j537bvmp"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/death_bringer/enemy.gd" id="1_nlvty"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="3_0yts2"]
@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://w03eaurolq66" path="res://Scripts/states/enemy states/enemy_state_death.gd" id="10_rnrj7"]
 [ext_resource type="Script" uid="uid://dfqpf2m80wjex" path="res://Scripts/states/enemy states/enemy_state_attack.gd" id="11_lwf2y"]
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="12_lbltc"]
+[ext_resource type="AudioStream" uid="uid://yc4ws8g5n2q0" path="res://Audio/Used Tracks/DSGNMisc_HIT-Gore Pierce_HY_PC-002.wav" id="13_043i5"]
+[ext_resource type="AudioStream" uid="uid://pu487k8ad648" path="res://Audio/Used Tracks/MAGSpel_CAST-Teleport Downer_HY_PC-006.wav" id="14_sfk8v"]
 
 [sub_resource type="Animation" id="Animation_nlvty"]
 length = 0.001
@@ -276,6 +278,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [node name="Sprite" type="Node2D" parent="."]
 
@@ -351,7 +354,9 @@ script = ExtResource("9_rnrj7")
 unique_name_in_owner = true
 script = ExtResource("11_lwf2y")
 vision_area = NodePath("../../Sprite/VisionArea")
+attack_audio = ExtResource("13_043i5")
 
 [node name="Death" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("10_rnrj7")
+death_noise = ExtResource("14_sfk8v")
