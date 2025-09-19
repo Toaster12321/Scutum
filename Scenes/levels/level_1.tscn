@@ -43,4 +43,4 @@ node_number_text = "2"
 wait_time = 2.0
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(-7, 155)
+position = Vector2(-6, 29)
