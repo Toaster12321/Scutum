@@ -96,6 +96,21 @@ _data = {
 &"default_shield": SubResource("Animation_wh42d")
 }
 
+[sub_resource type="Animation" id="Animation_68x5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ScutumTitle:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.305882, 0.345098, 0.419608, 0.271895)]
+}
+
 [sub_resource type="Animation" id="Animation_8w5qn"]
 resource_name = "default_title"
 length = 2.0
@@ -122,21 +137,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.305882, 0.345098, 0.419608, 0), Color(0.305882, 0.345098, 0.419608, 0.254902), Color(0.305882, 0.345098, 0.419608, 0.509804), Color(0.305882, 0.345098, 0.419608, 0.760784), Color(0.305882, 0.345098, 0.419608, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_68x5q"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../ScutumTitle:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.305882, 0.345098, 0.419608, 0.271895)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02ngo"]
