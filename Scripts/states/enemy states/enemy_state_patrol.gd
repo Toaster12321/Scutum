@@ -99,6 +99,5 @@ func walking() -> void:
 	enemy.velocity = _direction * wander_speed #set velocity
 	
 	enemy.set_direction( _direction ) #set left or right direction
-	print(_direction)
 	enemy.animation_player.play("walk")
 	pass
