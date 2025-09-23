@@ -14,7 +14,6 @@ func init() -> void:
 
 
 func enter() -> void:
-	print("entered hurt")
 	enemy.invulnerable = true #make enemy invulnerable to multiple hits during animation
 	_animation_finished = false 
 	
@@ -34,7 +33,6 @@ func enter() -> void:
 
 
 func exit() -> void: 
-	print("exit hurt")
 	enemy.invulnerable = false #no longer invulnerable 
 	enemy.animation_player.animation_finished.disconnect( _on_animation_finished ) #disconnect signal
 	pass

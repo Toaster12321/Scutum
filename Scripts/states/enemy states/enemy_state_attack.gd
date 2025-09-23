@@ -75,8 +75,12 @@ func _on_attack_finished( _anim : String ) -> void:
 		return
 
 	if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
-		enemy.update_animation("attack")
-		enemy.play_audio(attack_audio)
+		var chance = randi_range(0,1)
+		if chance == 0:
+			state_machine.change_state(casting)
+		else:
+			enemy.update_animation("attack")
+			enemy.play_audio(attack_audio)
 	else:
 		state_machine.change_state(idle)
 	pass

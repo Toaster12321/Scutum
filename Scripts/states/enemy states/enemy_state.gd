@@ -12,6 +12,8 @@ static var direction : Vector2
 @onready var hurt: EnemyStateHurt = %Hurt
 @onready var death: EnemyStateDeath = %Death
 @onready var attack: EnemyStateAttack = %Attack
+@onready var casting: EnemyStateCasting = %Casting
+
 
 
 func ready() -> void:

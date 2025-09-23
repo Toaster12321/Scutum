@@ -8,6 +8,7 @@ var current_location_index : int = 0
 var target : PatrolLocation
 var has_started : bool = false
 var last_phase : String = ""
+var spawn_position : Vector2
 
 
 @onready var timer: Timer = $Timer
@@ -18,12 +19,10 @@ func init() -> void:
 
 
 func enter() -> void:
-	print("enetered patrol")
-	
+	spawn_position = enemy.global_position
 	gather_patrol_locations() #gather nodes
 	if patrol_locations.size() < 2:
 		return
-		
 		
 	if Engine.is_editor_hint():
 		child_entered_tree.connect( gather_patrol_locations ) #gather patrol locations when a new node enters the tree
@@ -37,7 +36,6 @@ func enter() -> void:
 	target = patrol_locations[ 0 ] #target location is the first node
 	
 	if has_started == true:
-		print("idle over")
 		if timer.time_left == 0:
 			walking()
 		return
@@ -48,16 +46,14 @@ func enter() -> void:
 
 
 func exit() -> void:
-	print("exited patrol")
 	pass
 
 
 func process( _delta : float ) -> EnemyState:
-	if enemy.global_position.distance_to( target.target_position ) < 4:
+	if enemy.global_position.distance_to( target.target_position ) < 4: #if the enemy is within 4 pixels of the target position, idle
 		idling()
-	if enemy.global_position.distance_to( target.target_position ) > enemy.patrol_range:
+	if enemy.global_position.distance_to( spawn_position ) > enemy.patrol_range:#if the enemy is out of range, change state to wander
 		return wander
-	
 	return null
 
 
@@ -70,6 +66,7 @@ func gather_patrol_locations( _n : Node = null ) -> void:
 	for c in enemy.get_children(): # append each location in the array
 		if c is PatrolLocation:
 			patrol_locations.append( c )
+			print( patrol_locations )
 	pass
 
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bi0kn763auwur"
+path="res://.godot/imported/DSGNMisc_PROJECTILE-Water Bolt_HY_PC-001.wav-67f2641cab652fb3e51c907e1f2d562e.sample"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/DSGNMisc_PROJECTILE-Water Bolt_HY_PC-001.wav"
+dest_files=["res://.godot/imported/DSGNMisc_PROJECTILE-Water Bolt_HY_PC-001.wav-67f2641cab652fb3e51c907e1f2d562e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
