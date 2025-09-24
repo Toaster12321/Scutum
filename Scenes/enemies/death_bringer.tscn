@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://crxu0j537bvmp"]
+[gd_scene load_steps=32 format=3 uid="uid://crxu0j537bvmp"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/death_bringer/enemy.gd" id="1_nlvty"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="3_0yts2"]
@@ -108,6 +108,21 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(-78, -25)]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_043i5")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_lbltc"]
 resource_name = "attack_right"
@@ -149,10 +164,25 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(28, -25)]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_043i5")
+}],
+"times": PackedFloat32Array(0.4)
+}
+tracks/3/use_blend = true
 
 [sub_resource type="Animation" id="Animation_h1v3h"]
 resource_name = "casting"
-length = 0.8
+length = 1.2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -161,10 +191,10 @@ tracks/0/path = NodePath("Sprite/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [50, 51, 52, 53, 54, 55, 56, 57, 58]
+"values": [50, 51, 52, 53, 54, 55, 56, 55, 56, 55, 56, 55, 58]
 }
 
 [sub_resource type="Animation" id="Animation_5jinm"]
@@ -263,6 +293,18 @@ size = Vector2(68, 50)
 radius = 23.0
 height = 56.0
 
+[sub_resource type="Gradient" id="Gradient_08set"]
+offsets = PackedFloat32Array(0.672176, 0.837466, 1)
+colors = PackedColorArray(1, 0, 0, 0, 0.944515, 0, 0.135119, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mufow"]
+gradient = SubResource("Gradient_08set")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.6)
+
 [node name="DeathBringer" type="CharacterBody2D"]
 collision_layer = 256
 collision_mask = 48
@@ -355,7 +397,6 @@ script = ExtResource("9_rnrj7")
 unique_name_in_owner = true
 script = ExtResource("11_lwf2y")
 vision_area = NodePath("../../Sprite/VisionArea")
-attack_audio = ExtResource("13_043i5")
 
 [node name="Casting" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
@@ -365,3 +406,13 @@ script = ExtResource("14_x8500")
 unique_name_in_owner = true
 script = ExtResource("10_rnrj7")
 death_noise = ExtResource("14_sfk8v")
+
+[node name="PositionTargets" type="Node2D" parent="."]
+
+[node name="SpellTargetPosition" type="Sprite2D" parent="PositionTargets"]
+position = Vector2(-90, -110)
+texture = SubResource("GradientTexture2D_mufow")
+
+[node name="SpellTargetPosition2" type="Sprite2D" parent="PositionTargets"]
+position = Vector2(90, -110)
+texture = SubResource("GradientTexture2D_mufow")

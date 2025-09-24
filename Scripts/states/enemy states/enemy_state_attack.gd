@@ -2,11 +2,12 @@ class_name EnemyStateAttack extends EnemyState
 
 @export var vision_area : VisionArea #enemy vision
 @export var state_aggro_duration : float = 0.5 #duration of aggro
-@export var attack_audio : AudioStream
 
 var deceleration : float = 30.0
 var _timer : float = 0.0
 var _can_see_player : bool = false
+var next_state : EnemyState
+var chance : int
 
 
 func init() -> void:
@@ -17,7 +18,6 @@ func init() -> void:
 
 
 func enter() -> void:
-	enemy.play_audio(attack_audio)
 	_can_see_player = true #enemy sees the player
 	_timer = state_aggro_duration #timer is equal to our aggro duration
 	enemy.update_animation("attack") #play attack animation
@@ -34,6 +34,7 @@ func exit() -> void:
 
 
 func process( _delta : float ) -> EnemyState:
+	chance = randi_range(0,1) #make chance a 50/50
 	if _can_see_player == false: #if we cant see the enemy start timer
 		_timer -= _delta
 		
@@ -59,7 +60,11 @@ func _on_player_entered() -> void:
 		or state_machine.current_state is EnemyStateDeath
 	):
 		return
-	state_machine.change_state( self ) #change state to attack
+	if chance == 0: #50/50 to attack or cast
+		next_state = self
+	else:
+		next_state = casting
+	state_machine.change_state( next_state ) #change state to attack or cast
 	pass
 
 func _on_player_exited() -> void:
@@ -75,12 +80,10 @@ func _on_attack_finished( _anim : String ) -> void:
 		return
 
 	if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
-		var chance = randi_range(0,1)
 		if chance == 0:
 			state_machine.change_state(casting)
 		else:
 			enemy.update_animation("attack")
-			enemy.play_audio(attack_audio)
 	else:
 		state_machine.change_state(idle)
 	pass

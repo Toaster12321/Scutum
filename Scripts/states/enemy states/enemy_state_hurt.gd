@@ -23,9 +23,10 @@ func enter() -> void:
 		_normalized_direction = Vector2.RIGHT
 	else:
 		_normalized_direction = Vector2.LEFT
-	
-	enemy.set_direction( _normalized_direction ) #set direction to face the attacking knight
-	enemy.velocity = _direction * -knockback_speed #push enemy backward
+		
+	if state_machine.previous_state != casting:  #dont knockback in casting state
+		enemy.set_direction( _normalized_direction ) #set direction to face the attacking knight
+		enemy.velocity = _direction * -knockback_speed #push enemy backward
 	
 	enemy.animation_player.play("hurt") #play hurt animation 
 	enemy.animation_player.animation_finished.connect( _on_animation_finished ) #connect to animation finished function when anim is done
