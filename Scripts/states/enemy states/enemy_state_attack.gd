@@ -63,7 +63,10 @@ func _on_player_entered() -> void:
 	if chance == 0: #50/50 to attack or cast
 		next_state = self
 	else:
-		next_state = casting
+		if casting:
+			next_state = casting
+		else:
+			next_state = self
 	state_machine.change_state( next_state ) #change state to attack or cast
 	pass
 
@@ -81,7 +84,11 @@ func _on_attack_finished( _anim : String ) -> void:
 
 	if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
 		if chance == 0:
-			state_machine.change_state(casting)
+			if casting:
+				state_machine.change_state(casting)
+			else:
+				print("casting false")
+				enemy.update_animation("attack")
 		else:
 			enemy.update_animation("attack")
 	else:

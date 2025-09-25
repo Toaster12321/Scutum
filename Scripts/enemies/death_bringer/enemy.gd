@@ -5,7 +5,7 @@ signal enemy_damaged( hurt_box : Hurtbox )
 signal enemy_destroyed( hurt_box : Hurtbox )
 
 @export var hp : int = 5
-@export var patrol_range : int = 130
+@export var patrol_range : int = 130 #radius which determines how far in the x direction the enemy can patrol before going to wander
 
 var gravity : float = 980 #9.81m/s gravity speed
 var gravity_multiplier : float = 1
@@ -18,10 +18,6 @@ const DIR_2 = [ Vector2.LEFT, Vector2.RIGHT ] #enemies two directions
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
-@onready var wander: EnemyStateWander = %Wander
-@onready var hurt: EnemyStateHurt = %Hurt
-@onready var death: EnemyStateDeath = %Death
-@onready var attack: EnemyStateAttack = %Attack
 @onready var enemy_state_machine: EnemyStateMachine = $EnemyStateMachine
 @onready var sprite: Node2D = $Sprite
 @onready var hitbox: Hitbox = $Hitbox

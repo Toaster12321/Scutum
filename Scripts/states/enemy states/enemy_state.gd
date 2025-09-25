@@ -1,10 +1,10 @@
 class_name EnemyState extends Node2D
-#state template
+#state template + references
 
 
-static var enemy : Enemy
-static var state_machine : EnemyStateMachine
-static var direction : Vector2
+var enemy : Enemy
+var state_machine : EnemyStateMachine
+var direction : Vector2
 
 @onready var idle: EnemyStateIdle = %Idle
 @onready var patrol: EnemyStatePatrol = %Patrol
@@ -12,7 +12,7 @@ static var direction : Vector2
 @onready var hurt: EnemyStateHurt = %Hurt
 @onready var death: EnemyStateDeath = %Death
 @onready var attack: EnemyStateAttack = %Attack
-@onready var casting: EnemyStateCasting = %Casting
+@onready var casting: EnemyStateCasting = get_node_or_null("Casting") #node or null cause not all enemies can cast
 
 
 

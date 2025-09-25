@@ -49,12 +49,11 @@ func init( _enemy : Enemy ) -> void:
 	for c in get_children(): #check children of state machine, if they are a state append them to array
 		if c is EnemyState:
 			states.append(c)
+			c.enemy = enemy
+			c.state_machine = self #assign enemy and statemachine in state template called enemy state
 	
 	if states.size() == 0:
 		return
-	
-	current_state.enemy = enemy #assign enemy and statemachine in state template called enemy state
-	current_state.state_machine = self
 	
 	for state in states:
 		state.init() #initialize states
