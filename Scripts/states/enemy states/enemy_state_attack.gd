@@ -46,10 +46,11 @@ func exit() -> void:
 
 func process( _delta : float ) -> EnemyState:
 	chance = randi_range(0,1) #make chance a 50/50
-	if _can_see_player == false: #if we cant see the enemy start timer
+	if _can_see_player == true: #if we see the enemy start timer
 		_timer -= _delta
 		
 		if _timer <= 0: #once out go to idle
+			_can_see_player = false
 			return idle
 	else:
 		_timer = state_aggro_duration 
@@ -97,10 +98,11 @@ func _on_attack_finished( _anim : String ) -> void:
 		state_machine.change_state(patrol)
 		return
 	
-	if _anim =="charge":
+	if _anim =="charge": #if last animation was charge
 		enemy.velocity = Vector2( leap_strength * enemy.facing_direction, enemy.velocity.y)
 		if _can_see_player != false:
 			enemy.update_animation("attack")
+			enemy.update_velocity(0,deceleration)
 		else:
 			state_machine.change_state(wander)
 

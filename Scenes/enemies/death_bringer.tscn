@@ -306,6 +306,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.6)
 
 [node name="DeathBringer" type="CharacterBody2D"]
+z_index = 2
 collision_layer = 256
 collision_mask = 48
 floor_constant_speed = true
@@ -397,6 +398,7 @@ script = ExtResource("9_rnrj7")
 unique_name_in_owner = true
 script = ExtResource("11_lwf2y")
 vision_area = NodePath("../../Sprite/VisionArea")
+state_aggro_duration = 5.0
 
 [node name="Casting" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true

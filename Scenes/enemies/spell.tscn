@@ -171,6 +171,7 @@ collision_mask = 2
 monitoring = false
 monitorable = false
 script = ExtResource("2_yab33")
+hurtbox_type = 1
 damage = 2
 metadata/_custom_type_script = "uid://dssfnjsjv0g0p"
 

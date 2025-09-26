@@ -1,6 +1,6 @@
 class_name EnemyStateHurt extends EnemyState
 
-@export var knockback_speed : float = 500.0 #how fast enemy gets pushed back
+@export var knockback_speed : float = 300.0 #how fast enemy gets pushed back
 @export var decelerate_speed : float = 10.0 #velocity decrease speed
 
 var _damage_position : Vector2
