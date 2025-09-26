@@ -1,26 +1,37 @@
 class_name EnemyStateAttack extends EnemyState
 
+enum EnemyType {DEATHBRINGER, WOLF}
+
 @export var vision_area : VisionArea #enemy vision
 @export var state_aggro_duration : float = 0.5 #duration of aggro
+@export var enemy_type : EnemyType
 
 var deceleration : float = 30.0
 var _timer : float = 0.0
+var leap_strength : float = 150
 var _can_see_player : bool = false
 var next_state : EnemyState
 var chance : int
+
 
 
 func init() -> void:
 	if vision_area: #if a vision area is connected connect player area entered and exited function
 		vision_area.player_enetered.connect( _on_player_entered )
 		vision_area.player_exited.connect( _on_player_exited )
+	else:
+		print("vision not assigned")
 	pass
 
 
 func enter() -> void:
 	_can_see_player = true #enemy sees the player
 	_timer = state_aggro_duration #timer is equal to our aggro duration
-	enemy.update_animation("attack") #play attack animation
+	if enemy_type == EnemyType.DEATHBRINGER:
+		enemy.update_animation("attack") #play attack animation
+	elif enemy_type == EnemyType.WOLF:
+		enemy.animation_player.play("charge")
+		#enemy.update_velocity( 0, deceleration)
 	
 	if not enemy.animation_player.animation_finished.is_connected( _on_attack_finished ):#make sure it isnt connected
 		enemy.animation_player.animation_finished.connect( _on_attack_finished ) #connect to attack finished function after 1st attack
@@ -42,18 +53,23 @@ func process( _delta : float ) -> EnemyState:
 			return idle
 	else:
 		_timer = state_aggro_duration 
+	
+	if enemy.animation_player.current_animation == "charge":
+		enemy.velocity = Vector2.ZERO
 	return null
 
 
 func physics_process( _delta : float ) -> EnemyState:
 	if not enemy.is_on_floor():
 		return wander
-		
-	enemy.update_velocity( 0 , deceleration )
+	
+	if enemy_type == EnemyType.DEATHBRINGER:
+		enemy.update_velocity( 0 , deceleration )
 	return null
 
 
 func _on_player_entered() -> void:
+	print("player entered")
 	_can_see_player = true #enemy can see the player
 	if(
 		state_machine.current_state is EnemyStateHurt #cant attack during hurt or death states
@@ -63,7 +79,7 @@ func _on_player_entered() -> void:
 	if chance == 0: #50/50 to attack or cast
 		next_state = self
 	else:
-		if casting:
+		if enemy.has_node("%Casting"):
 			next_state = casting
 		else:
 			next_state = self
@@ -77,20 +93,24 @@ func _on_player_exited() -> void:
 
 func _on_attack_finished( _anim : String ) -> void:
 	enemy.audio.stop()
-	
 	if GlobalPlayerManager.knight.hp <= 0: # if player has no hp go to wander
 		state_machine.change_state(patrol)
 		return
+	
+	if _anim =="charge":
+		enemy.velocity = Vector2( leap_strength * enemy.facing_direction, enemy.velocity.y)
+		if _can_see_player != false:
+			enemy.update_animation("attack")
+		else:
+			state_machine.change_state(wander)
 
-	if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
-		if chance == 0:
-			if casting:
+		
+	if _anim == "attack_right" or _anim == "attack_left":
+		if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
+			if chance == 0 and enemy.has_node("%Casting"):  #if the enemy has a casting state
 				state_machine.change_state(casting)
 			else:
-				print("casting false")
 				enemy.update_animation("attack")
 		else:
-			enemy.update_animation("attack")
-	else:
-		state_machine.change_state(idle)
+			state_machine.change_state(wander)
 	pass

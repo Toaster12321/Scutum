@@ -9,7 +9,7 @@ var target : PatrolLocation
 var has_started : bool = false
 var last_phase : String = ""
 var spawn_position : Vector2
-
+var patrol_walk : bool = true
 
 @onready var timer: Timer = $Timer
 
@@ -22,6 +22,7 @@ func enter() -> void:
 	spawn_position = enemy.global_position
 	gather_patrol_locations() #gather nodes
 	if patrol_locations.size() < 2:
+		patrol_walk = false
 		return
 		
 	if Engine.is_editor_hint():
@@ -50,10 +51,11 @@ func exit() -> void:
 
 
 func process( _delta : float ) -> EnemyState:
-	if enemy.global_position.distance_to( target.target_position ) < 4: #if the enemy is within 4 pixels of the target position, idle
-		idling()
-	if enemy.global_position.distance_to( spawn_position ) > enemy.patrol_range:#if the enemy is out of range, change state to wander
-		return wander
+	if patrol_walk == true:
+		if enemy.global_position.distance_to( target.target_position ) < 4: #if the enemy is within 4 pixels of the target position, idle
+			idling()
+		if enemy.global_position.distance_to( spawn_position ) > enemy.patrol_range:#if the enemy is out of range, change state to wander
+			return wander
 	return null
 
 

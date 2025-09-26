@@ -42,31 +42,31 @@ scroll_offset = Vector2(-71, -50)
 position = Vector2(152, 70)
 texture = ExtResource("5_uy8f0")
 
-[node name="DeathBringer" parent="." instance=ExtResource("10_chwpn")]
-position = Vector2(498, 223)
-
-[node name="PatrolLocation" parent="DeathBringer" instance=ExtResource("11_sskdo")]
-position = Vector2(-107, 0)
-node_number_text = "1"
-wait_time = 1.0
-
-[node name="PatrolLocation2" parent="DeathBringer" instance=ExtResource("11_sskdo")]
-position = Vector2(111, -2)
-node_number_text = "2"
-wait_time = 2.0
-
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(-30, 29)
+position = Vector2(178, 158)
 
 [node name="Wolf" parent="." instance=ExtResource("9_dsuda")]
-position = Vector2(77, 223)
+position = Vector2(164, 223)
 
 [node name="PatrolLocation" parent="Wolf" instance=ExtResource("11_sskdo")]
-position = Vector2(-45, -5)
+position = Vector2(-80, 1)
 node_number_text = "1"
 wait_time = 1.0
 
 [node name="PatrolLocation2" parent="Wolf" instance=ExtResource("11_sskdo")]
-position = Vector2(45, -4)
+position = Vector2(45, 1)
 node_number_text = "2"
 wait_time = 1.0
+
+[node name="DeathBringer" parent="." instance=ExtResource("10_chwpn")]
+position = Vector2(580, 225)
+
+[node name="PatrolLocation" parent="DeathBringer" instance=ExtResource("11_sskdo")]
+position = Vector2(-97, -2)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="DeathBringer" instance=ExtResource("11_sskdo")]
+position = Vector2(78, -2)
+node_number_text = "2"
+wait_time = 2.0

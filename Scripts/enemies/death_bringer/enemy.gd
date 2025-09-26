@@ -10,6 +10,7 @@ signal enemy_destroyed( hurt_box : Hurtbox )
 var gravity : float = 980 #9.81m/s gravity speed
 var gravity_multiplier : float = 1
 var direction : Vector2 = Vector2.ZERO
+var facing_direction : float = 1
 var knight : Knight
 var invulnerable : bool = false
 
@@ -43,8 +44,10 @@ func set_direction( _new_direction : Vector2 ) -> void:
 	
 		if direction.x < 0: #since sprite starts left side we flip logic
 			sprite.scale.x = 1   #if we are facing left flip to right
+			facing_direction = -1
 		elif direction.x > 0: 
 			sprite.scale.x = -1 #if we are facing right flip to left
+			facing_direction = 1
 	
 	direction_changed.emit( direction ) #emit signal for direction changed
 
