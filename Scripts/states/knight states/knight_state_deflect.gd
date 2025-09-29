@@ -4,8 +4,6 @@ class_name KnightStateDeflect extends KnightState
 @onready var shieldbox: Shieldbox = $"../../ShieldHitbox"
 
 var _anim_finished : bool = false
-var _next_state : KnightState
-var _shield_held : bool = false
 
 func init() -> void:
 	pass
@@ -21,7 +19,9 @@ func enter() -> void:
 
 func exit() -> void:
 	_anim_finished = false #reset anim finished
-	knight.animation_player.animation_finished.disconnect( _on_anim_finished ) #disconnect signal
+	
+	if knight.animation_player.animation_finished.is_connected( _on_anim_finished ):
+		knight.animation_player.animation_finished.disconnect( _on_anim_finished ) #disconnect signal
 
 	pass
 
@@ -40,11 +40,10 @@ func handle_input( _event : InputEvent ) -> KnightState:
 func process( _delta : float ) -> KnightState:
 	knight.velocity = Vector2.ZERO #make player stand still when hit
 	
-	_shield_held = Input.is_action_pressed("shield") #check every frame for shielding 
 	
 	if _anim_finished == true: #if animation is over
-		if _shield_held: #if shield was held the whole time continue to shield
-			return _next_state
+		if Input.is_action_pressed("shield") : #if shield was held the whole time continue to shield
+			return shield
 		else:
 			return idle #leave state
 	return null
@@ -56,5 +55,4 @@ func physics_process( _delta : float ) -> KnightState:
 
 func _on_anim_finished( _anim : String ) -> void:
 	_anim_finished = true #animation has finished
-	_next_state = shield
 	pass

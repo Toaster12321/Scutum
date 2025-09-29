@@ -36,10 +36,11 @@ func exit() -> void:
 
 
 func handle_input( _event : InputEvent ) -> KnightState:
-	if _event.is_action_pressed("attack"): #if attack is called during this state the second attack animation is played
-		knight.update_animation("attack_2")#call update animation for animation + direction
-		knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
-		knight.play_audio( attack_2_sound )
+	#if _event.is_action_pressed("attack"): #if attack is called during this state the second attack animation is played
+		#if knight.animation_player.current_animation == "attack_left" or knight.animation_player.current_animation == "attack_right":
+			#knight.update_animation("attack_2")#call update animation for animation + direction
+			#knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
+			#knight.play_audio( attack_2_sound )
 	return null
 
 

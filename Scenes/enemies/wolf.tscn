@@ -337,6 +337,7 @@ debug_color = Color(0.606513, 0.54064, 5.77569e-07, 0.42)
 [node name="Hurtbox" parent="." instance=ExtResource("6_36m5f")]
 visible = false
 position = Vector2(-5, -10)
+hurtbox_type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708

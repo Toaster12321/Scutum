@@ -44,6 +44,7 @@ func handle_input( _event : InputEvent ) -> KnightState:
 
 func process( _delta : float ) -> KnightState:
 	if _blocked == true: #if we did block an attack return deflect
+		_blocked = false
 		return _next_state
 		
 	shielding = Input.is_action_pressed("shield") #keep track if we are shielding every frame 
@@ -77,7 +78,8 @@ func physics_process( _delta : float ) -> KnightState:
 func _damage_blocked( _hurtbox : Hurtbox ) -> void:
 	hurtbox = _hurtbox #get passed hurtbox
 	if hurtbox.hurtbox_type == Hurtbox.HurtboxType.BODY: #if we are hitting the body hitbox dont deflect
-		return
+		hit.hurtbox = hurtbox
+		state_machine.change_state(hit)
 	
 	_blocked = true #we blocked the attack
 	if state_machine.current_state != deflect: #prevent multiple animations
