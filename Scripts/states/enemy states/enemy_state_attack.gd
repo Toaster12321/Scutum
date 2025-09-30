@@ -6,13 +6,16 @@ enum EnemyType {DEATHBRINGER, WOLF}
 @export var state_aggro_duration : float = 0.5 #duration of aggro
 @export var enemy_type : EnemyType
 
-var deceleration : float = 30.0
+var deceleration : float = 60.0
+var _charge_deceleration : float = 30.0
 var _timer : float = 0.0
 var leap_strength : float = 150
 var _can_see_player : bool = false
+var _assess_player : bool = false
 var next_state : EnemyState
 var chance : int
 
+@onready var _assess_timer: Timer = $Timer
 
 
 func init() -> void:
@@ -29,9 +32,9 @@ func enter() -> void:
 	_timer = state_aggro_duration #timer is equal to our aggro duration
 	if enemy_type == EnemyType.DEATHBRINGER:
 		enemy.update_animation("attack") #play attack animation
+		enemy.velocity = Vector2.ZERO
 	elif enemy_type == EnemyType.WOLF:
 		enemy.animation_player.play("charge")
-		#enemy.update_velocity( 0, deceleration)
 	
 	if not enemy.animation_player.animation_finished.is_connected( _on_attack_finished ):#make sure it isnt connected
 		enemy.animation_player.animation_finished.connect( _on_attack_finished ) #connect to attack finished function after 1st attack
@@ -53,9 +56,16 @@ func process( _delta : float ) -> EnemyState:
 			_can_see_player = false
 			return idle
 	else:
-		_timer = state_aggro_duration 
+		_timer = state_aggro_duration #reset timer
 	
-	if enemy.animation_player.current_animation == "charge":
+	if _assess_player == true: #if the enemy is assessing its next move
+		enemy.update_velocity(enemy.velocity.x,0) #slow down velocity
+		
+		if _assess_timer.time_left <=0: #if timer is out it is now attacking
+			_assess_player = false
+			return self
+	
+	if enemy.animation_player.current_animation == "charge": #dont move during charge animation
 		enemy.velocity = Vector2.ZERO
 	return null
 
@@ -64,8 +74,6 @@ func physics_process( _delta : float ) -> EnemyState:
 	if not enemy.is_on_floor():
 		return wander
 	
-	if enemy_type == EnemyType.DEATHBRINGER:
-		enemy.update_velocity( 0 , deceleration )
 	return null
 
 
@@ -94,16 +102,20 @@ func _on_player_exited() -> void:
 
 func _on_attack_finished( _anim : String ) -> void:
 	enemy.audio.stop()
-	if GlobalPlayerManager.knight.hp <= 0: # if player has no hp go to wander
+	if GlobalPlayerManager.knight.hp <= 0: # if player has no hp go to patrol
 		state_machine.change_state(patrol)
 		return
 	
+	if enemy_type == EnemyType.DEATHBRINGER:
+		assess() #assess after 1st attack
+		await _assess_timer.timeout
+	
 	if _anim =="charge": #if last animation was charge
-		enemy.velocity = Vector2( leap_strength * enemy.facing_direction, enemy.velocity.y)
-		if _can_see_player != false:
-			enemy.update_animation("attack")
-			enemy.update_velocity(0,deceleration)
-		else:
+		enemy.velocity = Vector2( leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
+		if _can_see_player != false: #if we can still see player attack again
+			enemy.update_animation("attack") 
+			enemy.update_velocity( 0,_charge_deceleration )
+		else: #otherwise wander
 			state_machine.change_state(wander)
 
 		
@@ -112,7 +124,18 @@ func _on_attack_finished( _anim : String ) -> void:
 			if chance == 0 and enemy.has_node("%Casting"):  #if the enemy has a casting state
 				state_machine.change_state(casting)
 			else:
+				enemy.velocity = Vector2.ZERO
 				enemy.update_animation("attack")
 		else:
-			state_machine.change_state(wander)
+			state_machine.change_state(wander)#otherwise wander
+	pass
+
+
+func assess() -> void:
+	if _can_see_player == true:#if we can see the player and have attacked already we are assessing
+		_assess_player = true
+		var rand_assess_time : float = randf_range(0.8,1.2)
+		_assess_timer.start(rand_assess_time) #start timer
+		enemy.animation_player.play("walk_backwards") #walk backwards away from the player for 1s
+		enemy.velocity.x = -enemy.facing_direction * 10
 	pass

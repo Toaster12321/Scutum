@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://546mrmgrbsur"]
+[gd_scene load_steps=28 format=3 uid="uid://546mrmgrbsur"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/death_bringer/enemy.gd" id="1_mo2lh"]
 [ext_resource type="Texture2D" uid="uid://bp885axmuqw7j" path="res://Sprites/Enemy/Wolf/Canine_White_Full_FX.png" id="1_smc33"]
@@ -258,6 +258,24 @@ tracks/0/keys = {
 "values": [11, 12, 13, 14, 15, 16]
 }
 
+[sub_resource type="Animation" id="Animation_cr2n3"]
+resource_name = "walk_backwards"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 15, 14, 13, 12, 11]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_31o0l"]
 _data = {
 &"RESET": SubResource("Animation_31o0l"),
@@ -267,7 +285,8 @@ _data = {
 &"death": SubResource("Animation_36m5f"),
 &"hurt": SubResource("Animation_vetev"),
 &"idle": SubResource("Animation_smc33"),
-&"walk": SubResource("Animation_mo2lh")
+&"walk": SubResource("Animation_mo2lh"),
+&"walk_backwards": SubResource("Animation_cr2n3")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31o0l"]
@@ -380,6 +399,8 @@ script = ExtResource("12_oxn3q")
 vision_area = NodePath("../../Sprite/VisionArea")
 state_aggro_duration = 5.0
 enemy_type = 1
+
+[node name="Timer" type="Timer" parent="EnemyStateMachine/Attack"]
 
 [node name="Death" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true

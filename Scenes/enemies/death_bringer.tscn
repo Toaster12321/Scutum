@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://crxu0j537bvmp"]
+[gd_scene load_steps=33 format=3 uid="uid://crxu0j537bvmp"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/death_bringer/enemy.gd" id="1_nlvty"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="3_0yts2"]
@@ -267,6 +267,24 @@ tracks/0/keys = {
 "values": [10, 11, 12, 13, 14, 15, 16, 17]
 }
 
+[sub_resource type="Animation" id="Animation_x8500"]
+resource_name = "walk_backwards"
+length = 0.7
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [17, 16, 15, 14, 13, 12, 11, 10]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0yts2"]
 _data = {
 &"RESET": SubResource("Animation_nlvty"),
@@ -276,7 +294,8 @@ _data = {
 &"death": SubResource("Animation_5jinm"),
 &"hurt": SubResource("Animation_0yts2"),
 &"idle": SubResource("Animation_rd3s7"),
-&"walk": SubResource("Animation_gmc07")
+&"walk": SubResource("Animation_gmc07"),
+&"walk_backwards": SubResource("Animation_x8500")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nlvty"]
@@ -399,6 +418,8 @@ unique_name_in_owner = true
 script = ExtResource("11_lwf2y")
 vision_area = NodePath("../../Sprite/VisionArea")
 state_aggro_duration = 5.0
+
+[node name="Timer" type="Timer" parent="EnemyStateMachine/Attack"]
 
 [node name="Casting" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
