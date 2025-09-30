@@ -106,28 +106,34 @@ func _on_attack_finished( _anim : String ) -> void:
 		state_machine.change_state(patrol)
 		return
 	
-	if enemy_type == EnemyType.DEATHBRINGER:
-		assess() #assess after 1st attack
-		await _assess_timer.timeout
+	if _can_see_player == false or state_machine.current_state != self:
+		state_machine.change_state(patrol)
 	
-	if _anim =="charge": #if last animation was charge
-		enemy.velocity = Vector2( leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
-		if _can_see_player != false: #if we can still see player attack again
-			enemy.update_animation("attack") 
-			enemy.update_velocity( 0,_charge_deceleration )
-		else: #otherwise wander
-			state_machine.change_state(wander)
-
-		
-	if _anim == "attack_right" or _anim == "attack_left":
-		if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
-			if chance == 0 and enemy.has_node("%Casting"):  #if the enemy has a casting state
-				state_machine.change_state(casting)
-			else:
-				enemy.velocity = Vector2.ZERO
+	match enemy_type:
+		EnemyType.WOLF:
+			if _anim =="charge": #if last animation was charge
+				enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
 				enemy.update_animation("attack")
-		else:
-			state_machine.change_state(wander)#otherwise wander
+			elif _anim == "attack_right" or _anim == "attack_left":
+				if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
+					enemy.update_velocity(0,_charge_deceleration)
+					enemy.update_animation("attack")
+				else:
+					state_machine.change_state(wander)#otherwise wander
+		
+		EnemyType.DEATHBRINGER:
+			if _anim == "attack_right" or _anim == "attack_left":
+				if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
+					assess()
+					await _assess_timer.timeout
+					if chance == 0 and enemy.has_node("%Casting"):  #if the enemy has a casting state
+						state_machine.change_state(casting)
+					else:
+						enemy.velocity = Vector2.ZERO
+						enemy.update_animation("attack")
+				else:
+					state_machine.change_state(wander)#otherwise wander
+	
 	pass
 
 
@@ -136,6 +142,10 @@ func assess() -> void:
 		_assess_player = true
 		var rand_assess_time : float = randf_range(0.8,1.2)
 		_assess_timer.start(rand_assess_time) #start timer
-		enemy.animation_player.play("walk_backwards") #walk backwards away from the player for 1s
-		enemy.velocity.x = -enemy.facing_direction * 10
+		if chance == 0:
+			enemy.animation_player.play("walk_backwards") #walk backwards away from the player for 1s
+			enemy.velocity.x = -enemy.facing_direction * 10
+		else:
+			enemy.animation_player.play("walk") #walk forwards to the player for 1s
+			enemy.velocity.x = enemy.facing_direction * 10
 	pass
