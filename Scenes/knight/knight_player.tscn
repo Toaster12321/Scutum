@@ -3118,6 +3118,7 @@ script = ExtResource("3_srrma")
 [node name="Run" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("4_t2eej")
+sprint_speed = 175.0
 
 [node name="Jump" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
