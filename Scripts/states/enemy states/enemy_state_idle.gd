@@ -10,6 +10,7 @@ func init() -> void:
 
 
 func enter() -> void: 
+	print("enetered idle")
 	enemy.animation_player.play("idle") #play idle animation 
 	_timer = randf_range( state_duration_min, state_duration_max ) #set timer to a random amount between desired time
 	enemy.velocity = Vector2.ZERO #stop enemy
@@ -17,6 +18,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	print("exited idle")
 	pass
 
 

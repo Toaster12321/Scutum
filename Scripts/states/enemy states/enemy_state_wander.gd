@@ -13,6 +13,7 @@ func init() -> void:
 
 
 func enter() -> void:
+	print("enetered wander")
 	enemy.animation_player.play("walk")
 	_timer = randi_range( state_cycles_min, state_cycles_max) * state_animation_duration
 	_direction = [Vector2.RIGHT, Vector2.LEFT]
@@ -24,6 +25,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	print("exited wander")
 	pass
 
 

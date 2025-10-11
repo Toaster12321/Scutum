@@ -9,7 +9,6 @@ func init() -> void:
 	positions = [] #clear array
 	for c in $"../../PositionTargets".get_children(): #append positions to array
 		positions.append( c )
-	print(positions)
 	$"../../PositionTargets".visible = false #turn off indicator
 	pass
 

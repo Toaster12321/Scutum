@@ -8,7 +8,7 @@ enum EnemyType {DEATHBRINGER, WOLF}
 
 var deceleration : float = 60.0
 var _charge_deceleration : float = 30.0
-var _timer : float = 0.0
+var _aggro_timer : float = 0.0
 var leap_strength : float = 150
 var _can_see_player : bool = false
 var _assess_player : bool = false
@@ -28,8 +28,9 @@ func init() -> void:
 
 
 func enter() -> void:
+	print("enetered attack")
 	_can_see_player = true #enemy sees the player
-	_timer = state_aggro_duration #timer is equal to our aggro duration
+	_aggro_timer = state_aggro_duration #timer is equal to our aggro duration
 	if enemy_type == EnemyType.DEATHBRINGER:
 		enemy.update_animation("attack") #play attack animation
 		enemy.velocity = Vector2.ZERO
@@ -42,6 +43,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	print("exited attack")
 	_can_see_player = false #enemy cant see player
 	enemy.animation_player.animation_finished.disconnect( _on_attack_finished ) #disconnect signal
 	pass
@@ -50,13 +52,13 @@ func exit() -> void:
 func process( _delta : float ) -> EnemyState:
 	chance = randi_range(0,1) #make chance a 50/50
 	if _can_see_player == true: #if we see the enemy start timer
-		_timer -= _delta
+		_aggro_timer = state_aggro_duration #reset tim
+	else:
+		_aggro_timer -= _delta
 		
-		if _timer <= 0: #once out go to idle
+		if _aggro_timer <= 0: #once out go to idle
 			_can_see_player = false
 			return idle
-	else:
-		_timer = state_aggro_duration #reset timer
 	
 	if _assess_player == true: #if the enemy is assessing its next move
 		enemy.update_velocity(enemy.velocity.x,0) #slow down velocity
@@ -106,7 +108,7 @@ func _on_attack_finished( _anim : String ) -> void:
 		state_machine.change_state(patrol)
 		return
 	
-	if _can_see_player == false or state_machine.current_state != self:
+	if _can_see_player == false and _aggro_timer <= 0:
 		state_machine.change_state(patrol)
 	
 	match enemy_type:

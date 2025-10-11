@@ -19,6 +19,7 @@ func init() -> void:
 
 
 func enter() -> void:
+	print("enetered patrol")
 	spawn_position = enemy.global_position
 	gather_patrol_locations() #gather nodes
 	if patrol_locations.size() < 2:
@@ -47,6 +48,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	print("exited patrol")
 	pass
 
 
@@ -68,7 +70,6 @@ func gather_patrol_locations( _n : Node = null ) -> void:
 	for c in enemy.get_children(): # append each location in the array
 		if c is PatrolLocation:
 			patrol_locations.append( c )
-			print( patrol_locations )
 	pass
 
 
