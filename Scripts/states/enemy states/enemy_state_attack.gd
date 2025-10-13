@@ -7,7 +7,7 @@ enum EnemyType {DEATHBRINGER, WOLF}
 @export var enemy_type : EnemyType
 
 var deceleration : float = 60.0
-var _charge_deceleration : float = 30.0
+var _charge_deceleration : float = 50.0
 var _aggro_timer : float = 0.0
 var leap_strength : float = 150
 var _can_see_player : bool = false
@@ -37,15 +37,17 @@ func enter() -> void:
 	elif enemy_type == EnemyType.WOLF:
 		enemy.animation_player.play("charge")
 	
-	if not enemy.animation_player.animation_finished.is_connected( _on_attack_finished ):#make sure it isnt connected
-		enemy.animation_player.animation_finished.connect( _on_attack_finished ) #connect to attack finished function after 1st attack
+	if not enemy.animation_player.animation_finished.is_connected( _on_attack_animation_finished ):#make sure it isnt connected
+		enemy.animation_player.animation_finished.connect( _on_attack_animation_finished ) #connect to attack finished function after 1st attack
 	pass
 
 
 func exit() -> void:
 	print("exited attack")
 	_can_see_player = false #enemy cant see player
-	enemy.animation_player.animation_finished.disconnect( _on_attack_finished ) #disconnect signal
+	_assess_player = false
+	if enemy.animation_player.animation_finished.is_connected( _on_attack_animation_finished ):#make sure it isnt connected
+		enemy.animation_player.animation_finished.disconnect( _on_attack_animation_finished )
 	pass
 
 
@@ -81,12 +83,12 @@ func physics_process( _delta : float ) -> EnemyState:
 
 func _on_player_entered() -> void:
 	print("player entered")
-	_can_see_player = true #enemy can see the player
 	if(
 		state_machine.current_state is EnemyStateHurt #cant attack during hurt or death states
 		or state_machine.current_state is EnemyStateDeath
 	):
 		return
+	_can_see_player = true #enemy can see the player
 	if chance == 0: #50/50 to attack or cast
 		next_state = self
 	else:
@@ -102,7 +104,7 @@ func _on_player_exited() -> void:
 	pass
 
 
-func _on_attack_finished( _anim : String ) -> void:
+func _on_attack_animation_finished( _anim : String ) -> void:
 	enemy.audio.stop()
 	if GlobalPlayerManager.knight.hp <= 0: # if player has no hp go to patrol
 		state_machine.change_state(patrol)
@@ -114,12 +116,16 @@ func _on_attack_finished( _anim : String ) -> void:
 	match enemy_type:
 		EnemyType.WOLF:
 			if _anim =="charge": #if last animation was charge
-				enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
 				enemy.update_animation("attack")
+				enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
 			elif _anim == "attack_right" or _anim == "attack_left":
-				if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
-					enemy.update_velocity(0,_charge_deceleration)
-					enemy.update_animation("attack")
+				enemy.update_velocity(enemy.velocity.x * 0.5 ,_charge_deceleration)
+				enemy.set_direction( enemy.global_position.direction_to(GlobalPlayerManager.knight.global_position) )
+				print(enemy.global_position.direction_to(GlobalPlayerManager.knight.global_position))
+				if _aggro_timer > 0 and _can_see_player != false: #if enemy is still inside vision after an attack, attack again
+					enemy.update_velocity(enemy.velocity.x * 0.5 ,_charge_deceleration)
+					await get_tree().create_timer(0.3).timeout
+					enemy.animation_player.play("charge")
 				else:
 					state_machine.change_state(wander)#otherwise wander
 		

@@ -412,6 +412,7 @@ one_shot = true
 [node name="Hurt" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("9_rnrj7")
+knockback_speed = 100.0
 
 [node name="Attack" type="Node2D" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area")]
 unique_name_in_owner = true

@@ -23,7 +23,7 @@ func enter() -> void:
 	enemy.velocity = _direction * -knockback_speed #push enemy backwards
 	
 	enemy.animation_player.play("death") #play hurt animation 
-	enemy.animation_player.animation_finished.connect( _on_animation_finished ) #connect to animation finished function when anim is done
+	enemy.animation_player.animation_finished.connect( _on_death_animation_finished ) #connect to animation finished function when anim is done
 	disable_hurt_box() #disable enemy's hurtbox
 	pass
 
@@ -53,6 +53,6 @@ func disable_hurt_box() -> void:
 		hurtbox.monitoring = false
 
 
-func _on_animation_finished( _anim : String ) -> void:
+func _on_death_animation_finished( _anim : String ) -> void:
 	enemy.queue_free() #at the end of the animation queue free the enemy
 	pass
