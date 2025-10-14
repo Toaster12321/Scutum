@@ -2,7 +2,7 @@ class_name EnemyStateHurt extends EnemyState
 
 @export var knockback_speed : float = 200.0 #how fast enemy gets pushed back
 @export var decelerate_speed : float = 10.0 #velocity decrease speed
-@export var hurt_duation : float = 0.4
+@export var hurt_duration : float = 0.4 #average time of hurt animation
 
 var _damage_position : Vector2
 var _direction : Vector2
@@ -15,15 +15,14 @@ func init() -> void:
 
 func enter() -> void:
 	print("enetered hurt")
-	_hurt_timer = 0.0
+	_hurt_timer = 0.0 #reset hurt timer
 	enemy.invulnerable = true #make enemy invulnerable to multiple hits during animation
 	_direction = enemy.global_position.direction_to( GlobalPlayerManager.knight.global_position ) #get direction based on global position of damage position
 	enemy.set_direction( _direction )
-		
-	if state_machine.previous_state != casting:  #dont knockback in casting state
-		enemy.velocity = _direction * -knockback_speed #push enemy backward
 	
-	enemy.animation_player.stop()
+	enemy.velocity = _direction * -knockback_speed #push enemy backward
+	
+	enemy.animation_player.stop() #stop previous animation
 	enemy.animation_player.play("hurt") #play hurt animation 
 	
 	pass
@@ -31,21 +30,20 @@ func enter() -> void:
 
 func exit() -> void: 
 	print("exit hurt")
-	print(_hurt_timer)
 	enemy.invulnerable = false #no longer invulnerable 
 	pass
 
 
 func process( _delta : float ) -> EnemyState:
-	_hurt_timer += _delta
-	if _hurt_timer >= hurt_duation:  #return the attack state when animation is over
+	_hurt_timer += _delta #start timer
+	if _hurt_timer >= hurt_duration:  #return the attack state when animation is over
 		return attack #retaliate
 	enemy.update_velocity( 0, decelerate_speed ) #deceleration speed
 	return null
 
 
 func physics_process( _delta : float ) -> EnemyState:
-	if not enemy.is_on_floor() and _hurt_timer >= hurt_duation:
+	if not enemy.is_on_floor() and _hurt_timer >= hurt_duration:
 		return wander
 	return null
 

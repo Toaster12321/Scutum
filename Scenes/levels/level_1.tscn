@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=10 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nc4h1qu30a7c" path="res://Scenes/levels/tile_map_background.tscn" id="3_tlryv"]
 [ext_resource type="Texture2D" uid="uid://cmmmbx4il84td" path="res://Sprites/TileMaps/Background_0.png" id="5_uy8f0"]
 [ext_resource type="PackedScene" uid="uid://546mrmgrbsur" path="res://Scenes/enemies/wolf.tscn" id="9_dsuda"]
+[ext_resource type="PackedScene" uid="uid://crxu0j537bvmp" path="res://Scenes/enemies/death_bringer.tscn" id="9_s5b24"]
 [ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="10_af3po"]
 [ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 
@@ -69,5 +70,18 @@ wait_time = 1.0
 
 [node name="PatrolLocation2" parent="Enemies/Wolf" instance=ExtResource("11_sskdo")]
 position = Vector2(45, 1)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="DeathBringer" parent="Enemies" instance=ExtResource("9_s5b24")]
+position = Vector2(550, -2)
+
+[node name="PatrolLocation" parent="Enemies/DeathBringer" instance=ExtResource("11_sskdo")]
+position = Vector2(-87, -7)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Enemies/DeathBringer" instance=ExtResource("11_sskdo")]
+position = Vector2(108, -5)
 node_number_text = "2"
 wait_time = 1.0

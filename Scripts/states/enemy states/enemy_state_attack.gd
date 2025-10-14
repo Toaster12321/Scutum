@@ -77,7 +77,6 @@ func process( _delta : float ) -> EnemyState:
 func physics_process( _delta : float ) -> EnemyState:
 	if not enemy.is_on_floor():
 		return wander
-	
 	return null
 
 
@@ -110,22 +109,24 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 		state_machine.change_state(patrol)
 		return
 	
-	if _can_see_player == false and _aggro_timer <= 0:
+	if _can_see_player == false and _aggro_timer <= 0:#if we cant see the player and the aggro duration is out, patrol
 		state_machine.change_state(patrol)
 	
 	match enemy_type:
 		EnemyType.WOLF:
 			if _anim =="charge": #if last animation was charge
-				enemy.update_animation("attack")
+				enemy.animation_player.stop() #stop last animation
+				await get_tree().create_timer(0.1).timeout  
+				enemy.update_animation("attack") #attack after short pause
 				enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
 			elif _anim == "attack_right" or _anim == "attack_left":
-				enemy.update_velocity(enemy.velocity.x * 0.5 ,_charge_deceleration)
-				enemy.set_direction( enemy.global_position.direction_to(GlobalPlayerManager.knight.global_position) )
-				print(enemy.global_position.direction_to(GlobalPlayerManager.knight.global_position))
+				enemy.update_velocity(enemy.velocity.x * 0.5 ,_charge_deceleration) #update velocity to slow down
+				enemy.set_direction( enemy.global_position.direction_to(GlobalPlayerManager.knight.global_position) ) #face the player
 				if _aggro_timer > 0 and _can_see_player != false: #if enemy is still inside vision after an attack, attack again
-					enemy.update_velocity(enemy.velocity.x * 0.5 ,_charge_deceleration)
+					enemy.update_velocity(enemy.velocity.x * 0.5 ,_charge_deceleration) #slow velocity
+					enemy.animation_player.stop() #stop previous animation
 					await get_tree().create_timer(0.3).timeout
-					enemy.animation_player.play("charge")
+					enemy.animation_player.play("charge") #charge again after a short pause
 				else:
 					state_machine.change_state(wander)#otherwise wander
 		

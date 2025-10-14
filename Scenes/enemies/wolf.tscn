@@ -414,7 +414,7 @@ shadow_size = Vector2(0.8, 0.09)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
 position = Vector2(-4, -1)
-polygon = PackedVector2Array(40, 1, 40, -50, -80, -50, -80, 1)
+polygon = PackedVector2Array(40, 10, 40, -50, -80, -50, -80, 10)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_vetev")]
 visible = false
