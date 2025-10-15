@@ -1,9 +1,9 @@
 [gd_scene load_steps=28 format=3 uid="uid://546mrmgrbsur"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/death_bringer/enemy.gd" id="1_mo2lh"]
-[ext_resource type="Texture2D" uid="uid://bp885axmuqw7j" path="res://Sprites/Enemy/Wolf/Canine_White_Full_FX.png" id="1_smc33"]
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="2_31o0l"]
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="2_60m8o"]
+[ext_resource type="Texture2D" uid="uid://gxs4oa5t101u" path="res://Sprites/Enemy/Wolf/Outline_Canine_White_Full_FX.png" id="2_a03uy"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="5_vetev"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="6_36m5f"]
 [ext_resource type="Script" uid="uid://b7vgrscwhy7v2" path="res://Scripts/states/enemy states/enemy_state_machine.gd" id="7_op5nv"]
@@ -228,6 +228,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite/Sprite2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1.11765, 0, 0, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_vetev"]
 resource_name = "hurt"
@@ -402,15 +414,17 @@ shape = SubResource("CapsuleShape2D_31o0l")
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite"]
 position = Vector2(0, -16)
-texture = ExtResource("1_smc33")
+texture = ExtResource("2_a03uy")
 hframes = 6
 vframes = 5
+region_rect = Rect2(0, 5, 288, 155)
 
 [node name="CastShadow" parent="Sprite/Sprite2D" instance=ExtResource("2_60m8o")]
 position = Vector2(0, 16)
 shadow_size = Vector2(0.8, 0.09)
 
 [node name="VisionArea" parent="Sprite" instance=ExtResource("2_31o0l")]
+visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
 position = Vector2(-4, -1)
