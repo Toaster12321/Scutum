@@ -1,6 +1,6 @@
 [gd_scene load_steps=33 format=3 uid="uid://crxu0j537bvmp"]
 
-[ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/death_bringer/enemy.gd" id="1_nlvty"]
+[ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/enemy.gd" id="1_nlvty"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="3_0yts2"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="3_5jinm"]
 [ext_resource type="Texture2D" uid="uid://cagapt2w44jva" path="res://Sprites/Enemy/Bringer-Of-Death/Individual Sprite/Outline-Bringer-of-Death_full_sheet.png" id="5_gmc07"]
@@ -343,6 +343,10 @@ autoplay = "idle"
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -25)
+shape = SubResource("CapsuleShape2D_nlvty")
+
 [node name="Sprite" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Sprite"]
@@ -361,10 +365,6 @@ position = Vector2(0, -24)
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
 position = Vector2(0, 9)
 polygon = PackedVector2Array(0, 0, 0, -20, -80, -49, -80, 27)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -25)
-shape = SubResource("CapsuleShape2D_nlvty")
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_0yts2")]
 position = Vector2(0, -25)

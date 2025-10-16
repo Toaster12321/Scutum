@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if is_on_floor() == false: #if not on floor
+	if is_on_floor() == false and motion_mode != MOTION_MODE_FLOATING: #if not on floor
 		velocity.y += gravity * delta * gravity_multiplier #applying gravity in the y axis
 	move_and_slide() # allows movement
 	pass

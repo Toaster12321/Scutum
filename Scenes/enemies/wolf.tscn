@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://546mrmgrbsur"]
 
-[ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/death_bringer/enemy.gd" id="1_mo2lh"]
+[ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/enemy.gd" id="1_mo2lh"]
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="2_31o0l"]
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="2_60m8o"]
 [ext_resource type="Texture2D" uid="uid://gxs4oa5t101u" path="res://Sprites/Enemy/Wolf/Outline_Canine_White_Full_FX.png" id="2_a03uy"]
@@ -401,6 +401,7 @@ hp = 3
 libraries = {
 &"": SubResource("AnimationLibrary_31o0l")
 }
+autoplay = "idle"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
@@ -424,14 +425,12 @@ position = Vector2(0, 16)
 shadow_size = Vector2(0.8, 0.09)
 
 [node name="VisionArea" parent="Sprite" instance=ExtResource("2_31o0l")]
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
 position = Vector2(-4, -1)
 polygon = PackedVector2Array(40, 10, 40, -50, -80, -50, -80, 10)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_vetev")]
-visible = false
 position = Vector2(-3, -12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
@@ -440,7 +439,6 @@ shape = SubResource("CapsuleShape2D_36m5f")
 debug_color = Color(0.606513, 0.54064, 5.77569e-07, 0.42)
 
 [node name="Hurtbox" parent="." instance=ExtResource("6_36m5f")]
-visible = false
 position = Vector2(-5, -10)
 hurtbox_type = 1
 
@@ -478,7 +476,6 @@ script = ExtResource("10_wid1c")
 [node name="Hurt" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("11_cr2n3")
-knockback_speed = 100.0
 
 [node name="Attack" type="Node2D" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area")]
 unique_name_in_owner = true

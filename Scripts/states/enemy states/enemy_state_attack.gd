@@ -1,6 +1,6 @@
 class_name EnemyStateAttack extends EnemyState
 
-enum EnemyType {DEATHBRINGER, WOLF}
+enum EnemyType {DEATHBRINGER, WOLF, BAT}
 
 @export var vision_area : VisionArea #enemy vision
 @export var state_aggro_duration : float = 0.5 #duration of aggro
