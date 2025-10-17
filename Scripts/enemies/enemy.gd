@@ -13,6 +13,7 @@ var direction : Vector2 = Vector2.ZERO
 var facing_direction : float = 1
 var knight : Knight
 var invulnerable : bool = false
+var enemy_dead : bool = false
 
 
 const DIR_2 = [ Vector2.LEFT, Vector2.RIGHT ] #enemies two directions

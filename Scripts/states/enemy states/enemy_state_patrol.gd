@@ -34,8 +34,13 @@ func enter() -> void:
 	if patrol_locations.size() == 0: #if array is empty disable node
 		process_mode = Node.PROCESS_MODE_DISABLED
 		return
-		
-	target = patrol_locations[ 0 ] #target location is the first node
+	
+	patrol_walk = true
+	
+	if current_location_index >= patrol_locations.size():
+		current_location_index = 0 #reset if neccessary
+
+	target = patrol_locations[ current_location_index ] #target location is the first node
 	
 	if has_started == true:
 		if timer.time_left == 0:
@@ -49,12 +54,14 @@ func enter() -> void:
 
 func exit() -> void:
 	print("exited patrol")
+	patrol_walk = false #reset bools
+	has_started = false
 	pass
 
 
 func process( _delta : float ) -> EnemyState:
 	if patrol_walk == true:
-		if enemy.global_position.distance_to( target.target_position ) < 4: #if the enemy is within 4 pixels of the target position, idle
+		if enemy.global_position.distance_to( target.target_position ) < 10: #if the enemy is within 4 pixels of the target position, idle
 			idling()
 		if enemy.global_position.distance_to( spawn_position ) > enemy.patrol_range:#if the enemy is out of range, change state to wander
 			return wander

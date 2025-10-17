@@ -23,8 +23,8 @@ func enter() -> void:
 	crouch_timer = 0.0
 	knight.animation_player.play("crouch")
 	ray_cast_2d.enabled = true #enable raycast
-	collision_shape_2d.disabled = true #disable normal collision shape
-	collision_shape_2d_crouch.disabled = false #enable crouch collision shape
+	collision_shape_2d.call_deferred("set_disabled",true) #re-enable normal collision shape
+	collision_shape_2d_crouch.call_deferred("set_disabled",false) #disable crouch collision shape
 	
 	
 	pass
@@ -32,8 +32,9 @@ func enter() -> void:
 
 func exit() -> void: #disable crouch collision and revert to normal collision
 	in_crouch = false #no longer crouching
-	collision_shape_2d.disabled = false #re-enable normal collision shape
-	collision_shape_2d_crouch.disabled = true #disable crouch collision shape
+	
+	collision_shape_2d.call_deferred("set_disabled",false) #re-enable normal collision shape
+	collision_shape_2d_crouch.call_deferred("set_disabled",true) #disable crouch collision shape
 	ray_cast_2d.enabled = false #disable raycast
 	
 	if knight.camera_2d.position.y != knight.default_cam_position: #if the camera is not in the right position tween back up

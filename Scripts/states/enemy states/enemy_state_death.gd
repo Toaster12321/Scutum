@@ -2,10 +2,14 @@ class_name EnemyStateDeath extends EnemyState
 
 @export var knockback_speed : float = 200.0
 @export var decelerate_speed : float = 10.0
+@export var is_flying_enemy : bool = false
 @export var death_noise : AudioStream
+
+@onready var vision_area: VisionArea = %VisionArea
 
 var _damage_position : Vector2
 var _direction : Vector2
+var gravity : float = 200
 
 func init() -> void:
 	enemy.enemy_destroyed.connect( _on_enemy_destroyed ) #connect to on enemy destroyed function when enemy destroyed signal has been triggered
@@ -14,6 +18,11 @@ func init() -> void:
 
 func enter() -> void:
 	print("death entered")
+	if enemy.animation_player.is_playing():
+		enemy.animation_player.stop()
+		
+	vision_area.monitoring = false
+	enemy.enemy_dead = true
 	enemy.invulnerable = true #cant be hit when dead
 	_direction = enemy.global_position.direction_to( _damage_position ) #get direction based on global position of damage position
 	
@@ -35,7 +44,11 @@ func exit() -> void:
 
 
 func process( _delta : float ) -> EnemyState:
-	enemy.velocity -= enemy.velocity * decelerate_speed * _delta #deceleration of velocity
+	if is_flying_enemy == false:
+		enemy.velocity -= enemy.velocity * decelerate_speed * _delta #deceleration of velocity
+	else:
+		if enemy.is_on_floor() == false:
+			enemy.velocity.y += gravity * _delta
 	return null
 
 

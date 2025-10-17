@@ -6,6 +6,7 @@ enum EnemyType {DEATHBRINGER, WOLF, BAT}
 @export var state_aggro_duration : float = 0.5 #duration of aggro
 @export var enemy_type : EnemyType
 
+var attack_acceleration : float = 50.0
 var deceleration : float = 60.0
 var _charge_deceleration : float = 50.0
 var _aggro_timer : float = 0.0
@@ -19,7 +20,7 @@ var chance : int
 
 
 func init() -> void:
-	if vision_area: #if a vision area is connected connect player area entered and exited function
+	if vision_area and enemy.enemy_dead == false: #if a vision area is connected connect player area entered and exited function
 		vision_area.player_enetered.connect( _on_player_entered )
 		vision_area.player_exited.connect( _on_player_exited )
 	else:
@@ -28,6 +29,8 @@ func init() -> void:
 
 
 func enter() -> void:
+	if enemy.enemy_dead:
+		return
 	print("enetered attack")
 	_can_see_player = true #enemy sees the player
 	_aggro_timer = state_aggro_duration #timer is equal to our aggro duration
@@ -36,6 +39,11 @@ func enter() -> void:
 		enemy.velocity = Vector2.ZERO
 	elif enemy_type == EnemyType.WOLF:
 		enemy.animation_player.play("charge")
+	elif enemy_type == EnemyType.BAT:
+		assess()
+		await _assess_timer.timeout 
+		enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y)
+		enemy.update_animation("attack") #play attack animation
 	
 	if not enemy.animation_player.animation_finished.is_connected( _on_attack_animation_finished ):#make sure it isnt connected
 		enemy.animation_player.animation_finished.connect( _on_attack_animation_finished ) #connect to attack finished function after 1st attack
@@ -48,13 +56,16 @@ func exit() -> void:
 	_assess_player = false
 	if enemy.animation_player.animation_finished.is_connected( _on_attack_animation_finished ):#make sure it isnt connected
 		enemy.animation_player.animation_finished.disconnect( _on_attack_animation_finished )
+	vision_area.player_enetered.disconnect( _on_player_entered )
+	vision_area.player_exited.disconnect( _on_player_exited )
+	_assess_timer.stop()
 	pass
 
 
 func process( _delta : float ) -> EnemyState:
 	chance = randi_range(0,1) #make chance a 50/50
 	if _can_see_player == true: #if we see the enemy start timer
-		_aggro_timer = state_aggro_duration #reset tim
+		_aggro_timer = state_aggro_duration #reset timer
 	else:
 		_aggro_timer -= _delta
 		
@@ -75,13 +86,15 @@ func process( _delta : float ) -> EnemyState:
 
 
 func physics_process( _delta : float ) -> EnemyState:
-	if not enemy.is_on_floor():
+	if not enemy.is_on_floor() and enemy_type != EnemyType.BAT:
 		return wander
 	return null
 
 
 func _on_player_entered() -> void:
 	print("player entered")
+	if enemy.enemy_dead == true:
+		return
 	if(
 		state_machine.current_state is EnemyStateHurt #cant attack during hurt or death states
 		or state_machine.current_state is EnemyStateDeath
@@ -104,6 +117,8 @@ func _on_player_exited() -> void:
 
 
 func _on_attack_animation_finished( _anim : String ) -> void:
+	if enemy.enemy_dead == true:
+		return
 	enemy.audio.stop()
 	if GlobalPlayerManager.knight.hp <= 0: # if player has no hp go to patrol
 		state_machine.change_state(patrol)
@@ -140,6 +155,16 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 					else:
 						enemy.velocity = Vector2.ZERO
 						enemy.update_animation("attack")
+				else:
+					state_machine.change_state(wander)#otherwise wander
+			
+		EnemyType.BAT:
+			if _anim == "attack_right" or _anim == "attack_left":
+				if _can_see_player != false: #if enemy is still inside vision after an attack, attack again
+					assess()
+					await _assess_timer.timeout
+					enemy.update_velocity(enemy.velocity.x, attack_acceleration)
+					enemy.update_animation("attack")
 				else:
 					state_machine.change_state(wander)#otherwise wander
 	

@@ -425,6 +425,7 @@ position = Vector2(0, 16)
 shadow_size = Vector2(0.8, 0.09)
 
 [node name="VisionArea" parent="Sprite" instance=ExtResource("2_31o0l")]
+unique_name_in_owner = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
 position = Vector2(-4, -1)

@@ -360,6 +360,7 @@ position = Vector2(35, 46)
 shadow_size = Vector2(0.8, 0.09)
 
 [node name="VisionArea" parent="Sprite" instance=ExtResource("12_lbltc")]
+unique_name_in_owner = true
 position = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
@@ -397,6 +398,7 @@ script = ExtResource("6_tso1k")
 [node name="Idle" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("7_h1v3h")
+idle_always = true
 
 [node name="Wander" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true

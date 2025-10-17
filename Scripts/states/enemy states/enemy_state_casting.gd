@@ -37,14 +37,17 @@ func physics_process( _delta : float ) -> EnemyState:
 func cast_spell() -> void:
 	if positions.size() == 0: 
 		print("no positions found")
-		
+	
+	print(positions[0].global_position)
+	print(positions[1].global_position)
 	var spell : Node2D = SPELL_SCENE.instantiate() #instatiate 2 spells
 	var spell2 : Node2D = SPELL_SCENE.instantiate()
-	spell.global_position = positions[0].global_position #set their position to the indicator set in editor
-	spell2.global_position = positions[1].global_position
 	
 	enemy.get_parent().add_child.call_deferred( spell ) #add spells as a child to the enemy
 	enemy.get_parent().add_child.call_deferred( spell2 )
+	
+	spell.global_position = positions[0].global_position #set their position to the indicator set in editor
+	spell2.global_position = positions[1].global_position
 
 
 func _on_anim_finished( _anim : String) -> void:

@@ -28,7 +28,7 @@ func _physics_process( _delta : float) -> void:
 
 
 func change_state( _new_state : EnemyState ) -> void:
-	if _new_state == null: # if the new state doesn't exist or is the same as the current do nothing
+	if _new_state == null or enemy.enemy_dead == true: # if the new state doesn't exist or is the same as the current do nothing
 		return
 	elif _new_state == current_state:
 		return

@@ -55,21 +55,17 @@ position = Vector2(152, 70)
 texture = ExtResource("5_uy8f0")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(-270, 221)
+position = Vector2(-109, 108)
 
-[node name="Enemies" type="Node2D" parent="."]
-position = Vector2(164, 223)
+[node name="Bat" parent="." instance=ExtResource("10_s5b24")]
+position = Vector2(-333, 198)
 
-[node name="Bat" parent="Enemies" instance=ExtResource("10_s5b24")]
-position = Vector2(-494, -33)
-motion_mode = 1
-
-[node name="PatrolLocation" parent="Enemies/Bat" instance=ExtResource("11_sskdo")]
-position = Vector2(-65, -10)
+[node name="PatrolLocation" parent="Bat" instance=ExtResource("11_sskdo")]
+position = Vector2(-57, -2)
 node_number_text = "1"
 wait_time = 1.0
 
-[node name="PatrolLocation2" parent="Enemies/Bat" instance=ExtResource("11_sskdo")]
-position = Vector2(92, -7)
+[node name="PatrolLocation2" parent="Bat" instance=ExtResource("11_sskdo")]
+position = Vector2(88, -5)
 node_number_text = "2"
 wait_time = 1.0

@@ -2,7 +2,7 @@ class_name EnemyStateIdle extends EnemyState
 
 @export var state_duration_min : float = 0.5 #how long the state will last for
 @export var state_duration_max : float = 1.5
-
+@export var idle_always : bool = false
 var _timer : float = 0.0
 
 func init() -> void:
@@ -23,9 +23,14 @@ func exit() -> void:
 
 
 func process( _delta : float ) -> EnemyState:
-	_timer -= _delta #start state timer
-	if _timer <= 0:
-		return patrol #start wandering when over
+	if idle_always == false:
+		_timer -= _delta #start state timer
+		if _timer <= 0:
+			return patrol #start wandering when over
+	else:
+		_timer -= _delta #start state timer
+		if _timer <= 0:
+			return wander #start wandering when over
 	return null
 
 

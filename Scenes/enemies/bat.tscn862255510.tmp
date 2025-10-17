@@ -298,7 +298,6 @@ height = 16.0
 [node name="Bat" type="CharacterBody2D"]
 collision_layer = 256
 collision_mask = 48
-motion_mode = 1
 script = ExtResource("1_txle6")
 hp = 1
 
@@ -331,7 +330,6 @@ position = Vector2(-1, 6)
 shadow_size = Vector2(0.4, 0.03)
 
 [node name="VisionArea" parent="Sprite" instance=ExtResource("3_7up77")]
-unique_name_in_owner = true
 position = Vector2(4, 5)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
@@ -389,4 +387,3 @@ enemy_type = 2
 unique_name_in_owner = true
 script = ExtResource("13_j08uy")
 knockback_speed = 100.0
-is_flying_enemy = true
