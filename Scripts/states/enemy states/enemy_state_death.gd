@@ -18,11 +18,8 @@ func init() -> void:
 
 func enter() -> void:
 	print("death entered")
-	if enemy.animation_player.is_playing():
-		enemy.animation_player.stop()
 		
 	vision_area.monitoring = false
-	enemy.enemy_dead = true
 	enemy.invulnerable = true #cant be hit when dead
 	_direction = enemy.global_position.direction_to( _damage_position ) #get direction based on global position of damage position
 	

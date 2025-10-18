@@ -3,6 +3,7 @@ class_name EnemyStateHurt extends EnemyState
 @export var knockback_speed : float = 200.0 #how fast enemy gets pushed back
 @export var decelerate_speed : float = 10.0 #velocity decrease speed
 @export var hurt_duration : float = 0.4 #average time of hurt animation
+@export var _can_be_knockbacked : bool = true
 
 var _damage_position : Vector2
 var _direction : Vector2
@@ -20,7 +21,8 @@ func enter() -> void:
 	_direction = enemy.global_position.direction_to( GlobalPlayerManager.knight.global_position ) #get direction based on global position of damage position
 	enemy.set_direction( _direction )
 	
-	enemy.velocity = _direction * -knockback_speed #push enemy backward
+	if _can_be_knockbacked:
+		enemy.velocity = _direction * -knockback_speed #push enemy backward
 	
 	enemy.animation_player.stop() #stop previous animation
 	enemy.animation_player.play("hurt") #play hurt animation 

@@ -300,7 +300,7 @@ collision_layer = 256
 collision_mask = 48
 motion_mode = 1
 script = ExtResource("1_txle6")
-hp = 1
+hp = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -365,16 +365,19 @@ script = ExtResource("8_3xvyv")
 [node name="Patrol" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("9_m6k1c")
+wander_speed = 50.0
 
 [node name="Timer" type="Timer" parent="EnemyStateMachine/Patrol"]
 
 [node name="Wander" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("10_esxqj")
+wander_speed = 50.0
 
 [node name="Hurt" type="Node2D" parent="EnemyStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("11_8toqp")
+_can_be_knockbacked = false
 
 [node name="Attack" type="Node2D" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area")]
 unique_name_in_owner = true

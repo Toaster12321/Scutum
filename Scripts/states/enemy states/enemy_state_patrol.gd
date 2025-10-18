@@ -56,6 +56,7 @@ func exit() -> void:
 	print("exited patrol")
 	patrol_walk = false #reset bools
 	has_started = false
+	timer.stop()
 	pass
 
 
