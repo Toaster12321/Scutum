@@ -335,7 +335,7 @@ unique_name_in_owner = true
 position = Vector2(4, 5)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
-polygon = PackedVector2Array(0, 0, 0, -10, -80, -49, -80, 27)
+polygon = PackedVector2Array(14, 8, 14, -15, -80, -49, -80, 27)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_jts06")]
 position = Vector2(14, -6)

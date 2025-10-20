@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bpep5kh5d6icx" path="res://Scripts/gui/knight_hud.gd" id="1_em4ri"]
 
 [node name="KnightHUD" type="CanvasLayer"]
-layer = 2
 script = ExtResource("1_em4ri")
 
 [node name="Control" type="Control" parent="."]

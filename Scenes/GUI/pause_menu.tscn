@@ -1,0 +1,139 @@
+[gd_scene load_steps=4 format=3 uid="uid://2cpchg7o0x46"]
+
+[ext_resource type="FontFile" uid="uid://bo54k3junwmb3" path="res://Fonts/PixeloidSansBold-PKnYd.ttf" id="1_cifqg"]
+[ext_resource type="Script" uid="uid://dxkei88r8pges" path="res://Scripts/gui/pause_menu.gd" id="1_mtqfn"]
+[ext_resource type="FontFile" uid="uid://bydwdw7nvbs45" path="res://Fonts/PixeloidSans-mLxMm.ttf" id="3_ceptl"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 2
+script = ExtResource("1_mtqfn")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.482353)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
+
+[node name="Pause" type="Control" parent="Control"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 163.0
+offset_right = 317.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PauseButtons" type="VBoxContainer" parent="Control/Pause"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -77.0
+offset_top = -64.0
+offset_right = 77.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Button_Resume" type="Button" parent="Control/Pause/PauseButtons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cifqg")
+text = "Resume"
+
+[node name="Button_Options" type="Button" parent="Control/Pause/PauseButtons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cifqg")
+text = "Options"
+
+[node name="Button_Quit" type="Button" parent="Control/Pause/PauseButtons"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cifqg")
+text = "Quit"
+
+[node name="QuitConfirmation" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -50.0
+offset_right = 104.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/QuitConfirmation"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -5.0
+offset_right = -27.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Control/QuitConfirmation"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_ceptl")
+theme_override_font_sizes/font_size = 9
+text = "Are you sure you 
+want to quit?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/QuitConfirmation"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = -40.0
+offset_right = 104.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="QuitYesButton" type="Button" parent="Control/QuitConfirmation/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("1_cifqg")
+theme_override_font_sizes/font_size = 15
+text = "Yes"
+
+[node name="QuitNoButton" type="Button" parent="Control/QuitConfirmation/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cifqg")
+theme_override_font_sizes/font_size = 15
+text = "No"

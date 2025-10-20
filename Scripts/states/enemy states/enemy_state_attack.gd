@@ -95,6 +95,7 @@ func _on_player_entered() -> void:
 	):
 		return
 	_can_see_player = true #enemy can see the player
+	enemy.set_direction( enemy.global_position.direction_to(GlobalPlayerManager.knight.global_position) ) #face the player
 	if chance == 0: #50/50 to attack or cast
 		next_state = self
 	else:

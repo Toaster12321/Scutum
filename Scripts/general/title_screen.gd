@@ -16,6 +16,7 @@ func _ready() -> void:
 	GlobalPlayerManager.knight.visible = false #turn off knight
 	
 	KnightHud.visible = false #turn off hud
+	PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED#turn off pause menu
 	
 	setup_title_screen()
 	
@@ -41,5 +42,6 @@ func start_game() -> void:
 func exit_title_screen() -> void:
 	GlobalPlayerManager.knight.visible = true # turn on knight
 	KnightHud.visible = true # turn on hud
+	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS#turn on pause menu
 	self.queue_free() #get rid of title screen
 	pass

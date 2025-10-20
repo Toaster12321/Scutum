@@ -365,7 +365,7 @@ position = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
 position = Vector2(0, 9)
-polygon = PackedVector2Array(0, 0, 0, -20, -80, -49, -80, 27)
+polygon = PackedVector2Array(32, 14, 32, -32, -80, -49, -80, 27)
 
 [node name="Hurtbox" parent="." instance=ExtResource("3_0yts2")]
 position = Vector2(0, -25)
