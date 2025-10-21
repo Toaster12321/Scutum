@@ -11,14 +11,18 @@ signal hidden
 @onready var quit_no_button: Button = $Control/QuitConfirmation/HBoxContainer/QuitNoButton
 @onready var quit_confirmation: Control = $Control/QuitConfirmation
 @onready var pause_buttons: VBoxContainer = $Control/Pause/PauseButtons
+@onready var options_menu: Control = $Control/Options
+@onready var pause_menu: Control = $Control/Pause
 
 var is_paused : bool = false
 
 func _ready() -> void:
 	hide_pause_menu() #hide pause UI
 	quit_confirmation.visible = false
+	options_menu.visible = false
 	button_resume.pressed.connect( _on_resume_pressed ) #connect button functions
 	button_quit.pressed.connect( _on_quit_pressed )
+	button_options.pressed.connect( _on_options_pressed )
 	quit_yes_button.pressed.connect( _on_quit_yes_pressed )
 	quit_no_button.pressed.connect( _on_quit_no_pressed )
 	pass
@@ -36,6 +40,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func hide_pause_menu() -> void:
 	get_tree().paused = false #unpause game
+	_reset_menu()
 	visible = false
 	is_paused = false
 	hidden.emit() #emit UI hidden signal
@@ -43,7 +48,9 @@ func hide_pause_menu() -> void:
 
 
 func show_pause_menu() -> void:
+	pause_buttons.process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true #pause game
+	pause_menu.visible = true
 	visible = true
 	is_paused = true
 	shown.emit() #emit UI shown signal
@@ -60,6 +67,10 @@ func _on_quit_pressed() -> void:
 	quit_confirmation.visible = true #show confimation
 	pass
 
+func _on_options_pressed() -> void:
+	pause_menu.visible = false
+	options_menu.visible = true
+	pass
 
 func _on_quit_yes_pressed() -> void:
 	get_tree().quit()
@@ -69,4 +80,10 @@ func _on_quit_yes_pressed() -> void:
 func _on_quit_no_pressed() -> void:
 	quit_confirmation.visible = false #reenable normal pause buttons
 	pause_buttons.process_mode = Node.PROCESS_MODE_ALWAYS
+	pass
+
+
+func _reset_menu() -> void:
+	options_menu.visible = false
+	quit_confirmation.visible = false
 	pass

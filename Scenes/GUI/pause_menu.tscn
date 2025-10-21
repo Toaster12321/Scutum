@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://2cpchg7o0x46"]
+[gd_scene load_steps=5 format=3 uid="uid://2cpchg7o0x46"]
 
 [ext_resource type="FontFile" uid="uid://bo54k3junwmb3" path="res://Fonts/PixeloidSansBold-PKnYd.ttf" id="1_cifqg"]
 [ext_resource type="Script" uid="uid://dxkei88r8pges" path="res://Scripts/gui/pause_menu.gd" id="1_mtqfn"]
 [ext_resource type="FontFile" uid="uid://bydwdw7nvbs45" path="res://Fonts/PixeloidSans-mLxMm.ttf" id="3_ceptl"]
+[ext_resource type="Script" uid="uid://oy8dfwu05617" path="res://Scripts/gui/options.gd" id="4_o572i"]
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -137,3 +138,60 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
 theme_override_font_sizes/font_size = 15
 text = "No"
+
+[node name="Options" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_o572i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Options"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 16.0
+offset_right = 126.0
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="VolumeLabel" type="Label" parent="Control/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cifqg")
+text = " Volume:"
+horizontal_alignment = 2
+
+[node name="ResolutionLabel" type="Label" parent="Control/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cifqg")
+text = " Resolution:"
+horizontal_alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Options"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -104.0
+offset_top = 16.0
+offset_right = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="HSlider" type="HSlider" parent="Control/Options/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -30.0
+max_value = 0.0
+value = -15.0
+ticks_on_borders = true
+
+[node name="OptionButton" type="OptionButton" parent="Control/Options/VBoxContainer2"]
+layout_mode = 2
+
+[connection signal="value_changed" from="Control/Options/VBoxContainer2/HSlider" to="Control/Options" method="_on_h_slider_value_changed"]
