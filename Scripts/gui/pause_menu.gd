@@ -3,18 +3,6 @@ extends CanvasLayer
 signal shown
 signal hidden
 
-var resolutions = {
-	"3840x2160": Vector2i(3840,2160),
-	"2560x1440": Vector2i(2560,1440),
-	"1920x1080": Vector2i(1920,1080),
-	"1366x768": Vector2i(1366,768),
-	"1280x720": Vector2i(1280,720),
-	"1440x900": Vector2i(1440,900),
-	"1600x900": Vector2i(1600,900),
-	"1024x600": Vector2i(1024,600),
-	"800x600": Vector2i(800,600)
-}
-
 @onready var audio_stream_player: AudioStreamPlayer = $Control/AudioStreamPlayer
 @onready var button_resume: Button = $Control/Pause/PauseButtons/Button_Resume
 @onready var button_options: Button = $Control/Pause/PauseButtons/Button_Options
@@ -44,7 +32,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
 		if is_paused == false:
 			show_pause_menu()
-			var options_menu = get_node("Control/Options")
 			options_menu.update_button_values()
 		else:
 			hide_pause_menu()
