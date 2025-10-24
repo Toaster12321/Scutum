@@ -6,6 +6,7 @@ const START_LEVEL : String = "res://Scenes/levels/level_1.tscn" #path to 1st lev
 
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var start_button: Button = $CanvasLayer/Control/StartButton
+@onready var quit_button: Button = $CanvasLayer/Control/QuitButton
 @onready var shield_animation_player: AnimationPlayer = $CanvasLayer/Control/ShieldAnimationPlayer
 @onready var title_animation_player: AnimationPlayer = $CanvasLayer/Control/TitleAnimationPlayer
 
@@ -13,8 +14,9 @@ const START_LEVEL : String = "res://Scenes/levels/level_1.tscn" #path to 1st lev
 
 func _ready() -> void:
 	get_tree().paused = true #pause all other normal functions
-	GlobalPlayerManager.knight.visible = false #turn off knight
 	
+
+	GlobalPlayerManager.knight.visible = false #turn off knight
 	KnightHud.visible = false #turn off hud
 	PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED#turn off pause menu
 	
@@ -28,6 +30,7 @@ func _ready() -> void:
 func setup_title_screen() -> void:
 	GlobalAudioManager.play_music( title_music ) #play music
 	start_button.pressed.connect( start_game ) #connect start button function
+	quit_button.pressed.connect( quit_game )
 	
 	shield_animation_player.play("default_shield") #play animations
 	title_animation_player.play("default_title")
@@ -36,6 +39,11 @@ func setup_title_screen() -> void:
 
 func start_game() -> void:
 	GlobalLevelManager.load_new_level( START_LEVEL, "", Vector2.ZERO ) #load start level
+	pass
+
+
+func quit_game() -> void:
+	get_tree().quit()
 	pass
 
 

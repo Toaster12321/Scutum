@@ -3,6 +3,7 @@ extends CanvasLayer
 signal shown
 signal hidden
 
+
 @onready var audio_stream_player: AudioStreamPlayer = $Control/AudioStreamPlayer
 @onready var button_resume: Button = $Control/Pause/PauseButtons/Button_Resume
 @onready var button_options: Button = $Control/Pause/PauseButtons/Button_Options
@@ -13,6 +14,10 @@ signal hidden
 @onready var pause_buttons: VBoxContainer = $Control/Pause/PauseButtons
 @onready var options_menu: Control = $Control/Options
 @onready var pause_menu: Control = $Control/Pause
+@onready var animation_player: AnimationPlayer = $Control/Options/AnimationPlayer
+@onready var fade_to_black_rect: ColorRect = $Control/FadeToBlack
+
+
 
 var is_paused : bool = false
 
@@ -25,6 +30,8 @@ func _ready() -> void:
 	button_options.pressed.connect( _on_options_pressed )
 	quit_yes_button.pressed.connect( _on_quit_yes_pressed )
 	quit_no_button.pressed.connect( _on_quit_no_pressed )
+	
+	GlobalLevelManager.level_loaded.connect( return_to_title )
 	pass
 
 
@@ -74,7 +81,9 @@ func _on_options_pressed() -> void:
 	pass
 
 func _on_quit_yes_pressed() -> void:
-	get_tree().quit()
+	await fade_to_black()
+	GlobalLevelManager.load_new_level("res://Scenes/levels/title_screen.tscn", "", Vector2.ZERO) #load title screen
+	#get_tree().quit()
 	pass
 
 
@@ -84,8 +93,15 @@ func _on_quit_no_pressed() -> void:
 	pass
 
 
+func fade_to_black() -> bool:
+	animation_player.play("fade_to_black") #play fade to black
+	await animation_player.animation_finished
+	GlobalPlayerManager.knight.revive_player()#heal player to full
+	return true
+
+
 func _reset_menu() -> void:
-	options_menu.visible = false
+	options_menu.visible = false #hide options UI
 	quit_confirmation.visible = false
 	pass
 
@@ -94,3 +110,10 @@ func center_window():
 	var screen_center = DisplayServer.screen_get_position() + DisplayServer.screen_get_size() / 2
 	var window_size = get_window().get_size_with_decorations()
 	get_window().set_position(screen_center - window_size /2)
+
+
+func return_to_title() -> void:
+	visible = false #turn off UI
+	fade_to_black_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE #allow mouse input again
+	fade_to_black_rect.color = Color(1,1,1,0) #change rect to transparent again
+	pass

@@ -118,3 +118,8 @@ func make_invulnerable( _duration : float ) -> void: #make knight invulnerable s
 	invulnerable = false
 	hitbox.monitoring = true
 	pass
+
+
+func revive_player() -> void:
+	update_hp( 99 )
+	knight_state_machine.change_state( idle )

@@ -1,10 +1,70 @@
-[gd_scene load_steps=6 format=3 uid="uid://2cpchg7o0x46"]
+[gd_scene load_steps=9 format=3 uid="uid://2cpchg7o0x46"]
 
 [ext_resource type="FontFile" uid="uid://bo54k3junwmb3" path="res://Fonts/PixeloidSansBold-PKnYd.ttf" id="1_cifqg"]
 [ext_resource type="Script" uid="uid://dxkei88r8pges" path="res://Scripts/gui/pause_menu.gd" id="1_mtqfn"]
 [ext_resource type="FontFile" uid="uid://bydwdw7nvbs45" path="res://Fonts/PixeloidSans-mLxMm.ttf" id="3_ceptl"]
 [ext_resource type="Script" uid="uid://oy8dfwu05617" path="res://Scripts/gui/options.gd" id="4_o572i"]
 [ext_resource type="FontFile" uid="uid://bd0umxthosq3g" path="res://Fonts/PixeloidMono-d94EV.ttf" id="5_tjfu5"]
+
+[sub_resource type="Animation" id="Animation_b8nr0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FadeToBlack:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_tjfu5"]
+resource_name = "fade_to_black"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../FadeToBlack:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../FadeToBlack:mouse_filter")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6xiio"]
+_data = {
+&"RESET": SubResource("Animation_b8nr0"),
+&"fade_to_black": SubResource("Animation_tjfu5")
+}
 
 [node name="PauseMenu" type="CanvasLayer"]
 process_mode = 3
@@ -31,7 +91,6 @@ color = Color(0, 0, 0, 0.482353)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 
 [node name="Pause" type="Control" parent="Control"]
-visible = false
 layout_mode = 2
 anchors_preset = 0
 offset_left = 163.0
@@ -58,16 +117,19 @@ theme_override_constants/separation = 20
 [node name="Button_Resume" type="Button" parent="Control/Pause/PauseButtons"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
+theme_override_font_sizes/font_size = 18
 text = "Resume"
 
 [node name="Button_Options" type="Button" parent="Control/Pause/PauseButtons"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
+theme_override_font_sizes/font_size = 18
 text = "Options"
 
 [node name="Button_Quit" type="Button" parent="Control/Pause/PauseButtons"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
+theme_override_font_sizes/font_size = 18
 text = "Quit"
 
 [node name="QuitConfirmation" type="Control" parent="Control"]
@@ -132,16 +194,17 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("1_cifqg")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 18
 text = "Yes"
 
 [node name="QuitNoButton" type="Button" parent="Control/QuitConfirmation/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 18
 text = "No"
 
 [node name="Options" type="Control" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -154,37 +217,37 @@ script = ExtResource("4_o572i")
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 12.0
 offset_top = 11.0
-offset_right = 211.0
+offset_right = 199.0
 offset_bottom = -5.0
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 18
 
 [node name="VolumeLabel" type="Label" parent="Control/Options/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 9
 text = " Master Volume:"
 horizontal_alignment = 2
 
 [node name="SFXLabel" type="Label" parent="Control/Options/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 9
 text = " SFX Volume:"
 horizontal_alignment = 2
 
 [node name="MusicLabel" type="Label" parent="Control/Options/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 9
 text = "Music Volume:"
 horizontal_alignment = 2
 
 [node name="ResolutionLabel" type="Label" parent="Control/Options/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
+theme_override_font_sizes/font_size = 9
 text = " Resolution:"
 horizontal_alignment = 2
 
@@ -199,7 +262,15 @@ horizontal_alignment = 2
 [node name="FullscreenLabel" type="Label" parent="Control/Options/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
+theme_override_font_sizes/font_size = 9
 text = "Fullscreen:"
+horizontal_alignment = 2
+
+[node name="VsyncLabel" type="Label" parent="Control/Options/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_cifqg")
+theme_override_font_sizes/font_size = 9
+text = "V-Sync:"
 horizontal_alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control/Options"]
@@ -208,12 +279,13 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -22.0
-offset_top = 16.0
-offset_right = 186.0
+offset_left = -38.0
+offset_top = 11.0
+offset_right = 170.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 21
+theme_override_constants/separation = 10
 
 [node name="MasterSlider" type="HSlider" parent="Control/Options/VBoxContainer2"]
 layout_mode = 2
@@ -231,6 +303,7 @@ step = 0.1
 value = -14.6
 
 [node name="MusicSlider" type="HSlider" parent="Control/Options/VBoxContainer2"]
+texture_filter = 1
 layout_mode = 2
 min_value = -30.0
 max_value = 0.0
@@ -239,6 +312,8 @@ value = -11.0
 
 [node name="res_OptionButton" type="OptionButton" parent="Control/Options/VBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ceptl")
+theme_override_font_sizes/font_size = 9
 
 [node name="ScaleBox" type="VBoxContainer" parent="Control/Options/VBoxContainer2"]
 process_mode = 4
@@ -261,8 +336,16 @@ theme_override_fonts/font = ExtResource("5_tjfu5")
 theme_override_font_sizes/font_size = 11
 text = "100% - 1920x1080"
 
-[node name="CheckBox" type="CheckBox" parent="Control/Options/VBoxContainer2"]
+[node name="FullscreenCheckbox" type="CheckBox" parent="Control/Options/VBoxContainer2"]
 layout_mode = 2
+
+[node name="VSyncCheckBox" type="CheckBox" parent="Control/Options/VBoxContainer2"]
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Options"]
+libraries = {
+&"": SubResource("AnimationLibrary_6xiio")
+}
 
 [node name="ResolutionConfirmation" type="Control" parent="Control"]
 visible = false
@@ -344,19 +427,30 @@ alignment = 1
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("1_cifqg")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 18
 text = "Yes"
 
 [node name="ResNoButton" type="Button" parent="Control/ResolutionConfirmation/HBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_cifqg")
-theme_override_font_sizes/font_size = 15
+theme_override_font_sizes/font_size = 18
 text = "No"
+
+[node name="FadeToBlack" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
 
 [connection signal="value_changed" from="Control/Options/VBoxContainer2/MasterSlider" to="Control/Options" method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="Control/Options/VBoxContainer2/SFXSlider" to="Control/Options" method="_on_sfx_slider_value_changed"]
 [connection signal="value_changed" from="Control/Options/VBoxContainer2/MusicSlider" to="Control/Options" method="_on_music_slider_value_changed"]
 [connection signal="item_selected" from="Control/Options/VBoxContainer2/res_OptionButton" to="Control/Options" method="_on_res_option_button_item_selected"]
 [connection signal="value_changed" from="Control/Options/VBoxContainer2/ScaleBox/ScaleSlider" to="Control/Options" method="_on_scale_slider_value_changed"]
-[connection signal="toggled" from="Control/Options/VBoxContainer2/CheckBox" to="Control/Options" method="_on_fullscreen_check_box_toggled"]
+[connection signal="toggled" from="Control/Options/VBoxContainer2/FullscreenCheckbox" to="Control/Options" method="_on_fullscreen_check_box_toggled"]
+[connection signal="toggled" from="Control/Options/VBoxContainer2/VSyncCheckBox" to="Control/Options" method="_on_v_sync_check_box_toggled"]
 [connection signal="timeout" from="Control/ResolutionConfirmation/Timer" to="Control/Options" method="_on_timer_timeout"]

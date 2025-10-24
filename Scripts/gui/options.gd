@@ -6,7 +6,8 @@ extends Control
 @onready var timer_label: Label = $"../ResolutionConfirmation/TimerLabel"
 @onready var res_yes_button: Button = $"../ResolutionConfirmation/HBoxContainer/ResYesButton"
 @onready var res_no_button: Button = $"../ResolutionConfirmation/HBoxContainer/ResNoButton"
-@onready var check_box: CheckBox = $VBoxContainer2/CheckBox
+@onready var fullscreen_checkbox: CheckBox = $VBoxContainer2/FullscreenCheckbox
+@onready var v_sync_check_box: CheckBox = $VBoxContainer2/VSyncCheckBox
 @onready var scale_slider: HSlider = $VBoxContainer2/ScaleBox/ScaleSlider
 @onready var scale_label: Label = $VBoxContainer2/ScaleBox/ScaleLabel
 
@@ -40,8 +41,11 @@ func check_variables() -> void:
 	var _window = get_window()
 	var mode = _window.get_mode()
 	
-	if mode == Window.MODE_FULLSCREEN:
-		check_box.set_pressed_no_signal(true)
+	if mode == Window.MODE_FULLSCREEN: #if already in fullscreen check true
+		fullscreen_checkbox.set_pressed_no_signal(true)
+	
+	if DisplayServer.window_get_vsync_mode() == DisplayServer.VSYNC_ENABLED: #if vsync already enabled check true
+		v_sync_check_box.set_pressed_no_signal(true)
 	pass
 
 
@@ -159,3 +163,11 @@ func _on_fullscreen_check_box_toggled(toggled_on: bool) -> void:
 	#scale_label.set_text(str(value)+"% - "+ resolution_text)
 	#get_viewport().set_scaling_3d_scale(resolution_scale)
 	#pass # Replace with function body.
+
+
+func _on_v_sync_check_box_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+	else:
+		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+	pass # Replace with function body.
