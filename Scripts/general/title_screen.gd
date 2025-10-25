@@ -32,6 +32,7 @@ func setup_title_screen() -> void:
 	start_button.pressed.connect( start_game ) #connect start button function
 	quit_button.pressed.connect( quit_game )
 	
+	start_button.grab_focus()
 	shield_animation_player.play("default_shield") #play animations
 	title_animation_player.play("default_title")
 	pass

@@ -1,5 +1,13 @@
 extends CanvasLayer
 
+const level_1 : String = "res://Scenes/levels/level_1.tscn"
+const title_screen : String = "res://Scenes/levels/title_screen.tscn"
+
+@onready var game_over: Control = $Control/GameOver
+@onready var try_again_button: Button = $Control/GameOver/HBoxContainer/TryAgainButton
+@onready var title_button: Button = $Control/GameOver/HBoxContainer/TitleButton
+@onready var animation_player: AnimationPlayer = $Control/GameOver/AnimationPlayer
+
 var shields : Array[ ShieldGUI ] = [] #array of our shields (life)
 
 func _ready() -> void:
@@ -9,6 +17,10 @@ func _ready() -> void:
 			print("Shields size:", shields.size())
 			child.visible = false #turn visibility off
 	
+	hide_game_over_screen()
+	try_again_button.pressed.connect( reset_level )
+	title_button.pressed.connect( return_to_title )
+	GlobalLevelManager.level_loaded.connect( hide_game_over_screen )
 	pass
 
 
@@ -34,4 +46,39 @@ func update_max_hp( _max_hp : int ) -> void:
 			shields[i].visible = true
 		else:
 			shields[i].visible = false
+	pass
+
+
+func hide_game_over_screen() -> void:
+	game_over.visible = false
+	game_over.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	game_over.modulate = Color(1,1,1,0)
+
+func show_game_over_screen() -> void:
+	game_over.visible = true
+	game_over.mouse_filter = Control.MOUSE_FILTER_STOP
+	
+	animation_player.play("game_over_screen")
+	await animation_player.animation_finished
+	
+	try_again_button.grab_focus()
+	pass
+
+
+func reset_level() -> void:
+	await fade_to_black()
+	GlobalLevelManager.load_new_level(level_1, "", Vector2.ZERO)
+	pass
+
+
+func fade_to_black() -> void:
+	animation_player.play("fade_to_black")
+	await animation_player.animation_finished
+	GlobalPlayerManager.knight.revive_player() #heal player
+	pass
+
+
+func return_to_title() -> void:
+	await fade_to_black()
+	GlobalLevelManager.load_new_level(title_screen, "", Vector2.ZERO)
 	pass

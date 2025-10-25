@@ -91,11 +91,10 @@ color = Color(0, 0, 0, 0.482353)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 
 [node name="Pause" type="Control" parent="Control"]
-layout_mode = 2
-anchors_preset = 0
-offset_left = 163.0
-offset_right = 317.0
-offset_bottom = 270.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -116,18 +115,24 @@ theme_override_constants/separation = 20
 
 [node name="Button_Resume" type="Button" parent="Control/Pause/PauseButtons"]
 layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
+theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
 theme_override_fonts/font = ExtResource("1_cifqg")
 theme_override_font_sizes/font_size = 18
 text = "Resume"
 
 [node name="Button_Options" type="Button" parent="Control/Pause/PauseButtons"]
 layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
+theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
 theme_override_fonts/font = ExtResource("1_cifqg")
 theme_override_font_sizes/font_size = 18
 text = "Options"
 
 [node name="Button_Quit" type="Button" parent="Control/Pause/PauseButtons"]
 layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
+theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
 theme_override_fonts/font = ExtResource("1_cifqg")
 theme_override_font_sizes/font_size = 18
 text = "Quit"
@@ -135,15 +140,14 @@ text = "Quit"
 [node name="QuitConfirmation" type="Control" parent="Control"]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -50.0
-offset_right = 104.0
-offset_bottom = 22.0
+anchor_left = 0.34
+anchor_top = 0.348
+anchor_right = 0.66
+anchor_bottom = 0.652
+offset_left = -27.2
+offset_top = 5.03999
+offset_right = 27.2
+offset_bottom = -5.04001
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -193,12 +197,16 @@ alignment = 1
 [node name="QuitYesButton" type="Button" parent="Control/QuitConfirmation/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
+theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
 theme_override_fonts/font = ExtResource("1_cifqg")
 theme_override_font_sizes/font_size = 18
 text = "Yes"
 
 [node name="QuitNoButton" type="Button" parent="Control/QuitConfirmation/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
+theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
 theme_override_fonts/font = ExtResource("1_cifqg")
 theme_override_font_sizes/font_size = 18
 text = "No"
@@ -215,10 +223,12 @@ script = ExtResource("4_o572i")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control/Options"]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = -1
+anchor_top = 0.041
+anchor_right = 0.415
 anchor_bottom = 1.0
-offset_top = 11.0
-offset_right = 199.0
+offset_top = -0.0700006
+offset_right = -0.200012
 offset_bottom = -5.0
 grow_vertical = 2
 theme_override_constants/separation = 18
@@ -275,14 +285,15 @@ horizontal_alignment = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Control/Options"]
 layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -38.0
-offset_top = 11.0
-offset_right = 170.0
-offset_bottom = -5.0
+anchors_preset = -1
+anchor_left = 0.421
+anchor_top = 0.041
+anchor_right = 0.854
+anchor_bottom = 0.981
+offset_left = -0.0800171
+offset_top = -0.0700006
+offset_right = 0.0799866
+offset_bottom = 0.129974
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -350,15 +361,14 @@ libraries = {
 [node name="ResolutionConfirmation" type="Control" parent="Control"]
 visible = false
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -104.0
-offset_top = -50.0
-offset_right = 104.0
-offset_bottom = 22.0
+anchor_left = 0.34
+anchor_top = 0.348
+anchor_right = 0.66
+anchor_bottom = 0.652
+offset_left = -27.2
+offset_top = 5.03999
+offset_right = 27.2
+offset_bottom = -5.04001
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -426,12 +436,16 @@ alignment = 1
 [node name="ResYesButton" type="Button" parent="Control/ResolutionConfirmation/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
+theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
 theme_override_fonts/font = ExtResource("1_cifqg")
 theme_override_font_sizes/font_size = 18
 text = "Yes"
 
 [node name="ResNoButton" type="Button" parent="Control/ResolutionConfirmation/HBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
+theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
 theme_override_fonts/font = ExtResource("1_cifqg")
 theme_override_font_sizes/font_size = 18
 text = "No"

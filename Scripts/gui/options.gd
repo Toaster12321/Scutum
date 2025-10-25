@@ -6,6 +6,7 @@ extends Control
 @onready var timer_label: Label = $"../ResolutionConfirmation/TimerLabel"
 @onready var res_yes_button: Button = $"../ResolutionConfirmation/HBoxContainer/ResYesButton"
 @onready var res_no_button: Button = $"../ResolutionConfirmation/HBoxContainer/ResNoButton"
+@onready var options_menu: Control = $"."
 @onready var fullscreen_checkbox: CheckBox = $VBoxContainer2/FullscreenCheckbox
 @onready var v_sync_check_box: CheckBox = $VBoxContainer2/VSyncCheckBox
 @onready var scale_slider: HSlider = $VBoxContainer2/ScaleBox/ScaleSlider
@@ -101,7 +102,8 @@ func add_resolutions() -> void:
 		ID += 1
 
 
-func _on_res_option_button_item_selected(index: int) -> void: #
+func _on_res_option_button_item_selected(index: int) -> void: 
+	options_menu.visible = false
 	var key = res_option_button.get_item_text(index) #key is the index of selected item in the dropdown menu
 	var res = resolutions[key]
 	get_window().set_size(res)
@@ -120,12 +122,14 @@ func update_button_values():
 
 func show_resolution_confirmation() -> void:
 	resolution_confirmation.visible = true
+	res_no_button.grab_focus()
 	timer.start()
 	pass
 
 
 func _on_res_yes_pressed() -> void:
 	resolution_confirmation.visible = false
+	options_menu.visible = true
 	timer.stop()
 	pass
 
@@ -134,6 +138,7 @@ func _on_res_no_pressed() -> void:
 	timer.stop()
 	var key = res_option_button.get_item_text(previous_resolution) #key is the index of previous resolution
 	resolution_confirmation.visible = false #tunr off UI
+	options_menu.visible = true
 	get_window().set_size(resolutions[key])  #set window size to the key
 	PauseMenu.center_window() #center the window so it doesnt move to a weird position
 	res_option_button.selected = previous_resolution #reselect old options

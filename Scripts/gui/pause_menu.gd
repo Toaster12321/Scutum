@@ -57,6 +57,7 @@ func hide_pause_menu() -> void:
 
 func show_pause_menu() -> void:
 	pause_buttons.process_mode = Node.PROCESS_MODE_ALWAYS
+	button_resume.grab_focus()
 	get_tree().paused = true #pause game
 	pause_menu.visible = true
 	visible = true
@@ -71,8 +72,9 @@ func _on_resume_pressed() -> void:
 
 
 func _on_quit_pressed() -> void:
-	pause_buttons.process_mode = Node.PROCESS_MODE_DISABLED #disable normal pause menu buttons
+	pause_menu.visible = false #disable normal pause menu buttons
 	quit_confirmation.visible = true #show confimation
+	quit_no_button.grab_focus()
 	pass
 
 func _on_options_pressed() -> void:
@@ -88,8 +90,9 @@ func _on_quit_yes_pressed() -> void:
 
 
 func _on_quit_no_pressed() -> void:
+	pause_menu.visible = true
 	quit_confirmation.visible = false #reenable normal pause buttons
-	pause_buttons.process_mode = Node.PROCESS_MODE_ALWAYS
+	button_resume.grab_focus()
 	pass
 
 
