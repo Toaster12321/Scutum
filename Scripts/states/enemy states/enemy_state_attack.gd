@@ -160,6 +160,7 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 					assess()
 					await _assess_timer.timeout
 					enemy.update_animation("attack")
+					enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
 				else:
 					state_machine.change_state(wander)#otherwise wander
 	
