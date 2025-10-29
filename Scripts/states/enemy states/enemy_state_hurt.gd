@@ -4,6 +4,7 @@ class_name EnemyStateHurt extends EnemyState
 @export var decelerate_speed : float = 10.0 #velocity decrease speed
 @export var hurt_duration : float = 0.4 #average time of hurt animation
 @export var _can_be_knockbacked : bool = true
+@export var effect_animations : AnimationPlayer
 
 var _damage_position : Vector2
 var _direction : Vector2
@@ -52,7 +53,15 @@ func physics_process( _delta : float ) -> EnemyState:
 
 func _on_enemy_damaged( hurtbox : Hurtbox ) -> void: #when enemy damaged signal is connected
 	_damage_position = hurtbox.global_position #get position vector of the hurtbox
-	if state_machine.current_state == self:
-		return
-	state_machine.change_state( self ) # change state to hurt
+	
+	if enemy.enemy_type == enemy.EnemyType.WARRIOR:
+		var anim : String = ""
+		if enemy.animation_player:
+			anim = enemy.animation_player.current_animation
+		if anim != "" and anim.begins_with("attack"):
+			effect_animations.play("flash")
+			return
+		
+	if state_machine.current_state != self:
+		state_machine.change_state( self ) # change state to hurt
 	pass

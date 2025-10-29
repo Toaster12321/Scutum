@@ -4,8 +4,11 @@ signal direction_changed( new_direction : Vector2 )
 signal enemy_damaged( hurt_box : Hurtbox )
 signal enemy_destroyed( hurt_box : Hurtbox )
 
+enum EnemyType {DEATHBRINGER, WOLF, BAT, WARRIOR}
+
 @export var hp : int = 5
 @export var patrol_range : int = 130 #radius which determines how far in the x direction the enemy can patrol before going to wander
+@export var enemy_type : EnemyType
 
 var gravity : float = 980 #9.81m/s gravity speed
 var gravity_multiplier : float = 1

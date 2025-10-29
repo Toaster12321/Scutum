@@ -66,6 +66,8 @@ func process( _delta : float ) -> EnemyState:
 			idling()
 		if enemy.global_position.distance_to( spawn_position ) > enemy.patrol_range:#if the enemy is out of range, change state to wander
 			return wander
+	else:
+		return wander
 	return null
 
 

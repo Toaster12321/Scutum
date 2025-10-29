@@ -3,6 +3,7 @@ class_name EnemyStateDeath extends EnemyState
 @export var knockback_speed : float = 200.0
 @export var decelerate_speed : float = 10.0
 @export var is_flying_enemy : bool = false
+@export var effect_animations : AnimationPlayer
 @export var death_noise : AudioStream
 
 @onready var vision_area: VisionArea = %VisionArea
@@ -29,6 +30,8 @@ func enter() -> void:
 	enemy.set_direction( _direction ) #set direction to face the attacking knight
 	enemy.velocity = _direction * -knockback_speed #push enemy backwards
 	
+	if enemy.enemy_type == enemy.EnemyType.WARRIOR:
+		effect_animations.play("flash")
 	enemy.animation_player.play("death") #play hurt animation 
 	enemy.animation_player.animation_finished.connect( _on_death_animation_finished ) #connect to animation finished function when anim is done
 	disable_hurt_box() #disable enemy's hurtbox

@@ -5,8 +5,8 @@
 [ext_resource type="AudioStream" uid="uid://dhp7uod52vhya" path="res://Audio/BGM/Adventure11.wav" id="2_n8oda"]
 [ext_resource type="PackedScene" uid="uid://nc4h1qu30a7c" path="res://Scenes/levels/tile_map_background.tscn" id="3_tlryv"]
 [ext_resource type="Texture2D" uid="uid://cmmmbx4il84td" path="res://Sprites/TileMaps/Background_0.png" id="5_uy8f0"]
+[ext_resource type="PackedScene" uid="uid://cnornow1rhb4c" path="res://Scenes/enemies/nightborne_warrior.tscn" id="7_qek6e"]
 [ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="10_af3po"]
-[ext_resource type="PackedScene" uid="uid://btokctpq4jymd" path="res://Scenes/enemies/bat.tscn" id="10_s5b24"]
 [ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 
 [node name="Level1" type="Node2D"]
@@ -55,17 +55,17 @@ position = Vector2(152, 70)
 texture = ExtResource("5_uy8f0")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(-453, 51)
+position = Vector2(-1485, 111)
 
-[node name="Bat" parent="." instance=ExtResource("10_s5b24")]
-position = Vector2(-523, 46)
+[node name="NightborneWarrior" parent="." instance=ExtResource("7_qek6e")]
+position = Vector2(-1102, 128)
 
-[node name="PatrolLocation" parent="Bat" instance=ExtResource("11_sskdo")]
-position = Vector2(-57, -2)
+[node name="PatrolLocation" parent="NightborneWarrior" instance=ExtResource("11_sskdo")]
+position = Vector2(-86, 0)
 node_number_text = "1"
 wait_time = 1.0
 
-[node name="PatrolLocation2" parent="Bat" instance=ExtResource("11_sskdo")]
-position = Vector2(88, -5)
+[node name="PatrolLocation2" parent="NightborneWarrior" instance=ExtResource("11_sskdo")]
+position = Vector2(154, 0)
 node_number_text = "2"
 wait_time = 1.0

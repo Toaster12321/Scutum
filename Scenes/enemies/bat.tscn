@@ -301,6 +301,7 @@ collision_mask = 48
 motion_mode = 1
 script = ExtResource("1_txle6")
 hp = 2
+enemy_type = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

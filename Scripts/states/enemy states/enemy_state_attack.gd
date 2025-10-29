@@ -1,10 +1,12 @@
 class_name EnemyStateAttack extends EnemyState
 
-enum EnemyType {DEATHBRINGER, WOLF, BAT}
+enum EnemyType {DEATHBRINGER, WOLF, BAT, WARRIOR}
 
 @export var vision_area : VisionArea #enemy vision
 @export var state_aggro_duration : float = 0.5 #duration of aggro
+@export var assess_speed : float = 10.0
 @export var enemy_type : EnemyType
+
 
 var deceleration : float = 60.0
 var _charge_deceleration : float = 50.0
@@ -28,7 +30,6 @@ func init() -> void:
 
 
 func enter() -> void:
-
 	print("enetered attack")
 	_can_see_player = true #enemy sees the player
 	_aggro_timer = state_aggro_duration #timer is equal to our aggro duration
@@ -37,6 +38,9 @@ func enter() -> void:
 		enemy.velocity = Vector2.ZERO
 	elif enemy_type == EnemyType.WOLF:
 		enemy.animation_player.play("charge")
+	elif enemy_type == EnemyType.WARRIOR:
+		enemy.update_animation("attack") #play attack animation
+		enemy.velocity = Vector2.ZERO
 	elif enemy_type == EnemyType.BAT:
 		assess()
 		await _assess_timer.timeout 
@@ -106,6 +110,7 @@ func _on_player_entered() -> void:
 	state_machine.change_state( next_state ) #change state to attack or cast
 	pass
 
+
 func _on_player_exited() -> void:
 	print("player exited")
 	_can_see_player = false #cant see player anymore
@@ -163,6 +168,17 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 					enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
 				else:
 					state_machine.change_state(wander)#otherwise wander
+			
+		EnemyType.WARRIOR:
+			if _anim == "attack_right" or _anim == "attack_left":
+				if  _aggro_timer > 0 and _can_see_player != false: #if enemy is still inside vision after an attack, attack again
+					chance = 1
+					assess()
+					await _assess_timer.timeout
+					enemy.velocity = Vector2.ZERO
+					enemy.update_animation("attack")
+				else:
+					state_machine.change_state(wander)#otherwise wander
 	
 	pass
 
@@ -174,8 +190,8 @@ func assess() -> void:
 		_assess_timer.start(rand_assess_time) #start timer
 		if chance == 0:
 			enemy.animation_player.play("walk_backwards") #walk backwards away from the player for 1s
-			enemy.velocity.x = -enemy.facing_direction * 10
+			enemy.velocity.x = -enemy.facing_direction * assess_speed
 		elif chance == 1:
 			enemy.animation_player.play("walk") #walk forwards to the player for 1s
-			enemy.velocity.x = enemy.facing_direction * 10
+			enemy.velocity.x = enemy.facing_direction * assess_speed
 	pass
