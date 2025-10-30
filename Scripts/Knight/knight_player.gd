@@ -28,6 +28,7 @@ var default_cam_position : float
 
 signal player_damaged( hurtbox : Hurtbox )
 signal damage_blocked( hurtbox : Hurtbox )
+
 var invulnerable = false
 var hp : int = 6
 var max_hp : int = 6
@@ -94,7 +95,6 @@ func _take_damage( hurtbox : Hurtbox ) -> void: #take damage function for player
 	 
 	if hp > 0: #if we have hp decrease it
 		update_hp( -hurtbox.damage )
-		print(hp)
 		player_damaged.emit( hurtbox ) #trigger the player damaged signal with hurtbox passed in
 	pass
 

@@ -53,14 +53,30 @@ func physics_process( _delta : float ) -> EnemyState:
 
 func _on_enemy_damaged( hurtbox : Hurtbox ) -> void: #when enemy damaged signal is connected
 	_damage_position = hurtbox.global_position #get position vector of the hurtbox
-	
-	if enemy.enemy_type == enemy.EnemyType.WARRIOR:
-		var anim : String = ""
-		if enemy.animation_player:
-			anim = enemy.animation_player.current_animation
-		if anim != "" and anim.begins_with("attack"):
-			effect_animations.play("flash")
-			return
+	match enemy.enemy_type: #cases where we dont apply knockback or hurt state enter
+		
+		enemy.EnemyType.WARRIOR:
+			var anim : String = ""
+			if enemy.animation_player:
+				anim = enemy.animation_player.current_animation
+			if anim != "" and anim.begins_with("attack"): #warrior attacking animation
+				enemy.invulnerable = true #make invulnerable
+				effect_animations.play("flash")  #play damage flash
+				await get_tree().create_timer(0.4).timeout #wait 0.4 seconds till can be damaged again
+				enemy.invulnerable = false
+				return
+		
+		enemy.EnemyType.DEATHBRINGER:
+			var anim : String = ""
+			if enemy.animation_player:
+				anim = enemy.animation_player.current_animation
+			if anim != "" and anim.begins_with("casting"): #deathbringer casting animation
+				enemy.invulnerable = true
+				effect_animations.play("flash")
+				await get_tree().create_timer(0.4).timeout
+				enemy.invulnerable = false
+				return
+		
 		
 	if state_machine.current_state != self:
 		state_machine.change_state( self ) # change state to hurt

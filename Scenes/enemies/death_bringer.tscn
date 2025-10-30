@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://crxu0j537bvmp"]
+[gd_scene load_steps=36 format=3 uid="uid://crxu0j537bvmp"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/enemy.gd" id="1_nlvty"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="3_0yts2"]
@@ -324,6 +324,57 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.6)
 
+[sub_resource type="Animation" id="Animation_08set"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pih6a"]
+resource_name = "flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1.07177, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.847059, 0, 0.85098, 1), Color(1, 1, 1, 1), Color(0.847059, 0, 0.85098, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.4],
+"method": &"make_invulnerable"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_08set"]
+_data = {
+&"RESET": SubResource("Animation_08set"),
+&"flash": SubResource("Animation_pih6a")
+}
+
 [node name="DeathBringer" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 256
@@ -344,6 +395,7 @@ autoplay = "idle"
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -25)
 shape = SubResource("CapsuleShape2D_nlvty")
 
@@ -361,6 +413,7 @@ shadow_size = Vector2(0.8, 0.09)
 
 [node name="VisionArea" parent="Sprite" instance=ExtResource("12_lbltc")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
@@ -371,6 +424,7 @@ polygon = PackedVector2Array(32, 14, 32, -32, -80, -49, -80, 27)
 position = Vector2(0, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+visible = false
 shape = SubResource("RectangleShape2D_lwf2y")
 debug_color = Color(1, 0.00784314, 0.0431373, 0.407843)
 
@@ -389,6 +443,7 @@ debug_color = Color(1, 0.00784314, 0.0431373, 0.407843)
 position = Vector2(0, -27)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+visible = false
 shape = SubResource("CapsuleShape2D_gmc07")
 debug_color = Color(0.754484, 0.456469, 1.92523e-07, 0.42)
 
@@ -428,9 +483,10 @@ state_aggro_duration = 5.0
 unique_name_in_owner = true
 script = ExtResource("14_x8500")
 
-[node name="Death" type="Node2D" parent="EnemyStateMachine"]
+[node name="Death" type="Node2D" parent="EnemyStateMachine" node_paths=PackedStringArray("effect_animations")]
 unique_name_in_owner = true
 script = ExtResource("10_rnrj7")
+effect_animations = NodePath("../../EffectAnimationPlayer")
 death_noise = ExtResource("14_sfk8v")
 
 [node name="PositionTargets" type="Node2D" parent="."]
@@ -442,3 +498,8 @@ texture = SubResource("GradientTexture2D_mufow")
 [node name="SpellTargetPosition2" type="Sprite2D" parent="PositionTargets"]
 position = Vector2(90, -90)
 texture = SubResource("GradientTexture2D_mufow")
+
+[node name="EffectAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_08set")
+}

@@ -172,10 +172,10 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 		EnemyType.WARRIOR:
 			if _anim == "attack_right" or _anim == "attack_left":
 				if  _aggro_timer > 0 and _can_see_player != false: #if enemy is still inside vision after an attack, attack again
-					chance = 1
+					chance = 1 #always move forward towards player
 					assess()
 					await _assess_timer.timeout
-					enemy.velocity = Vector2.ZERO
+					enemy.velocity = Vector2.ZERO #stop velocity and attack
 					enemy.update_animation("attack")
 				else:
 					state_machine.change_state(wander)#otherwise wander
