@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=3 uid="uid://btyrdxj5h0j2s"]
+
+[ext_resource type="Texture2D" uid="uid://0k1lwomwypt" path="res://Sprites/Enemy/Undead executioner puppet/outline-summons1-Sheet.png" id="1_p8mkj"]
+[ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="2_n7iy5"]
+[ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="3_6q6bi"]
+[ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="4_cmnuy"]
+
+[sub_resource type="Animation" id="Animation_dinye"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SummonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_mqvym"]
+resource_name = "appear"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SummonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 8, 7, 6, 5, 4]
+}
+
+[sub_resource type="Animation" id="Animation_wkq0t"]
+resource_name = "death"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SummonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 11, 12, 13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_ls75a"]
+resource_name = "fly"
+length = 0.4
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SummonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xhmlk"]
+_data = {
+&"RESET": SubResource("Animation_dinye"),
+&"appear": SubResource("Animation_mqvym"),
+&"death": SubResource("Animation_wkq0t"),
+&"fly": SubResource("Animation_ls75a")
+}
+
+[sub_resource type="Animation" id="Animation_sb477"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SummonSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tfo3t"]
+resource_name = "flash"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SummonSprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.584314, 0.411765, 0.482353, 1), Color(0.584314, 0.411765, 0.482353, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yvtxb"]
+_data = {
+&"RESET": SubResource("Animation_sb477"),
+&"flash": SubResource("Animation_tfo3t")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6ebq"]
+radius = 8.0
+height = 28.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u5gjt"]
+radius = 6.0
+height = 22.0
+
+[node name="SummonEnemy" type="Node2D"]
+
+[node name="SummonSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_p8mkj")
+hframes = 16
+
+[node name="SummonAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_xhmlk")
+}
+
+[node name="SummonEffectAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yvtxb")
+}
+
+[node name="CastShadow" parent="." instance=ExtResource("2_n7iy5")]
+position = Vector2(-1, 13)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Hitbox" parent="." instance=ExtResource("3_6q6bi")]
+position = Vector2(-1, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CapsuleShape2D_g6ebq")
+debug_color = Color(0.784458, 0.433679, 0, 0.42)
+
+[node name="Hurtbox" parent="." instance=ExtResource("4_cmnuy")]
+position = Vector2(-1, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_u5gjt")
+debug_color = Color(0.987197, 0.110292, 7.70092e-07, 0.42)
