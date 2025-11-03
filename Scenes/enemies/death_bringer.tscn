@@ -395,7 +395,6 @@ autoplay = "idle"
 bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -25)
 shape = SubResource("CapsuleShape2D_nlvty")
 
@@ -413,7 +412,6 @@ shadow_size = Vector2(0.8, 0.09)
 
 [node name="VisionArea" parent="Sprite" instance=ExtResource("12_lbltc")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(0, -24)
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
@@ -424,12 +422,10 @@ polygon = PackedVector2Array(32, 14, 32, -32, -80, -49, -80, 27)
 position = Vector2(0, -25)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-visible = false
 shape = SubResource("RectangleShape2D_lwf2y")
 debug_color = Color(1, 0.00784314, 0.0431373, 0.407843)
 
 [node name="AttackHurtbox" parent="." instance=ExtResource("3_0yts2")]
-visible = false
 position = Vector2(-78, -25)
 monitoring = false
 hurtbox_type = 1
@@ -443,7 +439,6 @@ debug_color = Color(1, 0.00784314, 0.0431373, 0.407843)
 position = Vector2(0, -27)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
 shape = SubResource("CapsuleShape2D_gmc07")
 debug_color = Color(0.754484, 0.456469, 1.92523e-07, 0.42)
 

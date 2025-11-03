@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cjs3clurrtpeg"]
+[gd_scene load_steps=31 format=3 uid="uid://cjs3clurrtpeg"]
 
 [ext_resource type="Texture2D" uid="uid://77uy0og543c2" path="res://Sprites/Enemy/Undead executioner puppet/outline-allanimation-Sheet.png" id="1_0onkm"]
 [ext_resource type="Script" uid="uid://b1sg8gnxpsulw" path="res://Scripts/enemies/messor.gd" id="1_g6ebq"]
@@ -11,6 +11,20 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6ebq"]
 radius = 13.0
 height = 62.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4otg"]
+size = Vector2(24, 54)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4sysc"]
+radius = 9.0
+height = 52.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4otg"]
+radius = 12.0
+height = 58.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h4otg"]
+radius = 33.0606
 
 [sub_resource type="Animation" id="Animation_g6ebq"]
 length = 0.001
@@ -29,31 +43,31 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackHurtbox:monitoring")
+tracks/1/path = NodePath("../AttackHurtbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector2(34, -41)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackHurtbox:position")
+tracks/2/path = NodePath("../AttackHurtbox:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(34, -41)]
+"update": 1,
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SkillHurtbox:monitoring")
+tracks/3/path = NodePath("../SkillHurtbox:monitoring")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -65,14 +79,14 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("SkillHurtbox/CollisionShape2D:shape:size")
+tracks/4/path = NodePath("../SkillHurtbox/CollisionShape2D:shape")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(20, 54)]
+"update": 1,
+"values": [SubResource("RectangleShape2D_h4otg")]
 }
 
 [sub_resource type="Animation" id="Animation_15lnq"]
@@ -111,26 +125,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackHurtbox:monitoring")
+tracks/1/path = NodePath("../AttackHurtbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.9, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, true, false]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-17, -41)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackHurtbox:position")
+tracks/2/path = NodePath("../AttackHurtbox:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(10, -41)]
+"times": PackedFloat32Array(0.1, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_0onkm"]
@@ -152,26 +166,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackHurtbox:monitoring")
+tracks/1/path = NodePath("../AttackHurtbox:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.9, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [false, true, false, true, false]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, -41)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackHurtbox:position")
+tracks/2/path = NodePath("../AttackHurtbox:monitoring")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(34, -41)]
+"times": PackedFloat32Array(0.1, 0.3, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_h4otg"]
@@ -229,26 +243,26 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackHurtbox:monitoring")
+tracks/1/path = NodePath("../AttackHurtbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true, false]
+"values": [true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackHurtbox:position")
+tracks/2/path = NodePath("../AttackHurtbox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(10, -41)]
+"values": [Vector2(-17, -41)]
 }
 
 [sub_resource type="Animation" id="Animation_fnnkn"]
@@ -270,27 +284,36 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("AttackHurtbox:position")
+tracks/1/path = NodePath("../AttackHurtbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(34, -41)]
+"times": PackedFloat32Array(0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("AttackHurtbox:monitoring")
+tracks/2/path = NodePath("../AttackHurtbox:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, -41)]
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5gjt"]
+size = Vector2(35, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sysc"]
+size = Vector2(52, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ctrji"]
+size = Vector2(80, 54)
 
 [sub_resource type="Animation" id="Animation_ctrji"]
 resource_name = "skill"
@@ -311,11 +334,11 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("SkillHurtbox:monitoring")
+tracks/1/path = NodePath("../SkillHurtbox:monitoring")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 1),
+"times": PackedFloat32Array(0, 0.4, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [false, true, false]
@@ -323,14 +346,14 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SkillHurtbox/CollisionShape2D:shape:size")
+tracks/2/path = NodePath("../SkillHurtbox/CollisionShape2D:shape")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(20, 54), Vector2(26, 54), Vector2(48, 54), Vector2(73, 54), Vector2(48, 54), Vector2(26, 54)]
+"times": PackedFloat32Array(0.4, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("RectangleShape2D_u5gjt"), SubResource("RectangleShape2D_4sysc"), SubResource("RectangleShape2D_ctrji"), SubResource("RectangleShape2D_4sysc"), SubResource("RectangleShape2D_u5gjt")]
 }
 
 [sub_resource type="Animation" id="Animation_mbjtr"]
@@ -417,98 +440,83 @@ _data = {
 &"flash": SubResource("Animation_1gv5r")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4sysc"]
-size = Vector2(62, 62)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4sysc"]
-radius = 13.0
-height = 54.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h4otg"]
-radius = 16.0
-height = 62.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_h4otg"]
-radius = 33.0606
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h4otg"]
-size = Vector2(20, 54)
-
 [node name="Messor" type="CharacterBody2D"]
+z_index = 2
 collision_layer = 256
 collision_mask = 48
 script = ExtResource("1_g6ebq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16, -31)
+visible = false
+position = Vector2(0, -31)
 shape = SubResource("CapsuleShape2D_g6ebq")
 
 [node name="BossNode" type="Node2D" parent="."]
 
 [node name="BossSprite" type="Sprite2D" parent="BossNode"]
-position = Vector2(22, -36)
+position = Vector2(5, -36)
 texture = ExtResource("1_0onkm")
 hframes = 62
 
-[node name="BossAnimationPlayer" type="AnimationPlayer" parent="BossNode"]
-libraries = {
-&"": SubResource("AnimationLibrary_u5gjt")
-}
-
-[node name="BossEffectAnimationPlayer" type="AnimationPlayer" parent="BossNode"]
-libraries = {
-&"": SubResource("AnimationLibrary_a153h")
-}
-
-[node name="CastShadow" parent="BossNode" instance=ExtResource("2_fnnkn")]
-position = Vector2(13, -4)
+[node name="CastShadow" parent="BossNode/BossSprite" instance=ExtResource("2_fnnkn")]
+position = Vector2(-9, 32)
 shadow_size = Vector2(0.4, 0.4)
 
 [node name="VisionArea" parent="BossNode" instance=ExtResource("4_u5gjt")]
-position = Vector2(16, -34)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode/VisionArea"]
-position = Vector2(20, 2)
-shape = SubResource("RectangleShape2D_4sysc")
-debug_color = Color(0.36731, 0.616043, 3.85046e-07, 0.42)
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="BossNode"]
-
-[node name="Hurtbox" parent="BossNode" instance=ExtResource("5_g6ebq")]
 visible = false
-position = Vector2(20, -34)
+position = Vector2(0, -31)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode/Hurtbox"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossNode/VisionArea"]
+polygon = PackedVector2Array(0, -30, 62, -30, 62, 31, 0, 31)
+
+[node name="SkillHurtbox" parent="." instance=ExtResource("5_g6ebq")]
+position = Vector2(0, -31)
+monitoring = false
+damage = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkillHurtbox"]
+shape = SubResource("RectangleShape2D_h4otg")
+debug_color = Color(0.94189, 0.242162, 3.85046e-07, 0.42)
+
+[node name="Hurtbox" parent="." instance=ExtResource("5_g6ebq")]
+visible = false
+position = Vector2(0, -31)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_4sysc")
 debug_color = Color(0.999675, 0.0180587, 0, 0.42)
 
-[node name="Hitbox" parent="BossNode" instance=ExtResource("5_h4otg")]
+[node name="Hitbox" parent="." instance=ExtResource("5_h4otg")]
 visible = false
-position = Vector2(20, -34)
+position = Vector2(0, -31)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CapsuleShape2D_h4otg")
 debug_color = Color(0.777575, 0.439139, 0, 0.42)
 
-[node name="AttackHurtbox" parent="BossNode" instance=ExtResource("5_g6ebq")]
+[node name="AttackHurtbox" parent="." instance=ExtResource("5_g6ebq")]
 position = Vector2(34, -41)
 monitoring = false
 hurtbox_type = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode/AttackHurtbox"]
-visible = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHurtbox"]
 shape = SubResource("CircleShape2D_h4otg")
 debug_color = Color(0.949713, 0.225758, 0, 0.42)
 
-[node name="SkillHurtbox" parent="BossNode" instance=ExtResource("5_g6ebq")]
-position = Vector2(16, -30)
-monitoring = false
-hurtbox_type = 1
-damage = 2
+[node name="BossAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BossNode")
+libraries = {
+&"": SubResource("AnimationLibrary_u5gjt")
+}
+autoplay = "idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BossNode/SkillHurtbox"]
-shape = SubResource("RectangleShape2D_h4otg")
-debug_color = Color(0.94189, 0.242162, 3.85046e-07, 0.42)
+[node name="BossEffectAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../BossNode")
+libraries = {
+&"": SubResource("AnimationLibrary_a153h")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="SummonEnemy" parent="." instance=ExtResource("6_u5gjt")]
 visible = false
