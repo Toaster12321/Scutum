@@ -9,10 +9,13 @@ signal direction_changed( new_direction : Vector2 )
 
 var hp : int = 10
 var direction : Vector2 = Vector2.ZERO
+var summon_target : Vector2
 var facing_direction : float = 1
 var finding_player : bool = false
+var moving_to_summon : bool = false
 var player_seen : bool = false
 var attack_select : int
+var summons : Array[Node2D]
 
 @onready var hitbox: Hitbox = $Hitbox
 @onready var hurtbox: Hurtbox = $Hurtbox
@@ -24,6 +27,7 @@ var attack_select : int
 
 
 func _ready() -> void:
+	$SummoningPositions.visible = false
 	set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
 	vision_area.player_enetered.connect( _on_knight_entered )
 	vision_area.player_exited.connect( _on_knight_exited )
@@ -38,12 +42,25 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	attack_select = randi_range(0,2)
-	velocity.y += 980 * delta 
+	#if !moving_to_summon:
+		#velocity.y += 980 * delta 
 	move_and_slide()
 	
 	if finding_player == true:
 		
 		velocity = position.direction_to(GlobalPlayerManager.knight.global_position) * move_speed
+	
+	if moving_to_summon == true:
+		finding_player = false
+		var summon_spot = get_tree().current_scene.get_node("BossSummonPosition")
+		if summon_spot:
+			summon_target = summon_spot.global_position
+			velocity = position.direction_to(summon_target) * move_speed
+		
+		if global_position.distance_to(summon_target) < 1.0:
+			moving_to_summon = false
+			velocity = Vector2.ZERO
+			summon()
 
 
 func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
@@ -54,6 +71,10 @@ func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
 	boss_effect_animation_player.play("flash")
 	boss_effect_animation_player.seek( 0 ) #set to first frame and queue default just in case
 	boss_effect_animation_player.queue("default")
+	
+	if hp == 7 or hp == 3:
+		boss_animation_player.play("idle")
+		moving_to_summon = true
 	
 	if hp < 1:
 		boss_defeated()
@@ -132,3 +153,30 @@ func anim_direction() -> String: #returns a left or right based on the current d
 		return "left"
 	else:
 		return "right"
+
+
+func summon() -> void:
+	boss_animation_player.play("summon")
+	for c in $SummoningPositions.get_children():
+		summons.append(c)
+	
+	if summons.size() == 0: 
+		print("no positions found")
+	
+	var summon1 : Node2D = SUMMON_SCENE.instantiate() #instatiate summons
+	var summon2 : Node2D = SUMMON_SCENE.instantiate()
+	var summon3 : Node2D = SUMMON_SCENE.instantiate()
+	
+	get_parent().add_child.call_deferred( summon1 ) #add spells as a child to the enemy
+	get_parent().add_child.call_deferred( summon2 )
+	get_parent().add_child.call_deferred( summon3 )
+	
+	summon1.global_position = summons[0].global_position #set their position to the indicator set in editor
+	summon2.global_position = summons[1].global_position
+	summon3.global_position = summons[2].global_position
+	
+	await boss_animation_player.animation_finished
+	moving_to_summon = false
+	set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
+	find_player()
+	pass

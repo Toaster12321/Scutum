@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cjs3clurrtpeg"]
+[gd_scene load_steps=32 format=3 uid="uid://cjs3clurrtpeg"]
 
 [ext_resource type="Texture2D" uid="uid://77uy0og543c2" path="res://Sprites/Enemy/Undead executioner puppet/outline-allanimation-Sheet.png" id="1_0onkm"]
 [ext_resource type="Script" uid="uid://b1sg8gnxpsulw" path="res://Scripts/enemies/messor.gd" id="1_g6ebq"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="4_u5gjt"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="5_g6ebq"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="5_h4otg"]
-[ext_resource type="PackedScene" uid="uid://btyrdxj5h0j2s" path="res://Scenes/enemies/summon_enemy.tscn" id="6_u5gjt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6ebq"]
 radius = 13.0
@@ -87,6 +86,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [SubResource("RectangleShape2D_h4otg")]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("VisionArea:monitoring")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_15lnq"]
@@ -358,7 +381,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_mbjtr"]
 resource_name = "summon"
-length = 0.9
+length = 1.9
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -367,10 +390,34 @@ tracks/0/path = NodePath("BossSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.00336, 1.10336, 1.20336, 1.30336, 1.40336, 1.50336, 1.60336, 1.70336, 1.80336, 1.90336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [35, 36, 37, 38, 38, 39, 39, 40, 41, 42]
+"values": [35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 35, 36, 37, 38, 38, 39, 39, 40, 41, 42]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VisionArea:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u5gjt"]
@@ -440,10 +487,23 @@ _data = {
 &"flash": SubResource("Animation_1gv5r")
 }
 
+[sub_resource type="Gradient" id="Gradient_08set"]
+offsets = PackedFloat32Array(0.672176, 0.807175, 0.837466, 1)
+colors = PackedColorArray(1, 0, 0, 0, 0.956979, 0, 0.025436, 0.816739, 0.916617, 0.166701, 1.92523e-07, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mufow"]
+gradient = SubResource("Gradient_08set")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.6)
+
 [node name="Messor" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 256
 collision_mask = 48
+motion_mode = 1
 script = ExtResource("1_g6ebq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -463,11 +523,10 @@ position = Vector2(-9, 32)
 shadow_size = Vector2(0.4, 0.4)
 
 [node name="VisionArea" parent="BossNode" instance=ExtResource("4_u5gjt")]
-visible = false
 position = Vector2(0, -31)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossNode/VisionArea"]
-polygon = PackedVector2Array(0, -30, 62, -30, 62, 31, 0, 31)
+polygon = PackedVector2Array(0, -30, 62, -30, 62, 28, 0, 28)
 
 [node name="SkillHurtbox" parent="." instance=ExtResource("5_g6ebq")]
 position = Vector2(0, -31)
@@ -518,6 +577,28 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
-[node name="SummonEnemy" parent="." instance=ExtResource("6_u5gjt")]
-visible = false
-position = Vector2(11, -17)
+[node name="SummoningPositions" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="SummoningPositions"]
+position = Vector2(-49, -33)
+texture = SubResource("GradientTexture2D_mufow")
+
+[node name="Sprite2D2" type="Sprite2D" parent="SummoningPositions"]
+position = Vector2(1, -84)
+texture = SubResource("GradientTexture2D_mufow")
+
+[node name="Sprite2D3" type="Sprite2D" parent="SummoningPositions"]
+position = Vector2(44, -34)
+texture = SubResource("GradientTexture2D_mufow")
+
+[node name="Sprite2D4" type="Sprite2D" parent="SummoningPositions"]
+position = Vector2(-50, 17)
+texture = SubResource("GradientTexture2D_mufow")
+
+[node name="Sprite2D5" type="Sprite2D" parent="SummoningPositions"]
+position = Vector2(3, 56)
+texture = SubResource("GradientTexture2D_mufow")
+
+[node name="Sprite2D6" type="Sprite2D" parent="SummoningPositions"]
+position = Vector2(42, 18)
+texture = SubResource("GradientTexture2D_mufow")

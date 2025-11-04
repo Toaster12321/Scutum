@@ -136,6 +136,7 @@ hframes = 16
 libraries = {
 &"": SubResource("AnimationLibrary_xhmlk")
 }
+autoplay = "appear"
 
 [node name="SummonEffectAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -313,8 +313,8 @@ radius = 23.0
 height = 56.0
 
 [sub_resource type="Gradient" id="Gradient_08set"]
-offsets = PackedFloat32Array(0.672176, 0.837466, 1)
-colors = PackedColorArray(1, 0, 0, 0, 0.944515, 0, 0.135119, 1, 1, 1, 1, 0)
+offsets = PackedFloat32Array(0.672176, 0.807175, 0.837466, 1)
+colors = PackedColorArray(1, 0, 0, 0, 0.956979, 0, 0.025436, 0.816739, 0.916617, 0.166701, 1.92523e-07, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mufow"]
 gradient = SubResource("Gradient_08set")

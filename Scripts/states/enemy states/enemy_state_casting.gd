@@ -38,8 +38,6 @@ func cast_spell() -> void:
 	if positions.size() == 0: 
 		print("no positions found")
 	
-	print(positions[0].global_position)
-	print(positions[1].global_position)
 	var spell : Node2D = SPELL_SCENE.instantiate() #instatiate 2 spells
 	var spell2 : Node2D = SPELL_SCENE.instantiate()
 	
