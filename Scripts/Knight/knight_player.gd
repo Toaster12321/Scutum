@@ -25,6 +25,7 @@ var gravity : float = 980 #9.81m/s gravity speed
 var gravity_multiplier : float = 1
 var current_direction : float = 1
 var default_cam_position : float
+var facing_direction : float = 1
 
 signal player_damaged( hurtbox : Hurtbox )
 signal damage_blocked( hurtbox : Hurtbox )
@@ -73,8 +74,10 @@ func update_direction( direction : float ) -> void: #when we change from left to
 	
 	if current_direction < 0: #if our direction is -1 we are going left otherwise right
 		sprites.scale.x = -1 #flip left
+		facing_direction = -1
 	else:
 		sprites.scale.x = 1 #flip right
+		facing_direction = 1
 	pass
 
 

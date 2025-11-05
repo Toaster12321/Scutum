@@ -90,22 +90,10 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("VisionArea:monitoring")
+tracks/5/path = NodePath(".:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath(".:scale")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -398,22 +386,10 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VisionArea:monitoring")
+tracks/1/path = NodePath(".:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.9, 1.9),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
@@ -524,6 +500,7 @@ shadow_size = Vector2(0.4, 0.4)
 
 [node name="VisionArea" parent="BossNode" instance=ExtResource("4_u5gjt")]
 position = Vector2(0, -31)
+monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossNode/VisionArea"]
 polygon = PackedVector2Array(0, -30, 62, -30, 62, 28, 0, 28)

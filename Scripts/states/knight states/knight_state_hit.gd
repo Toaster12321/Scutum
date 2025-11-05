@@ -6,7 +6,6 @@ class_name KnightStateHit extends KnightState
 @export var hit_audio : AudioStream
 
 var hurtbox : Hurtbox
-var _direction : Vector2
 var _normalized_direction : Vector2
 var _anim_finished : bool = false
 var _difference : float
@@ -25,17 +24,23 @@ func enter() -> void:
 	
 	knight.animation_player.animation_finished.connect( _animation_finished ) #connect function for when animation is finished
 	
-	
+	#difference from enemy position to knight position
 	_difference = knight.global_position.x - hurtbox.global_position.x
 	
-	if _difference > 0: #normalize direction into left and right instead of floats
+	if _difference > 0 and knight.facing_direction < 0: #normalize direction into left and right instead of floats
 		_normalized_direction = Vector2.RIGHT
-	elif _difference < 0:
+	elif _difference < 0 and knight.facing_direction > 0:
 		_normalized_direction = Vector2.LEFT
+	else:
+		_normalized_direction = Vector2(knight.facing_direction, 0)
 	
-	knight.velocity = _direction * -knockback_speed #knight knockback speed
+	if abs(_difference) < 8.0:# Very close or above → just keep facing 
+		_normalized_direction = Vector2(knight.facing_direction, 0)
 	
-	knight.update_direction( _normalized_direction.x ) #update knight's facing direction
+	#_direction = knight.global_position.direction_to(hurtbox.global_position)
+	#knight.velocity = -(_direction) * -knockback_speed #knight knockback speed
+	
+	#knight.update_direction( _normalized_direction.x ) #update knight's facing direction
 	
 	knight.animation_player.play("hit") #play hit + damaged animations and start i-frames
 	knight.make_invulnerable( invulnerable_duration )

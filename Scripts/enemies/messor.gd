@@ -10,9 +10,11 @@ signal direction_changed( new_direction : Vector2 )
 var hp : int = 10
 var direction : Vector2 = Vector2.ZERO
 var summon_target : Vector2
+var return_target : Vector2
 var facing_direction : float = 1
-var finding_player : bool = false
+var finding_player : bool = true
 var moving_to_summon : bool = false
+var returning_to_floor = false
 var player_seen : bool = false
 var attack_select : int
 var summons : Array[Node2D]
@@ -42,15 +44,15 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	attack_select = randi_range(0,2)
-	#if !moving_to_summon:
-		#velocity.y += 980 * delta 
 	move_and_slide()
 	
-	if finding_player == true:
-		
+	if finding_player == true: 
+		velocity.y += 980 * delta
 		velocity = position.direction_to(GlobalPlayerManager.knight.global_position) * move_speed
 	
 	if moving_to_summon == true:
+		hitbox.monitorable = false
+		vision_area.monitoring = false
 		finding_player = false
 		var summon_spot = get_tree().current_scene.get_node("BossSummonPosition")
 		if summon_spot:
@@ -61,6 +63,18 @@ func _process(delta: float) -> void:
 			moving_to_summon = false
 			velocity = Vector2.ZERO
 			summon()
+	
+	if returning_to_floor == true:
+		hitbox.monitorable = true
+		vision_area.monitoring = true
+		var return_spot = get_tree().current_scene.get_node("BossReturnPosition")
+		if return_spot:
+			return_target = return_spot.global_position
+			velocity = position.direction_to(return_target) * move_speed
+		
+		if global_position.distance_to(return_target) < 1.0:
+			returning_to_floor = false
+			find_player()
 
 
 func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
@@ -138,7 +152,7 @@ func _on_knight_entered() -> void:
 	
 	await boss_animation_player.animation_finished
 	boss_animation_player.play("idle2")
-	await get_tree().create_timer(0.8).timeout
+	await get_tree().create_timer(1).timeout
 	
 	find_player()
 	pass
@@ -156,6 +170,7 @@ func anim_direction() -> String: #returns a left or right based on the current d
 
 
 func summon() -> void:
+	boss_animation_player.stop()
 	boss_animation_player.play("summon")
 	for c in $SummoningPositions.get_children():
 		summons.append(c)
@@ -176,7 +191,7 @@ func summon() -> void:
 	summon3.global_position = summons[2].global_position
 	
 	await boss_animation_player.animation_finished
+	boss_animation_player.play("idle2")
+	returning_to_floor = true
 	moving_to_summon = false
-	set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
-	find_player()
 	pass

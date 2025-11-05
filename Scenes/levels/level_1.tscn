@@ -90,3 +90,8 @@ wait_time = 1.0
 visible = false
 position = Vector2(3100, -296)
 texture = SubResource("GradientTexture2D_s5b24")
+
+[node name="BossReturnPosition" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(3097, -194)
+texture = SubResource("GradientTexture2D_s5b24")
