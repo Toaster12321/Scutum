@@ -7,11 +7,13 @@ signal direction_changed( new_direction : Vector2 )
 @export var max_hp : int = 10
 @export var move_speed : float = 50.0
 
-var hp : int = 10
+var hp : int = 2
+var summon_count : int = 0
 var direction : Vector2 = Vector2.ZERO
 var summon_target : Vector2
 var return_target : Vector2
 var facing_direction : float = 1
+var can_attack : bool = true
 var finding_player : bool = true
 var moving_to_summon : bool = false
 var returning_to_floor = false
@@ -26,6 +28,7 @@ var summons : Array[Node2D]
 @onready var sprite: Node2D = $BossNode
 @onready var cast_shadow: ClassShadow = $BossNode/BossSprite/CastShadow
 @onready var vision_area: VisionArea = $BossNode/VisionArea
+@onready var timer: Timer = $Timer
 
 
 func _ready() -> void:
@@ -48,7 +51,10 @@ func _process(delta: float) -> void:
 	
 	if finding_player == true: 
 		velocity.y += 980 * delta
-		velocity = position.direction_to(GlobalPlayerManager.knight.global_position) * move_speed
+		
+		var dir_to_player = position.direction_to(GlobalPlayerManager.knight.global_position)
+		dir_to_player.y = 0
+		velocity = dir_to_player.normalized() * move_speed
 	
 	if moving_to_summon == true:
 		hitbox.monitorable = false
@@ -66,7 +72,6 @@ func _process(delta: float) -> void:
 	
 	if returning_to_floor == true:
 		hitbox.monitorable = true
-		vision_area.monitoring = true
 		var return_spot = get_tree().current_scene.get_node("BossReturnPosition")
 		if return_spot:
 			return_target = return_spot.global_position
@@ -74,6 +79,7 @@ func _process(delta: float) -> void:
 		
 		if global_position.distance_to(return_target) < 1.0:
 			returning_to_floor = false
+			vision_area.monitoring = true
 			find_player()
 
 
@@ -87,10 +93,12 @@ func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
 	boss_effect_animation_player.queue("default")
 	
 	if hp == 7 or hp == 3:
+		timer.stop()
 		boss_animation_player.play("idle")
 		moving_to_summon = true
 	
 	if hp < 1:
+		timer.stop()
 		boss_defeated()
 		
 
@@ -126,7 +134,7 @@ func find_player() -> void:
 func set_direction( _new_direction : Vector2 ) -> void:
 	if _new_direction != Vector2.ZERO: 
 		direction = _new_direction
-	
+		
 		if direction.x < 0: 
 			sprite.scale.x = -1 #if we are facing right flip left
 			facing_direction = 1
@@ -152,7 +160,9 @@ func _on_knight_entered() -> void:
 	
 	await boss_animation_player.animation_finished
 	boss_animation_player.play("idle2")
-	await get_tree().create_timer(1).timeout
+	
+	timer.start(1.0)
+	await timer.timeout
 	
 	find_player()
 	pass
@@ -160,7 +170,6 @@ func _on_knight_entered() -> void:
 
 func _on_knight_exited():
 	player_seen = false
-
 
 func anim_direction() -> String: #returns a left or right based on the current direction of the player
 	if direction.x < 0:
@@ -170,6 +179,7 @@ func anim_direction() -> String: #returns a left or right based on the current d
 
 
 func summon() -> void:
+	summon_count += 1
 	boss_animation_player.stop()
 	boss_animation_player.play("summon")
 	for c in $SummoningPositions.get_children():
@@ -181,6 +191,9 @@ func summon() -> void:
 	var summon1 : Node2D = SUMMON_SCENE.instantiate() #instatiate summons
 	var summon2 : Node2D = SUMMON_SCENE.instantiate()
 	var summon3 : Node2D = SUMMON_SCENE.instantiate()
+	var summon4 : Node2D = SUMMON_SCENE.instantiate() #instatiate summons
+	var summon5 : Node2D = SUMMON_SCENE.instantiate()
+	var summon6 : Node2D = SUMMON_SCENE.instantiate()
 	
 	get_parent().add_child.call_deferred( summon1 ) #add spells as a child to the enemy
 	get_parent().add_child.call_deferred( summon2 )
@@ -189,6 +202,14 @@ func summon() -> void:
 	summon1.global_position = summons[0].global_position #set their position to the indicator set in editor
 	summon2.global_position = summons[1].global_position
 	summon3.global_position = summons[2].global_position
+	
+	if summon_count == 2:
+		get_parent().add_child.call_deferred( summon4 ) #add spells as a child to the enemy
+		get_parent().add_child.call_deferred( summon5 )
+		get_parent().add_child.call_deferred( summon6 )
+		summon4.global_position = summons[3].global_position #set their position to the indicator set in editor
+		summon5.global_position = summons[4].global_position
+		summon6.global_position = summons[5].global_position
 	
 	await boss_animation_player.animation_finished
 	boss_animation_player.play("idle2")

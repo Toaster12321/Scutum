@@ -500,13 +500,13 @@ shadow_size = Vector2(0.4, 0.4)
 
 [node name="VisionArea" parent="BossNode" instance=ExtResource("4_u5gjt")]
 position = Vector2(0, -31)
-monitoring = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BossNode/VisionArea"]
-polygon = PackedVector2Array(0, -30, 62, -30, 62, 28, 0, 28)
+polygon = PackedVector2Array(-13, -30, 49, -30, 49, 28, -13, 28)
 
 [node name="SkillHurtbox" parent="." instance=ExtResource("5_g6ebq")]
-position = Vector2(0, -31)
+visible = false
+position = Vector2(-1, -31)
 monitoring = false
 damage = 2
 
@@ -531,6 +531,7 @@ shape = SubResource("CapsuleShape2D_h4otg")
 debug_color = Color(0.777575, 0.439139, 0, 0.42)
 
 [node name="AttackHurtbox" parent="." instance=ExtResource("5_g6ebq")]
+visible = false
 position = Vector2(34, -41)
 monitoring = false
 hurtbox_type = 1
@@ -569,13 +570,15 @@ position = Vector2(44, -34)
 texture = SubResource("GradientTexture2D_mufow")
 
 [node name="Sprite2D4" type="Sprite2D" parent="SummoningPositions"]
-position = Vector2(-50, 17)
+position = Vector2(-47, 8)
 texture = SubResource("GradientTexture2D_mufow")
 
 [node name="Sprite2D5" type="Sprite2D" parent="SummoningPositions"]
-position = Vector2(3, 56)
+position = Vector2(-1, 34)
 texture = SubResource("GradientTexture2D_mufow")
 
 [node name="Sprite2D6" type="Sprite2D" parent="SummoningPositions"]
-position = Vector2(42, 18)
+position = Vector2(44, 12)
 texture = SubResource("GradientTexture2D_mufow")
+
+[node name="Timer" type="Timer" parent="."]

@@ -802,7 +802,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0.0714286),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-38, -18)]
+"values": [Vector2(-31, -18)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -972,10 +972,10 @@ tracks/9/path = NodePath("Hurtbox:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0.0714286),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(30, -18)]
+"values": [Vector2(24, -18)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -3165,6 +3165,7 @@ script = ExtResource("11_2frtv")
 death_audio = ExtResource("15_a5jte")
 
 [node name="Sprites" type="Node2D" parent="."]
+scale = Vector2(-1, 1)
 
 [node name="idle_sprite" type="Sprite2D" parent="Sprites"]
 texture_filter = 1
@@ -3244,7 +3245,6 @@ hframes = 10
 shadow_size = Vector2(0.45, 0.09)
 
 [node name="Hitbox" parent="." instance=ExtResource("18_ch8o0")]
-visible = false
 position = Vector2(0, -18)
 collision_layer = 2
 
@@ -3266,7 +3266,6 @@ shape = SubResource("CapsuleShape2D_2frtv")
 debug_color = Color(0.619411, 0.534763, 3.85046e-07, 0.42)
 
 [node name="Hurtbox" parent="." instance=ExtResource("19_tume3")]
-visible = false
 position = Vector2(0, -18)
 collision_mask = 256
 monitoring = false
