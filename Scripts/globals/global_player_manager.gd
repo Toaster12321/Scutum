@@ -18,6 +18,12 @@ func add_player_instance() -> void:
 	pass
 
 
+func set_health( hp : int, max_hp : int ) -> void:
+	knight.max_hp = max_hp
+	knight.hp = hp
+	knight.update_hp( 0 )
+
+
 func set_player_position( _new_pos : Vector2 ) -> void: #function that sets the knight at a set of coords
 	knight.global_position = _new_pos
 	pass

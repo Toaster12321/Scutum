@@ -26,6 +26,7 @@ GlobalLevelManager="*res://Scripts/globals/global_level_manager.gd"
 KnightHud="*res://Scenes/GUI/knight_hud.tscn"
 GlobalPlayerManager="*res://Scripts/globals/global_player_manager.gd"
 SceneTransition="*res://Scenes/levels/scene_transition.tscn"
+GlobalSaveManager="*res://Scripts/globals/global_save_manager.gd"
 PauseMenu="*res://Scenes/GUI/pause_menu.tscn"
 
 [display]

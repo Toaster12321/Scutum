@@ -16,6 +16,8 @@ signal hidden
 @onready var pause_menu: Control = $Control/Pause
 @onready var animation_player: AnimationPlayer = $Control/Options/AnimationPlayer
 @onready var fade_to_black_rect: ColorRect = $Control/FadeToBlack
+@onready var button_system: Button = $Control/Pause/PauseButtons/Button_System
+@onready var system_menu: Control = $Control/System
 
 
 
@@ -25,11 +27,13 @@ func _ready() -> void:
 	hide_pause_menu() #hide pause UI
 	quit_confirmation.visible = false
 	options_menu.visible = false
+	system_menu.visible = false
 	button_resume.pressed.connect( _on_resume_pressed ) #connect button functions
 	button_quit.pressed.connect( _on_quit_pressed )
 	button_options.pressed.connect( _on_options_pressed )
 	quit_yes_button.pressed.connect( _on_quit_yes_pressed )
 	quit_no_button.pressed.connect( _on_quit_no_pressed )
+	button_system.pressed.connect( _on_system_pressed )
 	
 	GlobalLevelManager.level_loaded.connect( return_to_title )
 	pass
@@ -82,10 +86,14 @@ func _on_options_pressed() -> void:
 	options_menu.visible = true
 	pass
 
+func _on_system_pressed() -> void:
+	pause_menu.visible = false
+	system_menu.visible = true
+	pass
+
 func _on_quit_yes_pressed() -> void:
 	await fade_to_black()
 	GlobalLevelManager.load_new_level("res://Scenes/levels/title_screen.tscn", "", Vector2.ZERO) #load title screen
-	#get_tree().quit()
 	pass
 
 
@@ -105,6 +113,7 @@ func fade_to_black() -> bool:
 
 func _reset_menu() -> void:
 	options_menu.visible = false #hide options UI
+	system_menu.visible = false
 	quit_confirmation.visible = false
 	pass
 
