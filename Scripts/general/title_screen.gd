@@ -6,6 +6,7 @@ const START_LEVEL : String = "res://Scenes/levels/level_1.tscn" #path to 1st lev
 
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var start_button: Button = $CanvasLayer/Control/StartButton
+@onready var continue_button: Button = $CanvasLayer/Control/ContinueButton
 @onready var quit_button: Button = $CanvasLayer/Control/QuitButton
 @onready var shield_animation_player: AnimationPlayer = $CanvasLayer/Control/ShieldAnimationPlayer
 @onready var title_animation_player: AnimationPlayer = $CanvasLayer/Control/TitleAnimationPlayer
@@ -20,6 +21,9 @@ func _ready() -> void:
 	KnightHud.visible = false #turn off hud
 	PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED#turn off pause menu
 	
+	if GlobalSaveManager.get_save_file() == null:
+		continue_button.disabled = true
+		
 	setup_title_screen()
 	
 	GlobalLevelManager.level_load_started.connect( exit_title_screen ) #once level loaded has been emitted
@@ -31,6 +35,7 @@ func setup_title_screen() -> void:
 	GlobalAudioManager.play_music( title_music ) #play music
 	start_button.pressed.connect( start_game ) #connect start button function
 	quit_button.pressed.connect( quit_game )
+	continue_button.pressed.connect( continue_game )
 	
 	start_button.grab_focus()
 	shield_animation_player.play("default_shield") #play animations
@@ -41,6 +46,10 @@ func setup_title_screen() -> void:
 func start_game() -> void:
 	GlobalLevelManager.load_new_level( START_LEVEL, "", Vector2.ZERO ) #load start level
 	pass
+
+
+func continue_game() -> void:
+	GlobalSaveManager.load_game()
 
 
 func quit_game() -> void:
