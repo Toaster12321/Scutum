@@ -11,6 +11,7 @@ var target_speed : float
 
 
 func init() -> void:
+	
 	pass
 
 

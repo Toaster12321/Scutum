@@ -92,7 +92,6 @@ color = Color(0, 0, 0, 0.482353)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Control"]
 
 [node name="Pause" type="Control" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -502,6 +501,7 @@ theme_override_font_sizes/font_size = 18
 text = "Load"
 
 [node name="SaveConfirmation" type="Control" parent="Control"]
+visible = false
 layout_mode = 1
 anchor_left = 0.34
 anchor_top = 0.348

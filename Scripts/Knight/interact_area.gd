@@ -1,0 +1,1 @@
+class_name InteractArea extends Area2D

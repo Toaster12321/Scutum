@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=14 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cjs3clurrtpeg" path="res://Scenes/enemies/messor.tscn" id="7_dsuda"]
 [ext_resource type="PackedScene" uid="uid://cnornow1rhb4c" path="res://Scenes/enemies/nightborne_warrior.tscn" id="7_qek6e"]
 [ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="10_af3po"]
+[ext_resource type="Script" uid="uid://thvhj188nnyk" path="res://Scripts/general/player_cutscene_detection.gd" id="10_s5b24"]
 [ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
@@ -21,6 +22,9 @@ height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsuda"]
+size = Vector2(38, 118)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_041ro")
@@ -68,9 +72,10 @@ position = Vector2(152, 70)
 texture = ExtResource("5_uy8f0")
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(2908, -248)
+position = Vector2(2489, -203)
 
 [node name="Messor" parent="." instance=ExtResource("7_dsuda")]
+process_mode = 4
 position = Vector2(3100, -190)
 
 [node name="NightborneWarrior" parent="." instance=ExtResource("7_qek6e")]
@@ -95,3 +100,14 @@ texture = SubResource("GradientTexture2D_s5b24")
 visible = false
 position = Vector2(3097, -194)
 texture = SubResource("GradientTexture2D_s5b24")
+
+[node name="PlayerCutsceneDetection" type="Area2D" parent="."]
+position = Vector2(2535, -241)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("10_s5b24")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCutsceneDetection"]
+shape = SubResource("RectangleShape2D_dsuda")
+debug_color = Color(0.21949, 0.639052, 0, 0.42)

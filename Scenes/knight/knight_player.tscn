@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://bj4rkw7gwpm65"]
+[gd_scene load_steps=60 format=3 uid="uid://bj4rkw7gwpm65"]
 
 [ext_resource type="Script" uid="uid://c1iascmee6h4m" path="res://Scripts/Knight/knight_player.gd" id="1_5m4qd"]
 [ext_resource type="Script" uid="uid://8ctg2co4oaal" path="res://Scripts/states/knight states/knight_state_machine.gd" id="2_vggyu"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="19_tume3"]
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="20_uun74"]
 [ext_resource type="Script" uid="uid://cgdkoo04dj14w" path="res://Scripts/Knight/shieldbox.gd" id="24_3xrgn"]
+[ext_resource type="Script" uid="uid://dlkbjm0n4t0pi" path="res://Scripts/Knight/interact_area.gd" id="31_dd26y"]
 
 [sub_resource type="Animation" id="Animation_ueesy"]
 length = 0.001
@@ -3022,6 +3023,9 @@ height = 36.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_fyb73"]
 radius = 26.0192
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0i80"]
+size = Vector2(20, 8)
+
 [sub_resource type="Animation" id="Animation_2frtv"]
 length = 0.001
 tracks/0/type = "value"
@@ -3275,6 +3279,20 @@ hurtbox_type = 1
 position = Vector2(4, -1)
 shape = SubResource("CircleShape2D_fyb73")
 debug_color = Color(1, 0.0118072, 0.01923, 0.42)
+
+[node name="Interactions" type="Node2D" parent="."]
+
+[node name="InteractArea" type="Area2D" parent="Interactions"]
+position = Vector2(0, -10)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+script = ExtResource("31_dd26y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/InteractArea"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_c0i80")
+debug_color = Color(0.264474, 0.633552, 9.62615e-07, 0.42)
 
 [node name="EffectAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
