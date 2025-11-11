@@ -6,6 +6,7 @@ signal direction_changed( new_direction : Vector2 )
 
 @export var max_hp : int = 10
 @export var move_speed : float = 50.0
+@export var cutscene_detection : Area2D
 
 var hp : int = 10
 var summon_count : int = 0
@@ -14,12 +15,14 @@ var summon_target : Vector2
 var return_target : Vector2
 var facing_direction : float = 1
 var attack_delay_over : bool = true
-var finding_player : bool = true
+var finding_player : bool = false
 var moving_to_summon : bool = false
 var returning_to_floor = false
 var player_seen : bool = false
+var cutscene_over : bool = false
 var attack_select : int
 var summons : Array[Node2D]
+var temp_summons : Array[Node2D]
 
 @onready var hitbox: Hitbox = $Hitbox
 @onready var hurtbox: Hurtbox = $Hurtbox
@@ -37,11 +40,17 @@ func _ready() -> void:
 	vision_area.player_enetered.connect( _on_knight_entered )
 	vision_area.player_exited.connect( _on_knight_exited )
 	
+	for s in $TempSummons.get_children():
+		if s is SummonEnemy:
+			temp_summons.append(s)
+		
+	
 	hp = max_hp #set boss hp to full
+	await cutscene_detection.area_entered
+	print("player entered area")
+	await boss_cutscene()
 	
 	hitbox.damaged.connect( _on_damage_taken )
-	
-	find_player()
 	pass
 
 
@@ -220,4 +229,30 @@ func summon() -> void:
 	boss_animation_player.play("idle2")
 	returning_to_floor = true #return to floor position
 	moving_to_summon = false #no longer summmoning
+	pass
+
+
+func boss_cutscene() -> void:
+	print("starting cutscene")
+	cutscene_over = false
+	finding_player = false
+	player_seen = false
+	velocity = Vector2.ZERO
+	
+	for s in temp_summons:
+		if s.has_node("SummonAnimationPlayer"):
+			var s_anim : AnimationPlayer = s.get_node("SummonAnimationPlayer")
+			
+			s_anim.play("intro_cutscene")
+			await s_anim.animation_finished
+		
+		s.queue_free()
+	temp_summons.clear()
+	
+	boss_animation_player.play("intro_cutscene")
+	
+	await boss_animation_player.animation_finished
+	
+	cutscene_over = true
+	find_player()
 	pass

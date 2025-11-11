@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=15 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -8,12 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://cjs3clurrtpeg" path="res://Scenes/enemies/messor.tscn" id="7_dsuda"]
 [ext_resource type="PackedScene" uid="uid://cnornow1rhb4c" path="res://Scenes/enemies/nightborne_warrior.tscn" id="7_qek6e"]
 [ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="10_af3po"]
-[ext_resource type="Script" uid="uid://thvhj188nnyk" path="res://Scripts/general/player_cutscene_detection.gd" id="10_s5b24"]
+[ext_resource type="PackedScene" uid="uid://eushmssospx0" path="res://Scenes/knight/player_cutscene_detection.tscn" id="10_s5b24"]
 [ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
 offsets = PackedFloat32Array(0.672176, 0.837466, 1)
-colors = PackedColorArray(1, 0, 0, 0, 0.000238343, 0.478798, 1, 1, 1, 1, 1, 0)
+colors = PackedColorArray(0, 0.650297, 0.0231056, 0, 0.0398606, 0.614537, 0, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_s5b24"]
 gradient = SubResource("Gradient_dsuda")
@@ -23,8 +23,16 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.6)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dsuda"]
-size = Vector2(38, 118)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s5b24"]
+size = Vector2(30, 112)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_sskdo"]
+gradient = SubResource("Gradient_dsuda")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.6)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_041ro")
@@ -74,9 +82,9 @@ texture = ExtResource("5_uy8f0")
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
 position = Vector2(2489, -203)
 
-[node name="Messor" parent="." instance=ExtResource("7_dsuda")]
-process_mode = 4
-position = Vector2(3100, -190)
+[node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
+position = Vector2(3074, -245)
+cutscene_detection = NodePath("../PlayerCutsceneDetection")
 
 [node name="NightborneWarrior" parent="." instance=ExtResource("7_qek6e")]
 position = Vector2(-1102, 128)
@@ -101,13 +109,14 @@ visible = false
 position = Vector2(3097, -194)
 texture = SubResource("GradientTexture2D_s5b24")
 
-[node name="PlayerCutsceneDetection" type="Area2D" parent="."]
-position = Vector2(2535, -241)
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-script = ExtResource("10_s5b24")
+[node name="PlayerCutsceneDetection" parent="." node_paths=PackedStringArray("knight_automove_target") instance=ExtResource("10_s5b24")]
+position = Vector2(2541, -241)
+knight_automove_target = NodePath("../KnightCutscenePosition")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCutsceneDetection"]
-shape = SubResource("RectangleShape2D_dsuda")
-debug_color = Color(0.21949, 0.639052, 0, 0.42)
+shape = SubResource("RectangleShape2D_s5b24")
+debug_color = Color(0.230026, 0.637872, 0, 0.42)
+
+[node name="KnightCutscenePosition" type="Sprite2D" parent="."]
+position = Vector2(2970, -194)
+texture = SubResource("GradientTexture2D_sskdo")

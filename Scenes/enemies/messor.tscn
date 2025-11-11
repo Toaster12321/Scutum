@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cjs3clurrtpeg"]
+[gd_scene load_steps=34 format=3 uid="uid://cjs3clurrtpeg"]
 
 [ext_resource type="Texture2D" uid="uid://77uy0og543c2" path="res://Sprites/Enemy/Undead executioner puppet/outline-allanimation-Sheet.png" id="1_0onkm"]
 [ext_resource type="Script" uid="uid://b1sg8gnxpsulw" path="res://Scripts/enemies/messor.gd" id="1_g6ebq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="4_u5gjt"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="5_g6ebq"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="5_h4otg"]
+[ext_resource type="PackedScene" uid="uid://btyrdxj5h0j2s" path="res://Scenes/enemies/summon_enemy.tscn" id="7_u5gjt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6ebq"]
 radius = 13.0
@@ -396,6 +397,35 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_mqvym"]
+resource_name = "intro_cutscene"
+length = 8.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BossSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.00336, 1.10336, 1.20336, 1.30336, 1.40336, 1.50336, 1.60336, 1.70336, 1.80336, 1.9, 1.99664, 2.09664, 2.19664, 2.29664, 2.39664, 2.49664, 2.59664, 2.69664, 2.79664, 2.89664, 3, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.8, 3.9, 4, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8, 4.9, 5.00336, 5.10336, 5.20336, 5.30336, 5.40336, 5.50336, 5.60336, 5.70336, 5.80336, 5.90336, 6, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 6.9, 7.00336, 7.10336, 7.20336, 7.30336, 7.40336, 7.50336, 7.60336, 7.70336, 7.80336, 7.9, 8, 8.1, 8.2, 8.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 35, 36, 37, 38, 38, 39, 39, 40, 41, 42, 0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.9, 1.99664, 2.89664, 3.89664, 4, 4.9, 5.9, 6, 6.9, 7.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1), Vector2(1, 1), Vector2(-1, 1), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u5gjt"]
 _data = {
 &"RESET": SubResource("Animation_g6ebq"),
@@ -404,6 +434,7 @@ _data = {
 &"double_attack_right": SubResource("Animation_0onkm"),
 &"idle": SubResource("Animation_h4otg"),
 &"idle2": SubResource("Animation_4sysc"),
+&"intro_cutscene": SubResource("Animation_mqvym"),
 &"single_attack_left": SubResource("Animation_u5gjt"),
 &"single_attack_right": SubResource("Animation_fnnkn"),
 &"skill": SubResource("Animation_ctrji"),
@@ -582,3 +613,23 @@ position = Vector2(44, 12)
 texture = SubResource("GradientTexture2D_mufow")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="TempSummons" type="Node2D" parent="."]
+
+[node name="SummonEnemy1" parent="TempSummons" instance=ExtResource("7_u5gjt")]
+position = Vector2(0, -86)
+
+[node name="SummonEnemy2" parent="TempSummons" instance=ExtResource("7_u5gjt")]
+position = Vector2(-49, -35)
+
+[node name="SummonEnemy3" parent="TempSummons" instance=ExtResource("7_u5gjt")]
+position = Vector2(-46, 6)
+
+[node name="SummonEnemy4" parent="TempSummons" instance=ExtResource("7_u5gjt")]
+position = Vector2(0, 30)
+
+[node name="SummonEnemy5" parent="TempSummons" instance=ExtResource("7_u5gjt")]
+position = Vector2(46, 10)
+
+[node name="SummonEnemy6" parent="TempSummons" instance=ExtResource("7_u5gjt")]
+position = Vector2(46, -36)
