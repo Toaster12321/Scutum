@@ -13,11 +13,12 @@ var finding_player : bool = false
 @onready var summon_effect_animation_player: AnimationPlayer = $SummonEffectAnimationPlayer
 
 func _ready() -> void:
-	hitbox.damaged.connect( _on_damage_taken )
-	summon_animation_player.play("appear")
-	await summon_animation_player.animation_finished
-	set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
-	find_player()
+	if summon_animation_player.current_animation != "intro_cutscene":
+		hitbox.damaged.connect( _on_damage_taken )
+		summon_animation_player.play("appear")
+		await summon_animation_player.animation_finished
+		set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
+		find_player()
 	pass
 
 

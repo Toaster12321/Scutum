@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=4 uid="uid://2ymes0661ar7"]
+
+[ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="1_dcx6x"]
+
+[node name="BarredGateway" type="Node2D"]
+
+[node name="TileMapBackground2" parent="." instance=ExtResource("1_dcx6x")]
+tile_map_data = PackedByteArray("AAAAAAIAAgAAAAkAAAABAAIAAgABAAkAAAA=")
+
+[node name="TileMapBackground" parent="." instance=ExtResource("1_dcx6x")]
+tile_map_data = PackedByteArray("AAAAAAAAAgAAAAkAAAABAAAAAgABAAkAAAAAAAEAAgAAAAkAAAABAAEAAgABAAkAAAA=")
+
+[node name="TileMap" parent="." instance=ExtResource("1_dcx6x")]
+tile_map_data = PackedByteArray("AAABAAEAAgAKAAsAAAAAAAEAAgAKAAsAAAAAAAAAAgAKAAsAAAABAAAAAgAKAAsAAAAAAAIAAgAKAAsAAAABAAIAAgAKAAsAAAA=")

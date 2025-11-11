@@ -3,6 +3,8 @@ class_name Messor extends CharacterBody2D
 const SUMMON_SCENE : PackedScene = preload("res://Scenes/enemies/summon_enemy.tscn")
 
 signal direction_changed( new_direction : Vector2 )
+signal cutscene_finished
+signal boss_dead
 
 @export var max_hp : int = 10
 @export var move_speed : float = 50.0
@@ -19,7 +21,7 @@ var finding_player : bool = false
 var moving_to_summon : bool = false
 var returning_to_floor = false
 var player_seen : bool = false
-var cutscene_over : bool = false
+var is_active : bool = false
 var attack_select : int
 var summons : Array[Node2D]
 var temp_summons : Array[Node2D]
@@ -35,61 +37,63 @@ var temp_summons : Array[Node2D]
 
 
 func _ready() -> void:
-	$SummoningPositions.visible = false
+	await get_tree().process_frame  #ensures children are fully initialized
+	
+	$SummoningPositions.visible = false #hide summon places
 	set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
 	vision_area.player_enetered.connect( _on_knight_entered )
 	vision_area.player_exited.connect( _on_knight_exited )
 	
-	for s in $TempSummons.get_children():
-		if s is SummonEnemy:
+	for s in $TempSummons.get_children(): #append starting temporary summons to array
+		if s is SummonEnemy: 
 			temp_summons.append(s)
 		
-	
 	hp = max_hp #set boss hp to full
-	await cutscene_detection.area_entered
-	print("player entered area")
-	await boss_cutscene()
+	await cutscene_detection.area_entered #do nothing until player enters cutscene area
+	await boss_cutscene() #wait for cutscene to fnish then turn active
+	is_active = true
 	
 	hitbox.damaged.connect( _on_damage_taken )
 	pass
 
 
 func _process(delta: float) -> void:
-	attack_select = randi_range(0,2) #random var for attack
-	move_and_slide() #allows movement in scene
-	
-	if finding_player == true:  #if we are finding the player
-		velocity.y += 980 * delta #apply gravity
+	if is_active == true:
+		attack_select = randi_range(0,2) #random var for attack
+		move_and_slide() #allows movement in scene
 		
-		var dir_to_player = position.direction_to(GlobalPlayerManager.knight.global_position) 
-		dir_to_player.y = 0
-		velocity = dir_to_player.normalized() * move_speed #move in the direction of player only in the x axis, y is gravity
-	 
-	if moving_to_summon == true: #if we are summoning turn off hitbox and vision area
-		hitbox.monitorable = false
-		vision_area.monitoring = false
-		finding_player = false #not finding the player
-		var summon_spot = get_tree().current_scene.get_node("BossSummonPosition")
-		if summon_spot:
-			summon_target = summon_spot.global_position
-			velocity = position.direction_to(summon_target) * 70 #move towards the summon spot location with 70 move speed
+		if finding_player == true:  #if we are finding the player
+			velocity.y += 980 * delta #apply gravity
+			
+			var dir_to_player = position.direction_to(GlobalPlayerManager.knight.global_position) 
+			dir_to_player.y = 0
+			velocity = dir_to_player.normalized() * move_speed #move in the direction of player only in the x axis, y is gravity
+		 
+		if moving_to_summon == true: #if we are summoning turn off hitbox and vision area
+			hitbox.monitorable = false
+			vision_area.monitoring = false
+			finding_player = false #not finding the player
+			var summon_spot = get_tree().current_scene.get_node("BossSummonPosition")
+			if summon_spot:
+				summon_target = summon_spot.global_position
+				velocity = position.direction_to(summon_target) * 70 #move towards the summon spot location with 70 move speed
+			
+			if global_position.distance_to(summon_target) < 1.0: #if we reached the summon target we arent moving and go to summon state
+				moving_to_summon = false
+				velocity = Vector2.ZERO
+				summon()
 		
-		if global_position.distance_to(summon_target) < 1.0: #if we reached the summon target we arent moving and go to summon state
-			moving_to_summon = false
-			velocity = Vector2.ZERO
-			summon()
-	
-	if returning_to_floor == true: #after summoning we are returning to the floor
-		hitbox.monitorable = true #turn hitbox back on
-		var return_spot = get_tree().current_scene.get_node("BossReturnPosition")
-		if return_spot:
-			return_target = return_spot.global_position
-			velocity = position.direction_to(return_target) * move_speed#move towards the return target location
-		
-		if global_position.distance_to(return_target) < 1.0: #if we reached the return target turn vision area back on and find the player
-			returning_to_floor = false
-			vision_area.monitoring = true
-			find_player()
+		if returning_to_floor == true: #after summoning we are returning to the floor
+			hitbox.monitorable = true #turn hitbox back on
+			var return_spot = get_tree().current_scene.get_node("BossReturnPosition")
+			if return_spot:
+				return_target = return_spot.global_position
+				velocity = position.direction_to(return_target) * move_speed#move towards the return target location
+			
+			if global_position.distance_to(return_target) < 1.0: #if we reached the return target turn vision area back on and find the player
+				returning_to_floor = false
+				vision_area.monitoring = true
+				find_player()
 
 
 func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
@@ -106,19 +110,27 @@ func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
 		boss_animation_player.play("idle")
 		moving_to_summon = true
 	
-	if hp < 1: #if the boss is dead stop any timers and go to death state
+	if hp < 1: #if the boss is dead stop any timers/signals and go to death state
 		timer.stop()
+		@warning_ignore("standalone_expression")
+		boss_animation_player.animation_finished.disconnect
 		boss_defeated()
 		
 
 
 func boss_defeated() -> void:
-	cast_shadow.queue_free() #get rid of shadow 
-	boss_animation_player.play("death")
+	finding_player = false
+	returning_to_floor = false
+	vision_area.monitoring = false
 	set_hit_boxes(false) #turn off hit detection
+	cast_shadow.queue_free() #get rid of shadow 
+	velocity = Vector2.ZERO
+	
+	boss_animation_player.play("death")
 	
 	await boss_animation_player.animation_finished
 	
+	boss_dead.emit()#emit dead signal
 	queue_free() #remove from scene
 	pass
 
@@ -232,27 +244,31 @@ func summon() -> void:
 	pass
 
 
-func boss_cutscene() -> void:
-	print("starting cutscene")
-	cutscene_over = false
-	finding_player = false
+func boss_cutscene() -> void: #intro cutscene
+	finding_player = false  #turn off all process modes and velocity
 	player_seen = false
 	velocity = Vector2.ZERO
 	
-	for s in temp_summons:
-		if s.has_node("SummonAnimationPlayer"):
-			var s_anim : AnimationPlayer = s.get_node("SummonAnimationPlayer")
-			
-			s_anim.play("intro_cutscene")
-			await s_anim.animation_finished
-		
-		s.queue_free()
-	temp_summons.clear()
+	var finished_animations : Array = []
 	
 	boss_animation_player.play("intro_cutscene")
 	
-	await boss_animation_player.animation_finished
+	for s in temp_summons: #play intro cutscene for each summon
+		if s.has_node("SummonAnimationPlayer"):
+			var s_anim : AnimationPlayer = s.get_node("SummonAnimationPlayer")
+			s_anim.play("intro_cutscene")
+			
+			finished_animations.append(s_anim.animation_finished)
+		
+	for finished in finished_animations: #wait till finished
+		await finished
 	
-	cutscene_over = true
-	find_player()
+	for s in temp_summons: #queue free all temporary summons
+		s.queue_free()
+	temp_summons.clear()
+	
+	returning_to_floor = true #go from air to floor
+	
+	cutscene_finished.emit() #emit that the cutscene has finished
+	find_player() #start fight
 	pass
