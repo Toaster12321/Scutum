@@ -31,6 +31,7 @@ func enter() -> void:
 
 
 func exit() -> void: #disable crouch collision and revert to normal collision
+	crouch_timer = 0.0
 	in_crouch = false #no longer crouching
 	
 	collision_shape_2d.call_deferred("set_disabled",false) #re-enable normal collision shape
@@ -47,7 +48,7 @@ func exit() -> void: #disable crouch collision and revert to normal collision
 func handle_input( _event : InputEvent ) -> KnightState:
 	if _event.is_action_pressed("jump"): #allow transition to jump if pressed
 		if ray_cast_2d.is_colliding() == true:
-			knight.position.y += 2
+			knight.position.y += 8
 			return fall
 		return jump
 	elif _event.is_action_pressed("attack"):  
