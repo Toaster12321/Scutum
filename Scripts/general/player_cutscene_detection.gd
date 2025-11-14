@@ -2,6 +2,9 @@ class_name PlayerCutsceneDetection extends Area2D
 
 @export var knight_automove_target : Sprite2D
 @export var boss_signal : CharacterBody2D
+@export var boss_cutscene_detection : bool
+@export var intro_cutscene_detection : bool
+
 @onready var barred_gateway_1: Node2D = $"../BarredGateway"
 @onready var barred_gateway_2: Node2D = $"../BarredGateway2"
 
@@ -10,16 +13,16 @@ signal knight_in_position #emits when knight has reached the target
 var has_player_entered_area : bool = false
 
 func _ready() -> void:
-	boss_signal.boss_dead.connect(_on_boss_dead) #connect boss dead signal
-	
-	barred_gateway_1.visible = false #turn off gateways
-	barred_gateway_2.visible = false
-	for tilemap in barred_gateway_1.get_children():
-		if tilemap is TileMapLayer:
-			tilemap.collision_enabled = false
-	for tilemap in barred_gateway_2.get_children():
-		if tilemap is TileMapLayer:
-			tilemap.collision_enabled = false
+	if boss_cutscene_detection:
+		boss_signal.boss_dead.connect(_on_boss_dead) #connect boss dead signal
+		barred_gateway_1.visible = false #turn off gateways
+		barred_gateway_2.visible = false
+		for tilemap in barred_gateway_1.get_children():
+			if tilemap is TileMapLayer:
+				tilemap.collision_enabled = false
+		for tilemap in barred_gateway_2.get_children():
+			if tilemap is TileMapLayer:
+				tilemap.collision_enabled = false
 	
 	if knight_automove_target: #hide target
 		knight_automove_target.visible = false
@@ -28,9 +31,14 @@ func _ready() -> void:
 
 func _on_area_entered( area : Area2D ) -> void:
 	if area is InteractArea: 
+		print(has_player_entered_area)
 		if has_player_entered_area == false: #make it so we can only enter the area once
 			has_player_entered_area = true
-			play_boss_cutscene() 
+			if boss_cutscene_detection:
+				play_boss_cutscene() 
+			if intro_cutscene_detection:
+				print("playing intro")
+				play_intro_cutscene()
 			
 	pass
 
@@ -81,3 +89,19 @@ func _on_boss_dead() -> void:
 	#open gateways up
 	barred_gateway_1.queue_free()
 	barred_gateway_2.queue_free()
+
+
+func play_intro_cutscene() -> void:
+	GlobalPlayerManager.knight.knight_state_machine.input_enabled = false
+	GlobalPlayerManager.knight.velocity.x = 0
+	
+	while not GlobalPlayerManager.knight.is_on_floor():
+		await get_tree().physics_frame
+	
+	GlobalPlayerManager.knight.animation_player.play("intro_cutscene")
+	
+	await GlobalPlayerManager.knight.animation_player.animation_finished
+	
+	GlobalPlayerManager.knight.animation_player.play("idle")
+	GlobalPlayerManager.knight.knight_state_machine.input_enabled = true
+	pass

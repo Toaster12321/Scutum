@@ -2,6 +2,7 @@ class_name KnightStateIdle extends KnightState
 
 @export var deceleration : float = 8
 
+var input_enabled : bool = true
 
 func init() -> void:
 	pass
@@ -17,12 +18,13 @@ func exit() -> void:
 
 
 func handle_input( _event : InputEvent ) -> KnightState:
-	if _event.is_action_pressed("jump"): #transition to jump state when button is pressed
-		return jump
-	elif _event.is_action_pressed("attack"): #transition to attack state when button is pressed
-		return attack
-	elif _event.is_action_pressed("shield"):
-		return shield
+	if input_enabled:
+		if _event.is_action_pressed("jump"): #transition to jump state when button is pressed
+			return jump
+		elif _event.is_action_pressed("attack"): #transition to attack state when button is pressed
+			return attack
+		elif _event.is_action_pressed("shield"):
+			return shield
 	return null
 
 

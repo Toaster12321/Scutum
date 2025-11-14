@@ -6,6 +6,7 @@ var current_state : KnightState : #returns first element in the state array
 	get : return states.front()
 var previous_state : KnightState : #returns second(previous) element in the state array
 	get : return states[1]
+var input_enabled : bool = true
 
 
 var knight : Knight#knight instance
@@ -18,10 +19,11 @@ func _ready() -> void:
 
 func _process( _delta : float) -> void:
 	#gets direction of player
-	current_state.direction = Vector2(
-		sign( Input.get_axis( "move_left","move_right" ) ), #gets input axis, left for negative, right for pos, sign makes value range from -1 to 1 without half values
-		sign( Input.get_axis( "jump", "crouch" ) )#gets input axis, jump(up) for negative, down for pos
-		)
+	if input_enabled:
+		current_state.direction = Vector2(
+			sign( Input.get_axis( "move_left","move_right" ) ), #gets input axis, left for negative, right for pos, sign makes value range from -1 to 1 without half values
+			sign( Input.get_axis( "jump", "crouch" ) )#gets input axis, jump(up) for negative, down for pos
+			)
 	
 	var new_state = current_state.process( _delta ) #obtaining new state information then change state if neccessary
 	change_state( new_state )
