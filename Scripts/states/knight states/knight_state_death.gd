@@ -11,12 +11,13 @@ func init() -> void:
 func enter() -> void:
 	knight.animation_player.play("death")
 	knight.play_audio(death_audio)
-	
+	knight.hitbox.set_deferred("monitorable",false)
 	KnightHud.show_game_over_screen()
 	pass
 
 
 func exit() -> void:
+	
 	pass
 
 

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://57poobyfsa3j"]
+
+[ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="1_3mls3"]
+
+[node name="KillZone" type="Node2D"]
+
+[node name="Hurtbox" parent="." instance=ExtResource("1_3mls3")]
+damage = 99
