@@ -92,6 +92,8 @@ func _on_boss_dead() -> void:
 
 
 func play_intro_cutscene() -> void:
+	GlobalSaveManager.save_game()
+	
 	GlobalPlayerManager.knight.knight_state_machine.input_enabled = false
 	GlobalPlayerManager.knight.velocity.x = 0
 	

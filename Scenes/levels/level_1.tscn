@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=20 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://nc4h1qu30a7c" path="res://Scenes/levels/tile_map_background.tscn" id="3_tlryv"]
 [ext_resource type="Texture2D" uid="uid://cmmmbx4il84td" path="res://Sprites/TileMaps/Background_0.png" id="5_uy8f0"]
 [ext_resource type="PackedScene" uid="uid://cjs3clurrtpeg" path="res://Scenes/enemies/messor.tscn" id="7_dsuda"]
+[ext_resource type="PackedScene" uid="uid://bng6n2qxj2qr5" path="res://Scenes/levels/checkpoint.tscn" id="7_n8oda"]
 [ext_resource type="PackedScene" uid="uid://cnornow1rhb4c" path="res://Scenes/enemies/nightborne_warrior.tscn" id="7_qek6e"]
 [ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="10_af3po"]
 [ext_resource type="PackedScene" uid="uid://eushmssospx0" path="res://Scenes/knight/player_cutscene_detection.tscn" id="10_s5b24"]
@@ -87,8 +88,11 @@ scroll_offset = Vector2(-151, -50)
 position = Vector2(152, 70)
 texture = ExtResource("5_uy8f0")
 
+[node name="Checkpoint" parent="." instance=ExtResource("7_n8oda")]
+position = Vector2(-2828, -183)
+
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(-1472, 123)
+position = Vector2(-2877, -144)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)
