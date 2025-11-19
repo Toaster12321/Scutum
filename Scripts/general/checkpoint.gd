@@ -20,5 +20,6 @@ func _on_area_entered( area : Area2D ) -> void:
 
 func trigger_checkpoint() -> void:
 	GlobalSaveManager.save_game()
+	KnightHud.auto_save_popup()
 	animation_player.play("checkpoint_reached")
 	pass

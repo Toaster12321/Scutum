@@ -17,6 +17,7 @@ var current_save : Dictionary = { #save variables
 }
 
 func save_game() -> void:
+	KnightHud.save_popup()
 	update_player_data() #get player data
 	update_scene_path() #get level scene path
 	var file := FileAccess.open( SAVE_PATH + "save.sav", FileAccess.WRITE) #writes a file to the save path called save.sav
