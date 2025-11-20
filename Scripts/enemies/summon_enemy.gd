@@ -13,6 +13,7 @@ var finding_player : bool = false
 @onready var summon_effect_animation_player: AnimationPlayer = $SummonEffectAnimationPlayer
 
 func _ready() -> void:
+	velocity = Vector2.ZERO
 	if summon_animation_player.current_animation != "intro_cutscene":
 		hitbox.damaged.connect( _on_damage_taken )
 		summon_animation_player.play("appear")

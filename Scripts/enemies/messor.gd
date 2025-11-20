@@ -23,8 +23,8 @@ var returning_to_floor = false
 var player_seen : bool = false
 var is_active : bool = false
 var attack_select : int
-var summons : Array[Node2D]
-var temp_summons : Array[Node2D]
+var summons : Array[Node2D] = []
+var temp_summons : Array[Node2D] = []
 
 @onready var hitbox: Hitbox = $Hitbox
 @onready var hurtbox: Hurtbox = $Hurtbox
@@ -257,7 +257,6 @@ func boss_cutscene() -> void: #intro cutscene
 		if s.has_node("SummonAnimationPlayer"):
 			var s_anim : AnimationPlayer = s.get_node("SummonAnimationPlayer")
 			s_anim.play("intro_cutscene")
-			
 			finished_animations.append(s_anim.animation_finished)
 		
 	for finished in finished_animations: #wait till finished
