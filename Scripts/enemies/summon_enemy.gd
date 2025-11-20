@@ -7,19 +7,23 @@ var facing_direction : float = 1
 var move_speed : float = 70.0
 var finding_player : bool = false
 
+@export var temporary_summon: bool = false
+
 @onready var sprite: Node2D = $SummonNode
 @onready var hitbox: Hitbox = $Hitbox
 @onready var summon_animation_player: AnimationPlayer = $SummonAnimationPlayer
 @onready var summon_effect_animation_player: AnimationPlayer = $SummonEffectAnimationPlayer
 
 func _ready() -> void:
-	velocity = Vector2.ZERO
-	if summon_animation_player.current_animation != "intro_cutscene":
-		hitbox.damaged.connect( _on_damage_taken )
-		summon_animation_player.play("appear")
-		await summon_animation_player.animation_finished
-		set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
-		find_player()
+	if temporary_summon:
+		summon_animation_player.play("fly")
+		return
+	
+	hitbox.damaged.connect( _on_damage_taken )
+	summon_animation_player.play("appear")
+	await summon_animation_player.animation_finished
+	set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
+	find_player()
 	pass
 
 

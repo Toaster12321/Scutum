@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=22 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
 [ext_resource type="AudioStream" uid="uid://5kquriq2d3r1" path="res://Audio/BGM/level1.wav" id="2_n8oda"]
 [ext_resource type="PackedScene" uid="uid://nc4h1qu30a7c" path="res://Scenes/levels/tile_map_background.tscn" id="3_tlryv"]
 [ext_resource type="Texture2D" uid="uid://cmmmbx4il84td" path="res://Sprites/TileMaps/Background_0.png" id="5_uy8f0"]
+[ext_resource type="PackedScene" uid="uid://crxu0j537bvmp" path="res://Scenes/enemies/death_bringer.tscn" id="7_bk5qg"]
 [ext_resource type="PackedScene" uid="uid://cjs3clurrtpeg" path="res://Scenes/enemies/messor.tscn" id="7_dsuda"]
 [ext_resource type="PackedScene" uid="uid://bng6n2qxj2qr5" path="res://Scenes/levels/checkpoint.tscn" id="7_n8oda"]
 [ext_resource type="PackedScene" uid="uid://cnornow1rhb4c" path="res://Scenes/enemies/nightborne_warrior.tscn" id="7_qek6e"]
@@ -13,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://2ymes0661ar7" path="res://Scenes/levels/barred_gateway.tscn" id="11_041ro"]
 [ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="12_041ro"]
+[ext_resource type="AudioStream" uid="uid://b1b3ogd3263mt" path="res://Audio/BGM/boss_fight.wav" id="12_ee4lj"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
 offsets = PackedFloat32Array(0.672176, 0.837466, 1)
@@ -99,8 +101,11 @@ position = Vector2(1008, -987)
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("7_n8oda")]
 position = Vector2(5550, -1056)
 
+[node name="DeathBringer" parent="." instance=ExtResource("7_bk5qg")]
+position = Vector2(543, 211)
+
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(2824, -227)
+position = Vector2(400, 213)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)
@@ -134,6 +139,7 @@ position = Vector2(2545, -241)
 knight_automove_target = NodePath("../KnightCutscenePosition")
 boss_signal = NodePath("../Messor")
 boss_cutscene_detection = true
+boss_music = ExtResource("12_ee4lj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCutsceneDetection"]
 shape = SubResource("RectangleShape2D_s5b24")

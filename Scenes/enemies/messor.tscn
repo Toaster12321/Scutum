@@ -643,18 +643,24 @@ texture = SubResource("GradientTexture2D_mufow")
 
 [node name="SummonEnemy1" parent="TempSummons" instance=ExtResource("7_u5gjt")]
 position = Vector2(0, -86)
+temporary_summon = true
 
 [node name="SummonEnemy2" parent="TempSummons" instance=ExtResource("7_u5gjt")]
 position = Vector2(-49, -35)
+temporary_summon = true
 
 [node name="SummonEnemy3" parent="TempSummons" instance=ExtResource("7_u5gjt")]
 position = Vector2(-46, 6)
+temporary_summon = true
 
 [node name="SummonEnemy4" parent="TempSummons" instance=ExtResource("7_u5gjt")]
 position = Vector2(0, 30)
+temporary_summon = true
 
 [node name="SummonEnemy5" parent="TempSummons" instance=ExtResource("7_u5gjt")]
 position = Vector2(46, 10)
+temporary_summon = true
 
 [node name="SummonEnemy6" parent="TempSummons" instance=ExtResource("7_u5gjt")]
 position = Vector2(46, -36)
+temporary_summon = true

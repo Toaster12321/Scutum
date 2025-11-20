@@ -222,7 +222,6 @@ shadow_size = Vector2(0.2, 0.2)
 libraries = {
 &"": SubResource("AnimationLibrary_xhmlk")
 }
-autoplay = "appear"
 
 [node name="SummonEffectAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

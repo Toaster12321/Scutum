@@ -34,17 +34,16 @@ var temp_summons : Array[Node2D] = []
 @onready var cast_shadow: ClassShadow = $BossNode/BossSprite/CastShadow
 @onready var vision_area: VisionArea = $BossNode/VisionArea
 @onready var timer: Timer = $Timer
+@onready var temp_summons_node: Node2D = $TempSummons
 
 
 func _ready() -> void:
-	await get_tree().process_frame  #ensures children are fully initialized
-	
 	$SummoningPositions.visible = false #hide summon places
 	set_direction( global_position.direction_to(GlobalPlayerManager.knight.global_position) )
 	vision_area.player_enetered.connect( _on_knight_entered )
 	vision_area.player_exited.connect( _on_knight_exited )
 	
-	for s in $TempSummons.get_children(): #append starting temporary summons to array
+	for s in temp_summons_node.get_children(): #append starting temporary summons to array
 		if s is SummonEnemy: 
 			temp_summons.append(s)
 		
@@ -254,10 +253,12 @@ func boss_cutscene() -> void: #intro cutscene
 	boss_animation_player.play("intro_cutscene")
 	
 	for s in temp_summons: #play intro cutscene for each summon
-		if s.has_node("SummonAnimationPlayer"):
-			var s_anim : AnimationPlayer = s.get_node("SummonAnimationPlayer")
+		var s_anim : AnimationPlayer = s.get_node_or_null("SummonAnimationPlayer")
+		
+		if s_anim:
 			s_anim.play("intro_cutscene")
-			finished_animations.append(s_anim.animation_finished)
+		finished_animations.append(s_anim.animation_finished)
+
 		
 	for finished in finished_animations: #wait till finished
 		await finished

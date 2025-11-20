@@ -4,6 +4,7 @@ class_name PlayerCutsceneDetection extends Area2D
 @export var boss_signal : CharacterBody2D
 @export var boss_cutscene_detection : bool
 @export var intro_cutscene_detection : bool
+@export var boss_music : AudioStream
 
 @onready var barred_gateway_1: Node2D = $"../BarredGateway"
 @onready var barred_gateway_2: Node2D = $"../BarredGateway2"
@@ -31,19 +32,18 @@ func _ready() -> void:
 
 func _on_area_entered( area : Area2D ) -> void:
 	if area is InteractArea: 
-		print(has_player_entered_area)
 		if has_player_entered_area == false: #make it so we can only enter the area once
 			has_player_entered_area = true
 			if boss_cutscene_detection:
 				play_boss_cutscene() 
 			if intro_cutscene_detection:
-				print("playing intro")
 				play_intro_cutscene()
 			
 	pass
 
 
 func play_boss_cutscene() -> void:
+	GlobalAudioManager.play_music(boss_music)
 	GlobalPlayerManager.knight.run.input_enabled = false #disable input for duration of cutscene
 	
 	await _move_knight_to_position(knight_automove_target.global_position) #wait until knight is in position then emit signal
