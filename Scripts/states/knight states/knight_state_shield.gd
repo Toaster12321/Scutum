@@ -48,11 +48,17 @@ func process( _delta : float ) -> KnightState:
 		return _next_state
 		
 	shielding = Input.is_action_pressed("shield") #keep track if we are shielding every frame 
-	 
-	if shielding == false: #if we stop shielding go to idle
+	if shielding:#decrease stamina while shielding
+		KnightHud.decrease_stamina(0.15)
+	elif shielding == false: #if we stop shielding go to idle and increase stam back
+		KnightHud.increase_stamina(0.2)
 		return idle
 	
 	knight.update_velocity( direction.x * shielding_speed, deceleration ) #slow player down to shield walk speed
+	
+	if KnightHud.stamina_progress_bar.value <= 0.1: #cant shield if no stamina
+		KnightHud.increase_stamina(0.2)#increase stamina and switch to idle
+		return idle 
 	
 	if direction.x == 0: #play shield idle if not moving
 		knight.animation_player.play("shield")

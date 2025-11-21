@@ -9,6 +9,7 @@ var current_acceleration : float
 var current_direction : float = 0
 var target_speed : float
 var input_enabled : bool = true
+var sprint_held : bool = false
 
 
 func init() -> void:
@@ -26,6 +27,7 @@ func enter() -> void:
 
 
 func exit() -> void:
+	KnightHud.increase_stamina(0.5) #increase stamina when leaving state
 	knight.animation_player.speed_scale = 1 #reset animation speed
 	pass
 
@@ -33,6 +35,9 @@ func exit() -> void:
 func handle_input( _event : InputEvent ) -> KnightState:
 	if input_enabled:
 		if _event.is_action_pressed("sprint"): #update the target speed to running speed
+			if KnightHud.stamina_progress_bar.value <= 0.1: #prevent sprinting if no stamina
+				target_speed = move_speed 
+				return
 			target_speed = sprint_speed
 		elif _event.is_action_released("sprint"): #update the target speed to base speed
 			target_speed = move_speed
@@ -46,6 +51,15 @@ func handle_input( _event : InputEvent ) -> KnightState:
 
 
 func process( _delta : float ) -> KnightState:
+	sprint_held = Input.is_action_pressed("sprint") 
+	
+	if sprint_held: #decrease stam while sprinting 
+		KnightHud.decrease_stamina(0.1)
+	else:
+		KnightHud.increase_stamina(0.5)
+	
+	if KnightHud.stamina_progress_bar.value <= 0.1:
+		target_speed = move_speed #prevent sprinting if no stamina
 	return null
 
 

@@ -1,10 +1,28 @@
-[gd_scene load_steps=14 format=3 uid="uid://oxt5541jjuur"]
+[gd_scene load_steps=16 format=3 uid="uid://oxt5541jjuur"]
 
 [ext_resource type="PackedScene" uid="uid://btmp2t1immgq" path="res://Scenes/GUI/shield_life.tscn" id="1_abr8p"]
 [ext_resource type="Script" uid="uid://bpep5kh5d6icx" path="res://Scripts/gui/knight_hud.gd" id="1_em4ri"]
 [ext_resource type="FontFile" uid="uid://bo54k3junwmb3" path="res://Fonts/PixeloidSansBold-PKnYd.ttf" id="3_vjivq"]
 [ext_resource type="FontFile" uid="uid://bydwdw7nvbs45" path="res://Fonts/PixeloidSans-mLxMm.ttf" id="4_r0plh"]
 [ext_resource type="FontFile" uid="uid://bd0umxthosq3g" path="res://Fonts/PixeloidMono-d94EV.ttf" id="5_r0plh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r0plh"]
+bg_color = Color(0.393086, 0.393086, 0.393085, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t5eyu"]
+bg_color = Color(0.0351229, 0.411968, 1.92523e-07, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
 
 [sub_resource type="Animation" id="Animation_r0plh"]
 length = 0.001
@@ -236,21 +254,38 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="Control"]
+[node name="ShieldContainer" type="HFlowContainer" parent="Control"]
 layout_mode = 1
 offset_left = 7.0
 offset_top = 7.0
-offset_right = 160.0
-offset_bottom = 42.0
+offset_right = 67.0
+offset_bottom = 24.0
 
-[node name="ShieldLife" parent="Control/HFlowContainer" instance=ExtResource("1_abr8p")]
+[node name="ShieldLife" parent="Control/ShieldContainer" instance=ExtResource("1_abr8p")]
 layout_mode = 2
 
-[node name="ShieldLife2" parent="Control/HFlowContainer" instance=ExtResource("1_abr8p")]
+[node name="ShieldLife2" parent="Control/ShieldContainer" instance=ExtResource("1_abr8p")]
 layout_mode = 2
 
-[node name="ShieldLife3" parent="Control/HFlowContainer" instance=ExtResource("1_abr8p")]
+[node name="ShieldLife3" parent="Control/ShieldContainer" instance=ExtResource("1_abr8p")]
 layout_mode = 2
+
+[node name="StaminaBarContainer" type="HFlowContainer" parent="Control"]
+layout_mode = 1
+offset_left = 7.0
+offset_top = 25.0
+offset_right = 77.0
+offset_bottom = 37.0
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Control/StaminaBarContainer"]
+custom_minimum_size = Vector2(70, 7)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_r0plh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_t5eyu")
+step = 0.1
+value = 100.0
+show_percentage = false
 
 [node name="GameOver" type="Control" parent="Control"]
 visible = false

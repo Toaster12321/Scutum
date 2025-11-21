@@ -10,6 +10,7 @@ func init() -> void:
 
 
 func enter() -> void:
+	KnightHud.stamina_progress_bar.value -= 10.0 #lose 10 stamina on deflect
 	_anim_finished = false #animation hasnt finished
 	knight.animation_player.animation_finished.connect( _on_anim_finished ) #connect to when deflect anim finishes
 	

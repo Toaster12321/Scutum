@@ -41,6 +41,7 @@ func _ready() -> void:
 	hitbox.damaged.connect( _take_damage ) #connect take damage function if hitbox has been entered
 	shieldbox.deflected.connect( _block_damage ) #connect deflected function if shieldbox has been entered
 	update_hp(99) #restore player to full hp
+	KnightHud.set_stamina(100.0)#set stamina to full
 	pass
 
 

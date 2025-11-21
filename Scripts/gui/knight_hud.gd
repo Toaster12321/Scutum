@@ -8,12 +8,16 @@ const title_screen : String = "res://Scenes/levels/title_screen.tscn"
 @onready var title_button: Button = $Control/GameOver/HBoxContainer/TitleButton
 @onready var animation_player: AnimationPlayer = $Control/GameOver/AnimationPlayer
 @onready var auto_save_animation_player: AnimationPlayer = $Control/AutosavePopup/AutoSave_AnimationPlayer
+@onready var stamina_progress_bar: ProgressBar = $Control/StaminaBarContainer/ProgressBar
 
-
+var decrease_stamina_value : float = 0.0
+var increase_stamina_value : float = 0.0
+var increasing_stamina : bool = false
+var decreasing_stamina : bool = false
 var shields : Array[ ShieldGUI ] = [] #array of our shields (life)
 
 func _ready() -> void:
-	for child in $Control/HFlowContainer.get_children(): #for each shield in the container append them to array 
+	for child in $Control/ShieldContainer.get_children(): #for each shield in the container append them to array 
 		if child is ShieldGUI:
 			shields.append( child )
 			print("Shields size:", shields.size())
@@ -24,6 +28,13 @@ func _ready() -> void:
 	title_button.pressed.connect( return_to_title )
 	GlobalLevelManager.level_loaded.connect( hide_game_over_screen )
 	pass
+
+
+func _process(delta: float) -> void:
+	if decreasing_stamina:#lose stam
+		stamina_progress_bar.value -= decrease_stamina_value
+	if increasing_stamina:#increase stam
+		stamina_progress_bar.value += decrease_stamina_value
 
 
 func update_hp( _hp : int, _max_hp : int ) -> void:
@@ -40,7 +51,6 @@ func update_shield( _index : int, _hp : int ) -> void:
 	pass
 
 
-
 func update_max_hp( _max_hp : int ) -> void:
 	var _shield_count : int = roundi( _max_hp * 0.5 ) #get the shield count of max hp * 1/2 because frames 0 to 2 means 3 frames
 	for i in shields.size(): #for every shield in the array
@@ -48,6 +58,26 @@ func update_max_hp( _max_hp : int ) -> void:
 			shields[i].visible = true
 		else:
 			shields[i].visible = false
+	pass
+
+
+func set_stamina( _stam : float ) -> void: #sets stamina to a flat value
+	var _value : float = clampf( _stam, 0.0, 100.0) #clamp between 0 and 100
+	stamina_progress_bar.value = _value
+	pass
+
+
+func decrease_stamina( _stam : float ) -> void: #decrease stamina based on pass in value
+	decrease_stamina_value = _stam
+	decreasing_stamina = true
+	increasing_stamina = false
+	pass
+
+
+func increase_stamina( _stam : float ) -> void: #increase stamina based on pass in value
+	increase_stamina_value = _stam
+	increasing_stamina = true
+	decreasing_stamina = false
 	pass
 
 
