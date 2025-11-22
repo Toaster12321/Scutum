@@ -5,7 +5,6 @@
 [ext_resource type="AudioStream" uid="uid://5kquriq2d3r1" path="res://Audio/BGM/level1.wav" id="2_n8oda"]
 [ext_resource type="PackedScene" uid="uid://nc4h1qu30a7c" path="res://Scenes/levels/tile_map_background.tscn" id="3_tlryv"]
 [ext_resource type="Texture2D" uid="uid://cmmmbx4il84td" path="res://Sprites/TileMaps/Background_0.png" id="5_uy8f0"]
-[ext_resource type="PackedScene" uid="uid://crxu0j537bvmp" path="res://Scenes/enemies/death_bringer.tscn" id="7_bk5qg"]
 [ext_resource type="PackedScene" uid="uid://cjs3clurrtpeg" path="res://Scenes/enemies/messor.tscn" id="7_dsuda"]
 [ext_resource type="PackedScene" uid="uid://bng6n2qxj2qr5" path="res://Scenes/levels/checkpoint.tscn" id="7_n8oda"]
 [ext_resource type="PackedScene" uid="uid://cnornow1rhb4c" path="res://Scenes/enemies/nightborne_warrior.tscn" id="7_qek6e"]
@@ -15,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="12_041ro"]
 [ext_resource type="AudioStream" uid="uid://b1b3ogd3263mt" path="res://Audio/BGM/boss_fight.wav" id="12_ee4lj"]
+[ext_resource type="PackedScene" uid="uid://546mrmgrbsur" path="res://Scenes/enemies/wolf.tscn" id="15_bk5qg"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
 offsets = PackedFloat32Array(0.672176, 0.837466, 1)
@@ -101,9 +101,6 @@ position = Vector2(1008, -987)
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("7_n8oda")]
 position = Vector2(5550, -1056)
 
-[node name="DeathBringer" parent="." instance=ExtResource("7_bk5qg")]
-position = Vector2(543, 211)
-
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
 position = Vector2(400, 213)
 
@@ -189,3 +186,6 @@ damage = 99
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZones/Hurtbox3"]
 shape = SubResource("RectangleShape2D_n8oda")
 debug_color = Color(0.933215, 0.258815, 0, 0.42)
+
+[node name="Wolf" parent="." instance=ExtResource("15_bk5qg")]
+position = Vector2(581, 226)

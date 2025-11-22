@@ -139,7 +139,8 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 				if _aggro_timer > 0 and _can_see_player != false: #if enemy is still inside vision after an attack, attack again
 					enemy.update_velocity(enemy.velocity.x * 0.5 ,_charge_deceleration) #slow velocity
 					enemy.animation_player.stop() #stop previous animation
-					await get_tree().create_timer(0.3).timeout
+					_assess_timer.start(0.4)
+					await _assess_timer.timeout
 					enemy.animation_player.play("charge") #charge again after a short pause
 				else:
 					state_machine.change_state(wander)#otherwise wander
