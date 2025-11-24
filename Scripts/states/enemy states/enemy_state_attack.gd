@@ -160,8 +160,8 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 			
 		EnemyType.BAT:
 			if _anim == "attack_right" or _anim == "attack_left":
-				enemy.update_velocity(enemy.velocity.x, _charge_deceleration)
 				enemy.set_direction( enemy.global_position.direction_to(GlobalPlayerManager.knight.global_position) )
+				enemy.update_velocity(enemy.velocity.x, _charge_deceleration)
 				if _aggro_timer > 0 and _can_see_player != false: #if enemy is still inside vision after an attack, attack again
 					assess()
 					await _assess_timer.timeout

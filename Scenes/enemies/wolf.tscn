@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="2_31o0l"]
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="2_60m8o"]
 [ext_resource type="Texture2D" uid="uid://gxs4oa5t101u" path="res://Sprites/Enemy/Wolf/Outline_Canine_White_Full_FX.png" id="2_a03uy"]
-[ext_resource type="AudioStream" uid="uid://cdofx2f6dr34e" path="res://Audio/Used Tracks/scary-wolf-growling-224086.mp3" id="2_wid1c"]
-[ext_resource type="AudioStream" uid="uid://bo42o2waadis1" path="res://Audio/Used Tracks/dog-crying-for-a-hugwav-14912.mp3" id="3_cr2n3"]
+[ext_resource type="AudioStream" uid="uid://cdofx2f6dr34e" path="res://Audio/Used Tracks/wolf_attack.mp3" id="2_wid1c"]
+[ext_resource type="AudioStream" uid="uid://bo42o2waadis1" path="res://Audio/Used Tracks/wolf_hurt.mp3" id="3_cr2n3"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="5_vetev"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="6_36m5f"]
 [ext_resource type="Script" uid="uid://b7vgrscwhy7v2" path="res://Scripts/states/enemy states/enemy_state_machine.gd" id="7_op5nv"]
@@ -524,6 +524,7 @@ libraries = {
 autoplay = "idle"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

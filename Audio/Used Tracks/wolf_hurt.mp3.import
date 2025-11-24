@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bo42o2waadis1"
+path="res://.godot/imported/wolf_hurt.mp3-11b8b1027fcd48489f0440be0fcbfbce.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/wolf_hurt.mp3"
+dest_files=["res://.godot/imported/wolf_hurt.mp3-11b8b1027fcd48489f0440be0fcbfbce.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

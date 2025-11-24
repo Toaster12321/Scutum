@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://t2c7tc876sq8"]
 
 [ext_resource type="Texture2D" uid="uid://c40bdemfnde5" path="res://Sprites/Enemy/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_qq3uo"]
-[ext_resource type="AudioStream" uid="uid://bi0kn763auwur" path="res://Audio/Used Tracks/DSGNMisc_PROJECTILE-Water Bolt_HY_PC-001.wav" id="2_ernot"]
+[ext_resource type="AudioStream" uid="uid://bi0kn763auwur" path="res://Audio/Used Tracks/deathbringer_spell.wav" id="2_ernot"]
 [ext_resource type="Script" uid="uid://dssfnjsjv0g0p" path="res://Scripts/Knight/hurtbox.gd" id="2_yab33"]
 
 [sub_resource type="Animation" id="Animation_ernot"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cdofx2f6dr34e"
+path="res://.godot/imported/wolf_attack.mp3-768953561f758d3aacfb25f7bff424b0.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/wolf_attack.mp3"
+dest_files=["res://.godot/imported/wolf_attack.mp3-768953561f758d3aacfb25f7bff424b0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -13,8 +13,8 @@
 [ext_resource type="Script" uid="uid://w03eaurolq66" path="res://Scripts/states/enemy states/enemy_state_death.gd" id="10_rnrj7"]
 [ext_resource type="Script" uid="uid://dfqpf2m80wjex" path="res://Scripts/states/enemy states/enemy_state_attack.gd" id="11_lwf2y"]
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="12_lbltc"]
-[ext_resource type="AudioStream" uid="uid://yc4ws8g5n2q0" path="res://Audio/Used Tracks/DSGNMisc_HIT-Gore Pierce_HY_PC-002.wav" id="13_043i5"]
-[ext_resource type="AudioStream" uid="uid://pu487k8ad648" path="res://Audio/Used Tracks/MAGSpel_CAST-Teleport Downer_HY_PC-006.wav" id="14_sfk8v"]
+[ext_resource type="AudioStream" uid="uid://yc4ws8g5n2q0" path="res://Audio/Used Tracks/deathbringer_attack.wav" id="13_043i5"]
+[ext_resource type="AudioStream" uid="uid://pu487k8ad648" path="res://Audio/Used Tracks/deathbringer_death.wav" id="14_sfk8v"]
 [ext_resource type="Script" uid="uid://iqwm7caa1uwe" path="res://Scripts/states/enemy states/enemy_state_casting.gd" id="14_x8500"]
 
 [sub_resource type="Animation" id="Animation_nlvty"]
@@ -211,7 +211,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5jinm"]
 resource_name = "death"
-length = 1.1
+length = 1.2
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -237,6 +237,21 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 2.34158,
+"start_offset": 0.0,
+"stream": ExtResource("14_sfk8v")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_0yts2"]
 resource_name = "hurt"
@@ -506,7 +521,6 @@ script = ExtResource("14_x8500")
 unique_name_in_owner = true
 script = ExtResource("10_rnrj7")
 effect_animations = NodePath("../../EffectAnimationPlayer")
-death_noise = ExtResource("14_sfk8v")
 
 [node name="PositionTargets" type="Node2D" parent="."]
 

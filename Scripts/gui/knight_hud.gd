@@ -30,7 +30,7 @@ func _ready() -> void:
 	pass
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if decreasing_stamina:#lose stam
 		stamina_progress_bar.value -= decrease_stamina_value
 	if increasing_stamina:#increase stam

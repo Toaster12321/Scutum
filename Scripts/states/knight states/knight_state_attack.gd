@@ -18,6 +18,7 @@ func enter() -> void:
 	
 	if not knight.audio.playing: #make sure player cant spam sounds
 		knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
+		knight.audio.volume_db = -11.0
 		knight.play_audio( attack_sound )
 	
 

@@ -19,8 +19,8 @@ func init() -> void:
 func enter() -> void:
 	_anim_finished = false #animation not finished
 	
-	knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
-	knight.play_audio( hit_audio )
+	#knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
+	#knight.play_audio( hit_audio )
 	
 	knight.animation_player.animation_finished.connect( _animation_finished ) #connect function for when animation is finished
 	

@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="12_041ro"]
 [ext_resource type="AudioStream" uid="uid://b1b3ogd3263mt" path="res://Audio/BGM/boss_fight.wav" id="12_ee4lj"]
-[ext_resource type="PackedScene" uid="uid://546mrmgrbsur" path="res://Scenes/enemies/wolf.tscn" id="15_bk5qg"]
+[ext_resource type="PackedScene" uid="uid://btokctpq4jymd" path="res://Scenes/enemies/bat.tscn" id="15_bk5qg"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
 offsets = PackedFloat32Array(0.672176, 0.837466, 1)
@@ -102,7 +102,7 @@ position = Vector2(1008, -987)
 position = Vector2(5550, -1056)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(400, 213)
+position = Vector2(-1336, 123)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)
@@ -187,5 +187,5 @@ damage = 99
 shape = SubResource("RectangleShape2D_n8oda")
 debug_color = Color(0.933215, 0.258815, 0, 0.42)
 
-[node name="Wolf" parent="." instance=ExtResource("15_bk5qg")]
-position = Vector2(581, 226)
+[node name="Bat" parent="." instance=ExtResource("15_bk5qg")]
+position = Vector2(493, 206)
