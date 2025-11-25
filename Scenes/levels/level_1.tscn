@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=23 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="12_041ro"]
 [ext_resource type="AudioStream" uid="uid://b1b3ogd3263mt" path="res://Audio/BGM/boss_fight.wav" id="12_ee4lj"]
 [ext_resource type="PackedScene" uid="uid://btokctpq4jymd" path="res://Scenes/enemies/bat.tscn" id="15_bk5qg"]
+[ext_resource type="PackedScene" uid="uid://cplxlbcl2rim0" path="res://Scenes/general/health_pickup.tscn" id="16_iu068"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
 offsets = PackedFloat32Array(0.672176, 0.837466, 1)
@@ -102,7 +103,7 @@ position = Vector2(1008, -987)
 position = Vector2(5550, -1056)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(-1336, 123)
+position = Vector2(51, 213)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)
@@ -189,3 +190,6 @@ debug_color = Color(0.933215, 0.258815, 0, 0.42)
 
 [node name="Bat" parent="." instance=ExtResource("15_bk5qg")]
 position = Vector2(493, 206)
+
+[node name="HealthPickup" parent="." instance=ExtResource("16_iu068")]
+position = Vector2(207, 170)

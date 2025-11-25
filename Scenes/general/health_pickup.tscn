@@ -1,0 +1,125 @@
+[gd_scene load_steps=9 format=3 uid="uid://cplxlbcl2rim0"]
+
+[ext_resource type="Texture2D" uid="uid://cyy36gendsn7w" path="res://Sprites/Other/shield_pickup.png" id="1_1pqyt"]
+[ext_resource type="Script" uid="uid://e5pcinpog6up" path="res://Scripts/general/health_pickup.gd" id="1_n8w8w"]
+[ext_resource type="AudioStream" uid="uid://xr8xjdgo0p28" path="res://Audio/Used Tracks/health_pickup.mp3" id="2_n7bjg"]
+[ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="3_fmmrk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pqyt"]
+size = Vector2(16, 18)
+
+[sub_resource type="Animation" id="Animation_n8w8w"]
+resource_name = "default"
+length = 1.6
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(0, 3), Vector2(0, 4), Vector2(0, 5), Vector2(0, 6), Vector2(0, 7), Vector2(0, 8)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, 1), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fmmrk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7bjg"]
+_data = {
+&"RESET": SubResource("Animation_fmmrk"),
+&"default": SubResource("Animation_n8w8w")
+}
+
+[node name="HealthPickup" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_n8w8w")
+pickup_audio = ExtResource("2_n7bjg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_1pqyt")
+debug_color = Color(0.150631, 0.645253, 0, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1pqyt")
+region_enabled = true
+region_rect = Rect2(0, 0, 18, 20)
+
+[node name="CastShadow" parent="Sprite2D" instance=ExtResource("3_fmmrk")]
+shadow_size = Vector2(0.2, 0.2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_n7bjg")
+}
+autoplay = "default"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"

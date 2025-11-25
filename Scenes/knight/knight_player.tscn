@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://bj4rkw7gwpm65"]
+[gd_scene load_steps=62 format=3 uid="uid://bj4rkw7gwpm65"]
 
 [ext_resource type="Script" uid="uid://c1iascmee6h4m" path="res://Scripts/Knight/knight_player.gd" id="1_5m4qd"]
 [ext_resource type="Script" uid="uid://8ctg2co4oaal" path="res://Scripts/states/knight states/knight_state_machine.gd" id="2_vggyu"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://vrrkhhtnbmf3" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Skid.png" id="13_rxkvb"]
 [ext_resource type="Texture2D" uid="uid://chn5v53ouukxt" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_CrouchFull.png" id="14_5pdnt"]
 [ext_resource type="Texture2D" uid="uid://dbejbxb4c580o" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Attack.png" id="15_3iy7d"]
+[ext_resource type="AudioStream" uid="uid://cpwule6057jq1" path="res://Audio/Used Tracks/knight_hurt.mp3" id="15_rxkvb"]
 [ext_resource type="AudioStream" uid="uid://drkkogn7uvkh7" path="res://Audio/Used Tracks/knight_death.mp3" id="16_5pdnt"]
 [ext_resource type="Texture2D" uid="uid://cu7jjedeh4tfm" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Attack2.png" id="16_fehsq"]
 [ext_resource type="Texture2D" uid="uid://dpst6f0thc82u" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Shield.png" id="17_cic2m"]
@@ -357,6 +358,18 @@ tracks/26/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/27/type = "value"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/27/interp = 1
+tracks/27/loop_wrap = true
+tracks/27/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-7.0]
 }
 
 [sub_resource type="Animation" id="Animation_revvw"]
@@ -1214,6 +1227,7 @@ tracks/12/keys = {
 
 [sub_resource type="Animation" id="Animation_xpw4a"]
 resource_name = "death"
+length = 2.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1370,6 +1384,37 @@ tracks/12/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-15, 0), Vector2(-20, 0)]
+}
+tracks/13/type = "audio"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("AudioStreamPlayer2D")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"clips": [{
+"end_offset": 2.1724,
+"start_offset": 0.0,
+"stream": ExtResource("15_rxkvb")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("16_5pdnt")
+}],
+"times": PackedFloat32Array(0, 0.7)
+}
+tracks/13/use_blend = true
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-7.0]
 }
 
 [sub_resource type="Animation" id="Animation_xfg4a"]
@@ -3362,12 +3407,12 @@ deflect_audio = ExtResource("13_dd26y")
 [node name="Hit" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("10_t2eej")
+hit_audio = ExtResource("15_rxkvb")
+hit_volume = -7.0
 
 [node name="Death" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("11_2frtv")
-death_audio = ExtResource("16_5pdnt")
-death_volume = -7.0
 
 [node name="Sprites" type="Node2D" parent="."]
 scale = Vector2(-1, 1)
