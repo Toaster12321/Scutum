@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cx3vrwqdc2v6x"
+path="res://.godot/imported/deathbringer_spell.mp3-47347ee0e9d495aca363be08b78cd808.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/deathbringer_spell.mp3"
+dest_files=["res://.godot/imported/deathbringer_spell.mp3-47347ee0e9d495aca363be08b78cd808.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

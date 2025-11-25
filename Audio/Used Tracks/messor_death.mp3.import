@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bsl4rpr1s4kw0"
+path="res://.godot/imported/messor_death.mp3-2d9588b2803929391468df2021194821.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/messor_death.mp3"
+dest_files=["res://.godot/imported/messor_death.mp3-2d9588b2803929391468df2021194821.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

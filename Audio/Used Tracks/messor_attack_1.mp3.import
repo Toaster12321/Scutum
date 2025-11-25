@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c83lwg0t18c5s"
+path="res://.godot/imported/messor_attack_1.mp3-7c2f0a79470abb62a40b56f0e55e2d2a.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/messor_attack_1.mp3"
+dest_files=["res://.godot/imported/messor_attack_1.mp3-7c2f0a79470abb62a40b56f0e55e2d2a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

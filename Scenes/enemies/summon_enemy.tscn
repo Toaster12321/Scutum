@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://0k1lwomwypt" path="res://Sprites/Enemy/Undead executioner puppet/outline-summons1-Sheet.png" id="1_p8mkj"]
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="2_n7iy5"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="3_6q6bi"]
-[ext_resource type="AudioStream" uid="uid://cyuxexso3vsr4" path="res://Audio/Used Tracks/summon_death.wav" id="4_6q6bi"]
+[ext_resource type="AudioStream" uid="uid://k4wnect0gp3x" path="res://Audio/Used Tracks/summon_death.mp3" id="4_6q6bi"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="4_cmnuy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7iy5"]

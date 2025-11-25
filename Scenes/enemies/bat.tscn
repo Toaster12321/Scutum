@@ -2,10 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://ceh2if0iim3cf" path="res://Sprites/Enemy/Bat/Outline-Bat_Full.png" id="1_curkl"]
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/enemy.gd" id="1_txle6"]
-[ext_resource type="AudioStream" uid="uid://dtjph8gytiwoa" path="res://Audio/Used Tracks/bat_hurt.wav" id="2_3xvyv"]
+[ext_resource type="AudioStream" uid="uid://bep3n2jy76753" path="res://Audio/Used Tracks/bat_attack.mp3" id="2_3xvyv"]
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="2_curkl"]
-[ext_resource type="AudioStream" uid="uid://cd5lhs5cu4sr6" path="res://Audio/Used Tracks/bat_attack.wav" id="2_m6k1c"]
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="3_7up77"]
+[ext_resource type="AudioStream" uid="uid://jhqsud0ai50l" path="res://Audio/Used Tracks/bat_hurt.mp3" id="3_m6k1c"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="5_jts06"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="6_c45j3"]
 [ext_resource type="Script" uid="uid://b7vgrscwhy7v2" path="res://Scripts/states/enemy states/enemy_state_machine.gd" id="7_hm387"]
@@ -116,9 +116,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": [{
-"end_offset": 1.87388,
-"start_offset": 0.51,
-"stream": ExtResource("2_m6k1c")
+"end_offset": 2.4283,
+"start_offset": 0.0,
+"stream": ExtResource("2_3xvyv")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -160,9 +160,9 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": [{
-"end_offset": 1.87388,
-"start_offset": 0.51,
-"stream": ExtResource("2_m6k1c")
+"end_offset": 2.4283,
+"start_offset": 0.0,
+"stream": ExtResource("2_3xvyv")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -252,9 +252,9 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "clips": [{
-"end_offset": 2.2,
+"end_offset": 2.1,
 "start_offset": 0.0,
-"stream": ExtResource("2_3xvyv")
+"stream": ExtResource("3_m6k1c")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -308,9 +308,9 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "clips": [{
-"end_offset": 2.2,
+"end_offset": 2.1,
 "start_offset": 0.0,
-"stream": ExtResource("2_3xvyv")
+"stream": ExtResource("3_m6k1c")
 }],
 "times": PackedFloat32Array(0)
 }

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b3mpfhtotufnh"
+path="res://.godot/imported/nightborne_attack.mp3-76d5d7d6966267e684679aa7ee622de9.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/nightborne_attack.mp3"
+dest_files=["res://.godot/imported/nightborne_attack.mp3-76d5d7d6966267e684679aa7ee622de9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

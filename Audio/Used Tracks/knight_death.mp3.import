@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://drkkogn7uvkh7"
+path="res://.godot/imported/knight_death.mp3-e15e2338d183817df065d7c681563414.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/knight_death.mp3"
+dest_files=["res://.godot/imported/knight_death.mp3-e15e2338d183817df065d7c681563414.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

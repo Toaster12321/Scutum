@@ -5,6 +5,7 @@ var attacking : bool = false
 @export var attack_sound : AudioStream
 @export var attack_2_sound : AudioStream
 @export var deceleration : float = 4
+@export var attack_volume : float 
 
 @onready var hurtbox: Hurtbox = $"../../Hurtbox"
 
@@ -18,7 +19,7 @@ func enter() -> void:
 	
 	if not knight.audio.playing: #make sure player cant spam sounds
 		knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
-		knight.audio.volume_db = -11.0
+		knight.audio.volume_db = attack_volume
 		knight.play_audio( attack_sound )
 	
 

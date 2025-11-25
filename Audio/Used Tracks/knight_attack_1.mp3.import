@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cjpy6vs2ibenl"
+path="res://.godot/imported/knight_attack_1.mp3-84a7105f406a3fc25eefdd71007d7d39.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/knight_attack_1.mp3"
+dest_files=["res://.godot/imported/knight_attack_1.mp3-84a7105f406a3fc25eefdd71007d7d39.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bep3n2jy76753"
+path="res://.godot/imported/bat_attack.mp3-ea4110b5003e9c06914bd91cce37c4e6.mp3str"
+
+[deps]
+
+source_file="res://Audio/Used Tracks/bat_attack.mp3"
+dest_files=["res://.godot/imported/bat_attack.mp3-ea4110b5003e9c06914bd91cce37c4e6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

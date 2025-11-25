@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bj4rkw7gwpm65"]
+[gd_scene load_steps=61 format=3 uid="uid://bj4rkw7gwpm65"]
 
 [ext_resource type="Script" uid="uid://c1iascmee6h4m" path="res://Scripts/Knight/knight_player.gd" id="1_5m4qd"]
 [ext_resource type="Script" uid="uid://8ctg2co4oaal" path="res://Scripts/states/knight states/knight_state_machine.gd" id="2_vggyu"]
@@ -9,19 +9,20 @@
 [ext_resource type="Script" uid="uid://crsd668e0tgcf" path="res://Scripts/states/knight states/knight_state_crouch.gd" id="7_xpw4a"]
 [ext_resource type="Script" uid="uid://cdajuvoxupyl3" path="res://Scripts/states/knight states/knight_state_attack.gd" id="8_y66y0"]
 [ext_resource type="Texture2D" uid="uid://8y62mivsvsun" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Idle.png" id="9_58ol3"]
+[ext_resource type="AudioStream" uid="uid://cjpy6vs2ibenl" path="res://Audio/Used Tracks/knight_attack_1.mp3" id="9_dd26y"]
 [ext_resource type="Script" uid="uid://q5o8ixdfo73n" path="res://Scripts/states/knight states/knight_state_shield.gd" id="9_vggyu"]
-[ext_resource type="AudioStream" uid="uid://ubp87yb1y5l6" path="res://Audio/Used Tracks/knight_attack_1.wav" id="9_y66y0"]
-[ext_resource type="AudioStream" uid="uid://jcn0jh7qtmd3" path="res://Audio/Used Tracks/knight_attack_2.wav" id="10_58ol3"]
 [ext_resource type="Texture2D" uid="uid://nd7qtovppi37" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Run.png" id="10_a5jte"]
+[ext_resource type="AudioStream" uid="uid://c4hnmhqcu7a6i" path="res://Audio/Used Tracks/knight_attack_2.mp3" id="10_rxkvb"]
 [ext_resource type="Script" uid="uid://cjvm7kic0qnx1" path="res://Scripts/states/knight states/knight_state_hit.gd" id="10_t2eej"]
 [ext_resource type="Script" uid="uid://cb21tm6pfscmg" path="res://Scripts/states/knight states/knight_state_deflect.gd" id="10_xpw4a"]
 [ext_resource type="Script" uid="uid://dt1k73uhun87" path="res://Scripts/states/knight states/knight_state_death.gd" id="11_2frtv"]
 [ext_resource type="Texture2D" uid="uid://cn0da6acx32bi" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Jump.png" id="11_c0i80"]
 [ext_resource type="Texture2D" uid="uid://co3rrflxcece2" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Fall.png" id="12_dd26y"]
+[ext_resource type="AudioStream" uid="uid://4gadbtbw0imd" path="res://Audio/Used Tracks/knight_deflect.mp3" id="13_dd26y"]
 [ext_resource type="Texture2D" uid="uid://vrrkhhtnbmf3" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Skid.png" id="13_rxkvb"]
 [ext_resource type="Texture2D" uid="uid://chn5v53ouukxt" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_CrouchFull.png" id="14_5pdnt"]
 [ext_resource type="Texture2D" uid="uid://dbejbxb4c580o" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Attack.png" id="15_3iy7d"]
-[ext_resource type="AudioStream" uid="uid://clo6sr6eb7jbc" path="res://Audio/Used Tracks/knight_death.wav" id="15_a5jte"]
+[ext_resource type="AudioStream" uid="uid://drkkogn7uvkh7" path="res://Audio/Used Tracks/knight_death.mp3" id="16_5pdnt"]
 [ext_resource type="Texture2D" uid="uid://cu7jjedeh4tfm" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Attack2.png" id="16_fehsq"]
 [ext_resource type="Texture2D" uid="uid://dpst6f0thc82u" path="res://Sprites/FreeKnight/Colour1/Outline/120x80_PNGSheets/_Shield.png" id="17_cic2m"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="18_ch8o0"]
@@ -3302,6 +3303,7 @@ shape = SubResource("RectangleShape2D_agcwe")
 disabled = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -7.0
 max_polyphony = 6
 bus = &"SFX"
 
@@ -3344,8 +3346,9 @@ hit_from_inside = true
 [node name="Attack" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("8_y66y0")
-attack_sound = ExtResource("9_y66y0")
-attack_2_sound = ExtResource("10_58ol3")
+attack_sound = ExtResource("9_dd26y")
+attack_2_sound = ExtResource("10_rxkvb")
+attack_volume = -11.0
 
 [node name="Shield" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
@@ -3354,6 +3357,7 @@ script = ExtResource("9_vggyu")
 [node name="Deflect" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("10_xpw4a")
+deflect_audio = ExtResource("13_dd26y")
 
 [node name="Hit" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
@@ -3362,7 +3366,8 @@ script = ExtResource("10_t2eej")
 [node name="Death" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("11_2frtv")
-death_audio = ExtResource("15_a5jte")
+death_audio = ExtResource("16_5pdnt")
+death_volume = -7.0
 
 [node name="Sprites" type="Node2D" parent="."]
 scale = Vector2(-1, 1)

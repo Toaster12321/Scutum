@@ -1,8 +1,10 @@
 [gd_scene load_steps=36 format=3 uid="uid://crxu0j537bvmp"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/enemy.gd" id="1_nlvty"]
+[ext_resource type="AudioStream" uid="uid://fym2mayjd7b5" path="res://Audio/Used Tracks/deathbringer_attack.mp3" id="2_043i5"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="3_0yts2"]
 [ext_resource type="PackedScene" uid="uid://m36ssj1waapy" path="res://Scenes/general/hitbox.tscn" id="3_5jinm"]
+[ext_resource type="AudioStream" uid="uid://dyo8x7ep2dbtd" path="res://Audio/Used Tracks/deathbringer_death.mp3" id="3_x8500"]
 [ext_resource type="Texture2D" uid="uid://cagapt2w44jva" path="res://Sprites/Enemy/Bringer-Of-Death/Individual Sprite/Outline-Bringer-of-Death_full_sheet.png" id="5_gmc07"]
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="5_tso1k"]
 [ext_resource type="Script" uid="uid://b7vgrscwhy7v2" path="res://Scripts/states/enemy states/enemy_state_machine.gd" id="6_tso1k"]
@@ -13,8 +15,6 @@
 [ext_resource type="Script" uid="uid://w03eaurolq66" path="res://Scripts/states/enemy states/enemy_state_death.gd" id="10_rnrj7"]
 [ext_resource type="Script" uid="uid://dfqpf2m80wjex" path="res://Scripts/states/enemy states/enemy_state_attack.gd" id="11_lwf2y"]
 [ext_resource type="PackedScene" uid="uid://cro2jtb4d7oit" path="res://Scenes/general/vision_area.tscn" id="12_lbltc"]
-[ext_resource type="AudioStream" uid="uid://yc4ws8g5n2q0" path="res://Audio/Used Tracks/deathbringer_attack.wav" id="13_043i5"]
-[ext_resource type="AudioStream" uid="uid://pu487k8ad648" path="res://Audio/Used Tracks/deathbringer_death.wav" id="14_sfk8v"]
 [ext_resource type="Script" uid="uid://iqwm7caa1uwe" path="res://Scripts/states/enemy states/enemy_state_casting.gd" id="14_x8500"]
 
 [sub_resource type="Animation" id="Animation_nlvty"]
@@ -79,6 +79,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_tso1k"]
 resource_name = "attack_left"
@@ -128,13 +140,25 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": [{
-"end_offset": 1.7,
+"end_offset": 2.1207,
 "start_offset": 0.0,
-"stream": ExtResource("13_043i5")
+"stream": ExtResource("2_043i5")
 }],
 "times": PackedFloat32Array(0.4)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-7.0]
+}
 
 [sub_resource type="Animation" id="Animation_lbltc"]
 resource_name = "attack_right"
@@ -184,13 +208,25 @@ tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "clips": [{
-"end_offset": 1.7,
+"end_offset": 2.1207,
 "start_offset": 0.0,
-"stream": ExtResource("13_043i5")
+"stream": ExtResource("2_043i5")
 }],
 "times": PackedFloat32Array(0.4)
 }
 tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-7.0]
+}
 
 [sub_resource type="Animation" id="Animation_h1v3h"]
 resource_name = "casting"
@@ -247,11 +283,23 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 2.34158,
 "start_offset": 0.0,
-"stream": ExtResource("14_sfk8v")
+"stream": ExtResource("3_x8500")
 }],
 "times": PackedFloat32Array(0)
 }
 tracks/2/use_blend = true
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-7.0]
+}
 
 [sub_resource type="Animation" id="Animation_0yts2"]
 resource_name = "hurt"

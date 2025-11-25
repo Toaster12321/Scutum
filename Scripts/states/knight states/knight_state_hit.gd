@@ -3,7 +3,7 @@ class_name KnightStateHit extends KnightState
 @export var knockback_speed : float = 200.0 #knockback speed when hit
 @export var decelerate_speed : float = 10.0 #how fast velocity slows
 @export var invulnerable_duration : float = 1.0 #invincible for 1s by default
-@export var hit_audio : AudioStream
+#@export var hit_audio : AudioStream
 
 var hurtbox : Hurtbox
 var _normalized_direction : Vector2

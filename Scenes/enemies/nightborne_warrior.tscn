@@ -1,15 +1,15 @@
 [gd_scene load_steps=34 format=3 uid="uid://cnornow1rhb4c"]
 
 [ext_resource type="Script" uid="uid://w11yxmkvmsbx" path="res://Scripts/enemies/enemy.gd" id="1_a4sqm"]
-[ext_resource type="AudioStream" uid="uid://bd3b0mj6h5equ" path="res://Audio/Used Tracks/nightborne_attack.wav" id="2_5tw7y"]
+[ext_resource type="AudioStream" uid="uid://b3mpfhtotufnh" path="res://Audio/Used Tracks/nightborne_attack.mp3" id="2_5tw7y"]
 [ext_resource type="PackedScene" uid="uid://okexadwa3mfi" path="res://Scenes/general/cast_shadow.tscn" id="2_fabfk"]
 [ext_resource type="Texture2D" uid="uid://c3x4wjywsxq6k" path="res://Sprites/Enemy/Nightborne Warrior/Outline-NightBorne.png" id="2_mx7gd"]
-[ext_resource type="AudioStream" uid="uid://df6pnfefsmab8" path="res://Audio/Used Tracks/nightborne_attack_release.wav" id="3_5vky8"]
+[ext_resource type="AudioStream" uid="uid://bjtayg1ny55aa" path="res://Audio/Used Tracks/nightborne_attack_release.mp3" id="3_5vky8"]
 [ext_resource type="Script" uid="uid://cvp0ddsbe4bmk" path="res://Scripts/general/vision_area.gd" id="3_b8urg"]
 [ext_resource type="Script" uid="uid://c03bna5tx55fj" path="res://Scripts/Knight/hitbox.gd" id="3_y2wec"]
-[ext_resource type="AudioStream" uid="uid://lhuu2ipk1lbu" path="res://Audio/Used Tracks/nightborne_hurt.wav" id="4_5vky8"]
 [ext_resource type="Script" uid="uid://dssfnjsjv0g0p" path="res://Scripts/Knight/hurtbox.gd" id="4_8208g"]
-[ext_resource type="AudioStream" uid="uid://8iee6j5a20pq" path="res://Audio/Used Tracks/nightborne_death.wav" id="5_a8muq"]
+[ext_resource type="AudioStream" uid="uid://fnjinnys6y87" path="res://Audio/Used Tracks/nightborne_hurt.mp3" id="4_a8muq"]
+[ext_resource type="AudioStream" uid="uid://bd5ypshmtn7hi" path="res://Audio/Used Tracks/nightborne_death.mp3" id="5_1qcd7"]
 [ext_resource type="Script" uid="uid://b7vgrscwhy7v2" path="res://Scripts/states/enemy states/enemy_state_machine.gd" id="6_a4sqm"]
 [ext_resource type="Script" uid="uid://bo2glx64vqkv5" path="res://Scripts/states/enemy states/enemy_state_idle.gd" id="7_mx7gd"]
 [ext_resource type="Script" uid="uid://px770x5r2xtn" path="res://Scripts/states/enemy states/enemy_state_wander.gd" id="8_5tw7y"]
@@ -251,11 +251,11 @@ tracks/2/keys = {
 "clips": [{
 "end_offset": 1.85,
 "start_offset": 0.25,
-"stream": ExtResource("4_5vky8")
+"stream": ExtResource("4_a8muq")
 }, {
-"end_offset": 1.40834,
+"end_offset": 1.4083,
 "start_offset": 0.0,
-"stream": ExtResource("5_a8muq")
+"stream": ExtResource("5_1qcd7")
 }],
 "times": PackedFloat32Array(0, 0.7)
 }
@@ -299,7 +299,7 @@ tracks/1/keys = {
 "clips": [{
 "end_offset": 1.85,
 "start_offset": 0.25,
-"stream": ExtResource("4_5vky8")
+"stream": ExtResource("4_a8muq")
 }],
 "times": PackedFloat32Array(0)
 }
@@ -507,7 +507,7 @@ shape = SubResource("CapsuleShape2D_62sb0")
 debug_color = Color(0.926654, 0.270522, 3.85046e-07, 0.42)
 
 [node name="AttackHurtbox" type="Area2D" parent="."]
-position = Vector2(-6, -46)
+position = Vector2(93, -46)
 collision_layer = 0
 collision_mask = 2
 monitoring = false

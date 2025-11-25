@@ -1,5 +1,8 @@
 class_name KnightStateDeflect extends KnightState
 
+@export var deflect_audio : AudioStream
+@export var deflect_volume : float
+
 @onready var hitbox: Hitbox = $"../../Hitbox"
 @onready var shieldbox: Shieldbox = $"../../ShieldHitbox"
 
@@ -15,6 +18,10 @@ func enter() -> void:
 	knight.animation_player.animation_finished.connect( _on_anim_finished ) #connect to when deflect anim finishes
 	
 	knight.animation_player.play("shield_deflect")
+	if not knight.audio.playing: #make sure player cant spam sounds
+		knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
+		knight.audio.volume_db = deflect_volume
+		knight.play_audio( deflect_audio )
 	pass
 
 
