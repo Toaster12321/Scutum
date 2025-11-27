@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://dff2o8tt1iixq"]
+
+[ext_resource type="Script" uid="uid://3jjojnlbsfoe" path="res://Scripts/general/credits.gd" id="1_a3ejy"]
+[ext_resource type="FontFile" uid="uid://bo54k3junwmb3" path="res://Fonts/PixeloidSansBold-PKnYd.ttf" id="1_k63oo"]
+[ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="3_btky4"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a3ejy")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -49.0
+offset_right = 64.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Labels" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = -48.0
+offset_right = 101.0
+offset_bottom = -1.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_k63oo")
+theme_override_font_sizes/font_size = 18
+text = "Game by 
+Antonio Crawford"
+horizontal_alignment = 1
+
+[node name="PlayerSpawn" parent="." instance=ExtResource("3_btky4")]
+position = Vector2(241, 202)
