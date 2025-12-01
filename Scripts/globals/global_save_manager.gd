@@ -47,6 +47,9 @@ func load_game() -> void:
 	
 	await GlobalLevelManager.level_loaded
 	
+	if KnightHud.auto_save_animation_player.is_playing(): #prevent seeing popup again on load
+		KnightHud.auto_save_animation_player.stop()
+	
 	game_loaded.emit()
 	pass
 

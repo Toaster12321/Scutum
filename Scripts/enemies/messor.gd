@@ -118,6 +118,11 @@ func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
 
 
 func boss_defeated() -> void:
+	GlobalPlayerManager.knight.knight_state_machine.input_enabled = false #disable knight input
+	
+	var tween  = get_tree().create_tween() #tween for smoothing
+	tween.tween_property(GlobalPlayerManager.knight.camera_2d, "global_position:x", global_position.x, 1) #move cam to messor position
+	
 	finding_player = false
 	returning_to_floor = false
 	vision_area.monitoring = false
@@ -125,12 +130,20 @@ func boss_defeated() -> void:
 	cast_shadow.queue_free() #get rid of shadow 
 	velocity = Vector2.ZERO
 	
+	await tween.finished #wait till tween finished then play death animation
 	boss_animation_player.play("death")
 	
 	await boss_animation_player.animation_finished
 	
-	boss_dead.emit()#emit dead signal
-	queue_free() #remove from scene
+	var tween2  = get_tree().create_tween() #tween for smoothing
+	tween2.tween_property(GlobalPlayerManager.knight.camera_2d, "position:x", GlobalPlayerManager.knight.default_cam_position_x, 1) #revert cam
+	
+	await tween2.finished
+	
+	GlobalLevelManager.load_new_level("res://Scenes/levels/credits.tscn", "", Vector2.ZERO)
+	
+	#boss_dead.emit()#emit dead signal
+	#queue_free() #remove from scene
 	pass
 
 

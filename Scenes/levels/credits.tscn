@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dff2o8tt1iixq"]
+[gd_scene load_steps=6 format=3 uid="uid://dff2o8tt1iixq"]
 
 [ext_resource type="Script" uid="uid://3jjojnlbsfoe" path="res://Scripts/general/credits.gd" id="1_a3ejy"]
 [ext_resource type="FontFile" uid="uid://bo54k3junwmb3" path="res://Fonts/PixeloidSansBold-PKnYd.ttf" id="1_k63oo"]
+[ext_resource type="FontFile" uid="uid://bd0umxthosq3g" path="res://Fonts/PixeloidMono-d94EV.ttf" id="2_x8r45"]
 [ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="3_btky4"]
+[ext_resource type="FontFile" uid="uid://bydwdw7nvbs45" path="res://Fonts/PixeloidSans-mLxMm.ttf" id="3_vvvsi"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -26,11 +28,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
+[node name="SkipTxt" type="Label" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 19.0
+offset_right = 45.0
+offset_bottom = 44.0
+theme_override_fonts/font = ExtResource("2_x8r45")
+theme_override_font_sizes/font_size = 9
+text = "ESC
+(skip)"
+
 [node name="Labels" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -409.0
+offset_bottom = 527.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -40,15 +55,245 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -101.0
-offset_top = -48.0
+offset_top = 407.0
 offset_right = 101.0
-offset_bottom = -1.0
+offset_bottom = 454.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_k63oo")
 theme_override_font_sizes/font_size = 18
 text = "Game by 
 Antonio Crawford"
 horizontal_alignment = 1
+
+[node name="Label8" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -101.0
+offset_top = 1863.0
+offset_right = 101.0
+offset_bottom = 1910.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_k63oo")
+theme_override_font_sizes/font_size = 18
+text = "Thank You
+For Playing !
+qB^)"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 572.0
+offset_right = 219.0
+offset_bottom = 599.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_k63oo")
+theme_override_font_sizes/font_size = 18
+text = "Character Design and Animation"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Labels/Label2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = 22.5
+offset_right = 456.0
+offset_bottom = 169.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vvvsi")
+theme_override_font_sizes/font_size = 18
+text = "Knight - aanmatniekss (itch.io)
+Bat,Wolf- Admurin (itch.io)
+Bringer of Death - Clembod (itch.io)
+Nightborne Warrior - CreativeKind (itch.io)
+Undead Executioner - Kronovi (itch.io)
+Knight Shield, Parry - Antonio Crawford"
+
+[node name="Label3" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 847.0
+offset_right = 219.0
+offset_bottom = 874.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_k63oo")
+theme_override_font_sizes/font_size = 18
+text = "Gameplay Design"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Labels/Label3"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 22.5
+offset_right = 306.0
+offset_bottom = 50.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vvvsi")
+theme_override_font_sizes/font_size = 18
+text = "Antonio Crawford"
+
+[node name="Label4" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 1013.0
+offset_right = 219.0
+offset_bottom = 1040.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_k63oo")
+theme_override_font_sizes/font_size = 18
+text = "Programming and Scripting"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Labels/Label4"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 128.0
+offset_top = 22.5
+offset_right = 306.0
+offset_bottom = 50.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vvvsi")
+theme_override_font_sizes/font_size = 18
+text = "Antonio Crawford"
+
+[node name="Label5" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 1181.0
+offset_right = 219.0
+offset_bottom = 1208.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_k63oo")
+theme_override_font_sizes/font_size = 18
+text = "Level Design"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Labels/Label5"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = 13.5
+offset_right = 302.0
+offset_bottom = 60.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vvvsi")
+theme_override_font_sizes/font_size = 18
+text = "Design - Antonio Crawford
+Artwork - Anokolisa (itch.io)"
+
+[node name="Label6" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 1385.0
+offset_right = 219.0
+offset_bottom = 1412.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_k63oo")
+theme_override_font_sizes/font_size = 18
+text = "HUD and UI Display"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Labels/Label6"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = 11.5
+offset_right = 366.0
+offset_bottom = 83.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vvvsi")
+theme_override_font_sizes/font_size = 18
+text = "Design - Antonio Crawford
+Programming - Antonio Crawford
+Artwork - Antonio Crawford"
+
+[node name="Label7" type="Label" parent="Labels"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -217.0
+offset_top = 1601.0
+offset_right = 219.0
+offset_bottom = 1628.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_k63oo")
+theme_override_font_sizes/font_size = 18
+text = "Audio "
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Labels/Label7"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 48.0
+offset_top = 13.5
+offset_right = 302.0
+offset_bottom = 60.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vvvsi")
+theme_override_font_sizes/font_size = 18
+text = "Design - Antonio Crawford
+"
+
+[node name="Label2" type="Label" parent="Labels/Label7"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 96.0
+offset_top = 86.5
+offset_right = 350.0
+offset_bottom = 133.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vvvsi")
+theme_override_font_sizes/font_size = 18
+text = "Sound Effects and BGM
+"
+
+[node name="Label" type="Label" parent="Labels/Label7/Label2"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 5.5
+offset_right = 226.0
+offset_bottom = 52.5
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_vvvsi")
+theme_override_font_sizes/font_size = 18
+text = "BGM - Tom Feldmann (itch.io)
+Effects - Helton Yan (itch.io)"
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_btky4")]
 position = Vector2(241, 202)

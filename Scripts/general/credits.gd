@@ -13,12 +13,16 @@ func _ready() -> void:
 	pass
 
 func start_credits() -> void:
-	var start_pos = Vector2(labels.position.x, size.y + 90) # below screen
-	var end_pos = Vector2(labels.position.x, -labels.size.y - 50) # offscreen above
+	var start_pos = Vector2(labels.position.x, size.y - 40) # below screen
+	var end_pos = Vector2(labels.position.x, -labels.size.y - 560) # offscreen above
 	
 	labels.position = start_pos
 	
 	var tween = create_tween()
-	tween.tween_property(labels, "position", end_pos, 20.0)
-	#tween.finished.connect(_on_credits_finished)
+	tween.tween_property(labels, "position", end_pos, 30.0)
 	pass
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_pressed("pause"):
+		GlobalLevelManager.load_new_level("res://Scenes/levels/title_screen.tscn", "", Vector2.ZERO)

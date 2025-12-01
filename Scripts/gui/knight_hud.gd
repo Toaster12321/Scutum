@@ -9,6 +9,7 @@ const title_screen : String = "res://Scenes/levels/title_screen.tscn"
 @onready var animation_player: AnimationPlayer = $Control/GameOver/AnimationPlayer
 @onready var auto_save_animation_player: AnimationPlayer = $Control/AutosavePopup/AutoSave_AnimationPlayer
 @onready var stamina_progress_bar: ProgressBar = $Control/StaminaBarContainer/ProgressBar
+@onready var autosave_popup: Control = $Control/AutosavePopup
 
 var decrease_stamina_value : float = 0.0
 var increase_stamina_value : float = 0.0

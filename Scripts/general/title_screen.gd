@@ -8,6 +8,7 @@ const START_LEVEL : String = "res://Scenes/levels/level_1.tscn" #path to 1st lev
 @onready var start_button: Button = $CanvasLayer/Control/StartButton
 @onready var continue_button: Button = $CanvasLayer/Control/ContinueButton
 @onready var quit_button: Button = $CanvasLayer/Control/QuitButton
+@onready var credits_button: Button = $CanvasLayer/Control/CreditsButton
 @onready var shield_animation_player: AnimationPlayer = $CanvasLayer/Control/ShieldAnimationPlayer
 @onready var title_animation_player: AnimationPlayer = $CanvasLayer/Control/TitleAnimationPlayer
 
@@ -36,7 +37,7 @@ func setup_title_screen() -> void:
 	start_button.pressed.connect( start_game ) #connect start button function
 	quit_button.pressed.connect( quit_game )
 	continue_button.pressed.connect( continue_game )
-	
+	credits_button.pressed.connect( show_credits )
 	start_button.grab_focus()
 	shield_animation_player.play("default_shield") #play animations
 	title_animation_player.play("default_title")
@@ -62,4 +63,9 @@ func exit_title_screen() -> void:
 	KnightHud.visible = true # turn on hud
 	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS#turn on pause menu
 	self.queue_free() #get rid of title screen
+	pass
+
+
+func show_credits() -> void:
+	GlobalLevelManager.load_new_level("res://Scenes/levels/credits.tscn", "", Vector2.ZERO)
 	pass

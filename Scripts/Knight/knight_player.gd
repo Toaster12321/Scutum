@@ -24,7 +24,9 @@ class_name Knight extends CharacterBody2D
 var gravity : float = 980 #9.81m/s gravity speed
 var gravity_multiplier : float = 1
 var current_direction : float = 1
-var default_cam_position : float
+var default_cam_position_y : float
+var default_cam_position_x : float
+var default_cam_position : Vector2 = Vector2(default_cam_position_x,default_cam_position_y)
 var facing_direction : float = 1
 
 signal player_damaged( hurtbox : Hurtbox )
@@ -37,7 +39,8 @@ var max_hp : int = 6
 func _ready() -> void:
 	GlobalPlayerManager.knight = self #initialize player manager reference
 	knight_state_machine.init(self) #inistialize state machine to player
-	default_cam_position = camera_2d.position.y #get default camera y placement
+	default_cam_position_x = camera_2d.position.x
+	default_cam_position_y = camera_2d.position.y #get default camera y placement
 	hitbox.damaged.connect( _take_damage ) #connect take damage function if hitbox has been entered
 	shieldbox.deflected.connect( _block_damage ) #connect deflected function if shieldbox has been entered
 	update_hp(99) #restore player to full hp

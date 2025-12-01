@@ -239,6 +239,25 @@ theme_override_fonts/font = ExtResource("9_8w5qn")
 theme_override_font_sizes/font_size = 18
 text = "Quit"
 
+[node name="CreditsButton" type="Button" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -233.0
+offset_top = 109.0
+offset_right = -183.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
+theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
+theme_override_fonts/font = ExtResource("9_8w5qn")
+theme_override_font_sizes/font_size = 9
+text = "Credits"
+
 [node name="ScutumShield" type="Sprite2D" parent="CanvasLayer/Control"]
 modulate = Color(0.803016, 0.806447, 0.797491, 1)
 position = Vector2(231, 111)
