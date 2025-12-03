@@ -30,7 +30,7 @@ func init() -> void:
 
 
 func enter() -> void:
-	print("enetered attack")
+	#print("enetered attack")
 	_can_see_player = true #enemy sees the player
 	_aggro_timer = state_aggro_duration #timer is equal to our aggro duration
 	if enemy_type == EnemyType.DEATHBRINGER:
@@ -53,7 +53,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	print("exited attack")
+	#print("exited attack")
 	_can_see_player = false #enemy cant see player
 	_assess_player = false
 	_assess_timer.stop()
@@ -92,7 +92,7 @@ func physics_process( _delta : float ) -> EnemyState:
 
 
 func _on_player_entered() -> void:
-	print("player entered")
+	#print("player entered")
 	if(
 		state_machine.current_state is EnemyStateHurt #cant attack during hurt or death states
 		or state_machine.current_state is EnemyStateDeath
@@ -112,7 +112,7 @@ func _on_player_entered() -> void:
 
 
 func _on_player_exited() -> void:
-	print("player exited")
+	#print("player exited")
 	_can_see_player = false #cant see player anymore
 	pass
 

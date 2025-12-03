@@ -16,7 +16,7 @@ func init() -> void:
 
 
 func enter() -> void:
-	print("enetered hurt")
+	#print("enetered hurt")
 	_hurt_timer = 0.0 #reset hurt timer
 	enemy.invulnerable = true #make enemy invulnerable to multiple hits during animation
 	_direction = enemy.global_position.direction_to( GlobalPlayerManager.knight.global_position ) #get direction based on global position of damage position
@@ -32,7 +32,7 @@ func enter() -> void:
 
 
 func exit() -> void: 
-	print("exit hurt")
+	#print("exit hurt")
 	enemy.invulnerable = false #no longer invulnerable 
 	pass
 
@@ -72,7 +72,7 @@ func _on_enemy_damaged( hurtbox : Hurtbox ) -> void: #when enemy damaged signal 
 				anim = enemy.animation_player.current_animation
 			if anim != "" and anim.begins_with("casting"): #deathbringer casting animation
 				enemy.invulnerable = true
-				effect_animations.play("flash")
+				enemy.effect_animations.play("flash")
 				await get_tree().create_timer(0.4).timeout
 				enemy.invulnerable = false
 				return

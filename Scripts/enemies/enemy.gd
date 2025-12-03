@@ -57,7 +57,7 @@ func set_direction( _new_direction : Vector2 ) -> void:
 
 func _take_damage( hurtbox : Hurtbox ) -> void: #function called when damaged signal has been connected
 	if invulnerable == true: #if we have already been hit we cant be hit agian
-		print("invulnerable return")
+		#print("invulnerable return")
 		return
 	hp -= hurtbox.damage #decrease hp
 	if hp > 0:

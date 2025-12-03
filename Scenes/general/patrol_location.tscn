@@ -16,6 +16,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [node name="PatrolLocation" type="Node2D"]
+z_index = 99
 script = ExtResource("1_pkefw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

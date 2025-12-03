@@ -21,7 +21,7 @@ func _ready() -> void:
 	for child in $Control/ShieldContainer.get_children(): #for each shield in the container append them to array 
 		if child is ShieldGUI:
 			shields.append( child )
-			print("Shields size:", shields.size())
+			#print("Shields size:", shields.size())
 			child.visible = false #turn visibility off
 			
 	hide_game_over_screen()

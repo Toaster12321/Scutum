@@ -548,10 +548,11 @@ script = ExtResource("10_r1akx")
 [node name="Timer" type="Timer" parent="EnemyStateMachine/Patrol"]
 one_shot = true
 
-[node name="Hurt" type="Node2D" parent="EnemyStateMachine"]
+[node name="Hurt" type="Node2D" parent="EnemyStateMachine" node_paths=PackedStringArray("effect_animations")]
 unique_name_in_owner = true
 script = ExtResource("9_rnrj7")
 knockback_speed = 100.0
+effect_animations = NodePath("../../EffectAnimationPlayer")
 
 [node name="Attack" type="Node2D" parent="EnemyStateMachine" node_paths=PackedStringArray("vision_area")]
 unique_name_in_owner = true

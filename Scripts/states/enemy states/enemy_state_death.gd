@@ -17,8 +17,8 @@ func init() -> void:
 
 
 func enter() -> void:
-	print("death entered")
-		
+	#print("death entered")
+	
 	vision_area.monitoring = false
 	enemy.invulnerable = true #cant be hit when dead
 	_direction = enemy.global_position.direction_to( _damage_position ) #get direction based on global position of damage position
@@ -35,7 +35,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	print("death exited")
+	#print("death exited")
 	pass
 
 

@@ -19,7 +19,7 @@ func init() -> void:
 
 
 func enter() -> void:
-	print("enetered patrol")
+	#print("enetered patrol")
 	spawn_position = enemy.global_position
 	gather_patrol_locations() #gather nodes
 	if patrol_locations.size() < 2:
@@ -53,7 +53,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	print("exited patrol")
+	#print("exited patrol")
 	patrol_walk = false #reset bools
 	has_started = false
 	timer.stop()

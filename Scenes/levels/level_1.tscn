@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=28 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -14,8 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://byil25tbtbb5o" path="res://Scenes/general/patrol_location.tscn" id="11_sskdo"]
 [ext_resource type="PackedScene" uid="uid://bnuys61e5tege" path="res://Scenes/general/hurtbox.tscn" id="12_041ro"]
 [ext_resource type="AudioStream" uid="uid://b1b3ogd3263mt" path="res://Audio/BGM/boss_fight.wav" id="12_ee4lj"]
+[ext_resource type="PackedScene" uid="uid://crxu0j537bvmp" path="res://Scenes/enemies/death_bringer.tscn" id="13_onyy7"]
 [ext_resource type="PackedScene" uid="uid://btokctpq4jymd" path="res://Scenes/enemies/bat.tscn" id="15_bk5qg"]
 [ext_resource type="PackedScene" uid="uid://cplxlbcl2rim0" path="res://Scenes/general/health_pickup.tscn" id="16_iu068"]
+[ext_resource type="PackedScene" uid="uid://546mrmgrbsur" path="res://Scenes/enemies/wolf.tscn" id="17_lpshy"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
 offsets = PackedFloat32Array(0.672176, 0.837466, 1)
@@ -45,6 +47,15 @@ size = Vector2(196, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n8oda"]
 size = Vector2(146, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpshy"]
+size = Vector2(37, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onyy7"]
+size = Vector2(71, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_flpb6"]
+size = Vector2(71, 16)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_041ro")
@@ -103,24 +114,11 @@ position = Vector2(1008, -987)
 position = Vector2(5550, -1056)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(2481, -204)
+position = Vector2(-3871, -173)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)
 cutscene_detection = NodePath("../PlayerCutsceneDetection")
-
-[node name="NightborneWarrior" parent="." instance=ExtResource("7_qek6e")]
-position = Vector2(-1102, 128)
-
-[node name="PatrolLocation" parent="NightborneWarrior" instance=ExtResource("11_sskdo")]
-position = Vector2(-86, 0)
-node_number_text = "1"
-wait_time = 1.0
-
-[node name="PatrolLocation2" parent="NightborneWarrior" instance=ExtResource("11_sskdo")]
-position = Vector2(154, 0)
-node_number_text = "2"
-wait_time = 1.0
 
 [node name="BossSummonPosition" type="Sprite2D" parent="."]
 visible = false
@@ -188,8 +186,260 @@ damage = 99
 shape = SubResource("RectangleShape2D_n8oda")
 debug_color = Color(0.933215, 0.258815, 0, 0.42)
 
+[node name="Hurtbox4" parent="KillZones" instance=ExtResource("12_041ro")]
+position = Vector2(-3825, -102)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZones/Hurtbox4"]
+position = Vector2(1.5, 0)
+shape = SubResource("RectangleShape2D_lpshy")
+debug_color = Color(0.933215, 0.258815, 0, 0.42)
+
+[node name="Hurtbox5" parent="KillZones" instance=ExtResource("12_041ro")]
+position = Vector2(-3694, -103)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZones/Hurtbox5"]
+position = Vector2(13.5, 0)
+shape = SubResource("RectangleShape2D_onyy7")
+debug_color = Color(0.933215, 0.258815, 0, 0.42)
+
+[node name="Hurtbox6" parent="KillZones" instance=ExtResource("12_041ro")]
+position = Vector2(-3694, -103)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZones/Hurtbox6"]
+position = Vector2(173, 0)
+shape = SubResource("RectangleShape2D_flpb6")
+debug_color = Color(0.933215, 0.258815, 0, 0.42)
+
+[node name="Wolf3" parent="." instance=ExtResource("17_lpshy")]
+position = Vector2(846, 224)
+
+[node name="PatrolLocation" parent="Wolf3" instance=ExtResource("11_sskdo")]
+position = Vector2(-143, -6)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Wolf3" instance=ExtResource("11_sskdo")]
+position = Vector2(139, -6)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="DeathBringer" parent="." instance=ExtResource("13_onyy7")]
+position = Vector2(-3789, -288)
+
+[node name="PatrolLocation" parent="DeathBringer" instance=ExtResource("11_sskdo")]
+position = Vector2(-128, 1)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="DeathBringer" instance=ExtResource("11_sskdo")]
+position = Vector2(118, -2)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="DeathBringer2" parent="." instance=ExtResource("13_onyy7")]
+position = Vector2(542, 212)
+
+[node name="PatrolLocation" parent="DeathBringer2" instance=ExtResource("11_sskdo")]
+position = Vector2(-130, 9)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="DeathBringer2" instance=ExtResource("11_sskdo")]
+position = Vector2(118, 12)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="DeathBringer3" parent="." instance=ExtResource("13_onyy7")]
+position = Vector2(1203, 214)
+
+[node name="PatrolLocation" parent="DeathBringer3" instance=ExtResource("11_sskdo")]
+position = Vector2(-129, 9)
+node_number_text = "1"
+wait_time = 2.0
+
+[node name="PatrolLocation2" parent="DeathBringer3" instance=ExtResource("11_sskdo")]
+position = Vector2(118, 8)
+node_number_text = "2"
+wait_time = 2.0
+
+[node name="NightborneWarrior" parent="." instance=ExtResource("7_qek6e")]
+position = Vector2(-1102, 128)
+
+[node name="PatrolLocation" parent="NightborneWarrior" instance=ExtResource("11_sskdo")]
+position = Vector2(-86, 0)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="NightborneWarrior" instance=ExtResource("11_sskdo")]
+position = Vector2(154, 0)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="NightborneWarrior3" parent="." instance=ExtResource("7_qek6e")]
+position = Vector2(132, 1009)
+
+[node name="PatrolLocation" parent="NightborneWarrior3" instance=ExtResource("11_sskdo")]
+position = Vector2(-87, 14)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="NightborneWarrior3" instance=ExtResource("11_sskdo")]
+position = Vector2(160, 15)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="NightborneWarrior4" parent="." instance=ExtResource("7_qek6e")]
+position = Vector2(623, 1011)
+
+[node name="PatrolLocation" parent="NightborneWarrior4" instance=ExtResource("11_sskdo")]
+position = Vector2(-99, 12)
+node_number_text = "1"
+wait_time = 3.0
+
+[node name="PatrolLocation2" parent="NightborneWarrior4" instance=ExtResource("11_sskdo")]
+position = Vector2(154, 13)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="NightborneWarrior2" parent="." instance=ExtResource("7_qek6e")]
+position = Vector2(-4006, -897)
+
+[node name="PatrolLocation" parent="NightborneWarrior2" instance=ExtResource("11_sskdo")]
+position = Vector2(-47, 0)
+node_number_text = "1"
+wait_time = 2.0
+
+[node name="PatrolLocation2" parent="NightborneWarrior2" instance=ExtResource("11_sskdo")]
+position = Vector2(143, 0)
+node_number_text = "2"
+wait_time = 2.0
+
 [node name="Bat" parent="." instance=ExtResource("15_bk5qg")]
-position = Vector2(493, 206)
+position = Vector2(-1972, 1139)
+
+[node name="PatrolLocation" parent="Bat" instance=ExtResource("11_sskdo")]
+position = Vector2(-59, -1)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Bat" instance=ExtResource("11_sskdo")]
+position = Vector2(91, -3)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="Bat6" parent="." instance=ExtResource("15_bk5qg")]
+position = Vector2(-685, 782)
+
+[node name="PatrolLocation" parent="Bat6" instance=ExtResource("11_sskdo")]
+position = Vector2(-59, -1)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Bat6" instance=ExtResource("11_sskdo")]
+position = Vector2(91, -3)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="Bat2" parent="." instance=ExtResource("15_bk5qg")]
+position = Vector2(-1767, 899)
+
+[node name="PatrolLocation" parent="Bat2" instance=ExtResource("11_sskdo")]
+position = Vector2(-30, 10)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Bat2" instance=ExtResource("11_sskdo")]
+position = Vector2(96, -47)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="Bat4" parent="." instance=ExtResource("15_bk5qg")]
+position = Vector2(-2182, -90)
+
+[node name="PatrolLocation" parent="Bat4" instance=ExtResource("11_sskdo")]
+position = Vector2(10, 64)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Bat4" instance=ExtResource("11_sskdo")]
+position = Vector2(14, -71)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="Bat5" parent="." instance=ExtResource("15_bk5qg")]
+position = Vector2(-1712, -67)
+
+[node name="PatrolLocation" parent="Bat5" instance=ExtResource("11_sskdo")]
+position = Vector2(10, 64)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Bat5" instance=ExtResource("11_sskdo")]
+position = Vector2(14, -71)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="Wolf" parent="." instance=ExtResource("17_lpshy")]
+position = Vector2(-2717, 764)
+
+[node name="PatrolLocation" parent="Wolf" instance=ExtResource("11_sskdo")]
+position = Vector2(-97, -1)
+node_number_text = "1"
+wait_time = 2.0
+
+[node name="PatrolLocation2" parent="Wolf" instance=ExtResource("11_sskdo")]
+position = Vector2(129, -4)
+node_number_text = "2"
+wait_time = 2.0
+
+[node name="Wolf2" parent="." instance=ExtResource("17_lpshy")]
+position = Vector2(-3603, 798)
+
+[node name="PatrolLocation" parent="Wolf2" instance=ExtResource("11_sskdo")]
+position = Vector2(146, -2)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Wolf2" instance=ExtResource("11_sskdo")]
+position = Vector2(-70, 0)
+node_number_text = "2"
+wait_time = 1.0
+
+[node name="Bat3" parent="." instance=ExtResource("15_bk5qg")]
+position = Vector2(-3389, 267)
+
+[node name="PatrolLocation" parent="Bat3" instance=ExtResource("11_sskdo")]
+position = Vector2(10, 57)
+node_number_text = "1"
+
+[node name="PatrolLocation2" parent="Bat3" instance=ExtResource("11_sskdo")]
+position = Vector2(11, -78)
+node_number_text = "2"
+
+[node name="Wolf4" parent="." instance=ExtResource("17_lpshy")]
+position = Vector2(2127, 991)
+
+[node name="PatrolLocation" parent="Wolf4" instance=ExtResource("11_sskdo")]
+position = Vector2(-116, 0)
+node_number_text = "1"
+wait_time = 1.0
+
+[node name="PatrolLocation2" parent="Wolf4" instance=ExtResource("11_sskdo")]
+position = Vector2(117, 0)
+node_number_text = "2"
+wait_time = 1.0
 
 [node name="HealthPickup" parent="." instance=ExtResource("16_iu068")]
-position = Vector2(207, 170)
+position = Vector2(178, 139)
+
+[node name="HealthPickup2" parent="." instance=ExtResource("16_iu068")]
+position = Vector2(-3434, -148)
+
+[node name="HealthPickup3" parent="." instance=ExtResource("16_iu068")]
+position = Vector2(-4082, 778)
+
+[node name="HealthPickup4" parent="." instance=ExtResource("16_iu068")]
+position = Vector2(-2467, -178)
+
+[node name="HealthPickup5" parent="." instance=ExtResource("16_iu068")]
+position = Vector2(1632, 943)
