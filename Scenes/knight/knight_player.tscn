@@ -1,8 +1,9 @@
-[gd_scene load_steps=62 format=3 uid="uid://bj4rkw7gwpm65"]
+[gd_scene load_steps=65 format=3 uid="uid://bj4rkw7gwpm65"]
 
 [ext_resource type="Script" uid="uid://c1iascmee6h4m" path="res://Scripts/Knight/knight_player.gd" id="1_5m4qd"]
 [ext_resource type="Script" uid="uid://8ctg2co4oaal" path="res://Scripts/states/knight states/knight_state_machine.gd" id="2_vggyu"]
 [ext_resource type="Script" uid="uid://pchcj1xroq5l" path="res://Scripts/states/knight states/knight_state_idle.gd" id="3_srrma"]
+[ext_resource type="Script" uid="uid://rki0nhcvuurb" path="res://Scripts/Knight/player_camera.gd" id="4_5pdnt"]
 [ext_resource type="Script" uid="uid://bhi8dcj64v1wr" path="res://Scripts/states/knight states/knight_state_run.gd" id="4_t2eej"]
 [ext_resource type="Script" uid="uid://i6wfrgjf58lo" path="res://Scripts/states/knight states/knight_state_jump.gd" id="5_2frtv"]
 [ext_resource type="Script" uid="uid://bahrjv436ncct" path="res://Scripts/states/knight states/knight_state_fall.gd" id="6_3xrgn"]
@@ -3255,6 +3256,13 @@ size = Vector2(16, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_agcwe"]
 size = Vector2(16, 24)
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5pdnt"]
+seed = 60
+frequency = 0.057
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3iy7d"]
+noise = SubResource("FastNoiseLite_5pdnt")
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34edh"]
 radius = 9.0
 height = 36.0
@@ -3354,6 +3362,8 @@ bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -51)
+script = ExtResource("4_5pdnt")
+noise_texture = SubResource("NoiseTexture2D_3iy7d")
 
 [node name="KnightStateMachine" type="Node2D" parent="."]
 script = ExtResource("2_vggyu")

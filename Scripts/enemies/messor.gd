@@ -4,7 +4,6 @@ const SUMMON_SCENE : PackedScene = preload("res://Scenes/enemies/summon_enemy.ts
 
 signal direction_changed( new_direction : Vector2 )
 signal cutscene_finished
-signal boss_dead
 
 @export var max_hp : int = 10
 @export var move_speed : float = 50.0

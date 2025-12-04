@@ -212,6 +212,7 @@ debug_color = Color(0.933215, 0.258815, 0, 0.42)
 
 [node name="Wolf3" parent="." instance=ExtResource("17_lpshy")]
 position = Vector2(846, 224)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Wolf3" instance=ExtResource("11_sskdo")]
 position = Vector2(-143, -6)
@@ -225,6 +226,7 @@ wait_time = 1.0
 
 [node name="DeathBringer" parent="." instance=ExtResource("13_onyy7")]
 position = Vector2(-3789, -288)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="DeathBringer" instance=ExtResource("11_sskdo")]
 position = Vector2(-128, 1)
@@ -238,6 +240,7 @@ wait_time = 1.0
 
 [node name="DeathBringer2" parent="." instance=ExtResource("13_onyy7")]
 position = Vector2(542, 212)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="DeathBringer2" instance=ExtResource("11_sskdo")]
 position = Vector2(-130, 9)
@@ -251,6 +254,7 @@ wait_time = 1.0
 
 [node name="DeathBringer3" parent="." instance=ExtResource("13_onyy7")]
 position = Vector2(1203, 214)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="DeathBringer3" instance=ExtResource("11_sskdo")]
 position = Vector2(-129, 9)
@@ -316,6 +320,7 @@ wait_time = 2.0
 
 [node name="Bat" parent="." instance=ExtResource("15_bk5qg")]
 position = Vector2(-1972, 1139)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Bat" instance=ExtResource("11_sskdo")]
 position = Vector2(-59, -1)
@@ -329,6 +334,7 @@ wait_time = 1.0
 
 [node name="Bat6" parent="." instance=ExtResource("15_bk5qg")]
 position = Vector2(-685, 782)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Bat6" instance=ExtResource("11_sskdo")]
 position = Vector2(-59, -1)
@@ -342,6 +348,7 @@ wait_time = 1.0
 
 [node name="Bat2" parent="." instance=ExtResource("15_bk5qg")]
 position = Vector2(-1767, 899)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Bat2" instance=ExtResource("11_sskdo")]
 position = Vector2(-30, 10)
@@ -355,6 +362,7 @@ wait_time = 1.0
 
 [node name="Bat4" parent="." instance=ExtResource("15_bk5qg")]
 position = Vector2(-2182, -90)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Bat4" instance=ExtResource("11_sskdo")]
 position = Vector2(10, 64)
@@ -368,6 +376,7 @@ wait_time = 1.0
 
 [node name="Bat5" parent="." instance=ExtResource("15_bk5qg")]
 position = Vector2(-1712, -67)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Bat5" instance=ExtResource("11_sskdo")]
 position = Vector2(10, 64)
@@ -381,6 +390,7 @@ wait_time = 1.0
 
 [node name="Wolf" parent="." instance=ExtResource("17_lpshy")]
 position = Vector2(-2717, 764)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Wolf" instance=ExtResource("11_sskdo")]
 position = Vector2(-97, -1)
@@ -394,6 +404,7 @@ wait_time = 2.0
 
 [node name="Wolf2" parent="." instance=ExtResource("17_lpshy")]
 position = Vector2(-3603, 798)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Wolf2" instance=ExtResource("11_sskdo")]
 position = Vector2(146, -2)
@@ -407,6 +418,7 @@ wait_time = 1.0
 
 [node name="Bat3" parent="." instance=ExtResource("15_bk5qg")]
 position = Vector2(-3389, 267)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Bat3" instance=ExtResource("11_sskdo")]
 position = Vector2(10, 57)
@@ -418,6 +430,7 @@ node_number_text = "2"
 
 [node name="Wolf4" parent="." instance=ExtResource("17_lpshy")]
 position = Vector2(2127, 991)
+patrol_range = 200
 
 [node name="PatrolLocation" parent="Wolf4" instance=ExtResource("11_sskdo")]
 position = Vector2(-116, 0)
