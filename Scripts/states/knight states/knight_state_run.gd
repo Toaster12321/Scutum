@@ -44,6 +44,8 @@ func handle_input( _event : InputEvent ) -> KnightState:
 		elif _event.is_action_pressed("jump"): #allow transition to jump if pressed
 			return jump
 		elif _event.is_action_pressed("attack"): #allow transition to attack if pressed
+			if knight.attack_locked:  #prevent attacking again if cooldown is still active
+				return null
 			return attack
 		elif _event.is_action_pressed("shield"):
 			return shield

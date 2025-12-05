@@ -30,6 +30,8 @@ func handle_input( _event : InputEvent ) -> KnightState:
 		knight.velocity.y *= 0.5 # slowly decrease velocity in y direction
 		return fall
 	elif _event.is_action_pressed("attack"):
+		if knight.attack_locked:  #prevent attacking again if cooldown is still active
+			return null
 		return attack
 	return null
 

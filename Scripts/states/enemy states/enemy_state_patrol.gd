@@ -62,7 +62,7 @@ func exit() -> void:
 
 func process( _delta : float ) -> EnemyState:
 	if patrol_walk == true:
-		if enemy.global_position.distance_to( target.target_position ) < 10: #if the enemy is within 4 pixels of the target position, idle
+		if enemy.global_position.distance_to( target.target_position ) < 4: #if the enemy is within 4 pixels of the target position, idle
 			idling()
 		if enemy.global_position.distance_to( spawn_position ) > enemy.patrol_range:#if the enemy is out of range, change state to wander
 			return wander
@@ -104,7 +104,7 @@ func idling() -> void:
 
 
 func walking() -> void:
-	_direction = global_position.direction_to( target.target_position ) #our direction is towards the location node
+	_direction = enemy.global_position.direction_to( target.target_position ) #our direction is towards the location node
 	enemy.direction = _direction 
 	enemy.velocity = _direction * wander_speed #set velocity
 	

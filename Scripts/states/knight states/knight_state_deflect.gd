@@ -18,10 +18,9 @@ func enter() -> void:
 	knight.animation_player.animation_finished.connect( _on_anim_finished ) #connect to when deflect anim finishes
 	
 	knight.animation_player.play("shield_deflect")
-	if not knight.audio.playing: #make sure player cant spam sounds
-		knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each swing
-		knight.audio.volume_db = deflect_volume
-		knight.play_audio( deflect_audio )
+	knight.audio.pitch_scale = randf_range( 0.9, 1.1 ) #make different pitch each deflect
+	knight.audio.volume_db = deflect_volume
+	knight.play_audio( deflect_audio )
 	pass
 
 
@@ -39,6 +38,8 @@ func handle_input( _event : InputEvent ) -> KnightState:
 		if _event.is_action_pressed("jump") : #transition to jump state when button is pressed
 			return jump
 		elif _event.is_action_pressed("attack"): #transition to attack state when button is pressed
+			if knight.attack_locked:  #prevent attacking again if cooldown is still active
+				return null
 			return attack
 		elif _event.is_action_pressed("crouch"):
 			return crouch

@@ -18,7 +18,7 @@ class_name Knight extends CharacterBody2D
 @onready var sprites: Node2D = $Sprites
 @onready var hitbox: Hitbox = $Hitbox
 @onready var shieldbox: Shieldbox = $ShieldHitbox
-
+@onready var attack_cooldown_timer: Timer = $AttackCooldownTimer
 
 
 var gravity : float = 980 #9.81m/s gravity speed
@@ -33,6 +33,7 @@ signal player_damaged( hurtbox : Hurtbox )
 signal damage_blocked( hurtbox : Hurtbox )
 
 var invulnerable = false
+var attack_locked : bool = false
 var hp : int = 6
 var max_hp : int = 6
 
@@ -45,6 +46,7 @@ func _ready() -> void:
 	shieldbox.deflected.connect( _block_damage ) #connect deflected function if shieldbox has been entered
 	update_hp(99) #restore player to full hp
 	KnightHud.set_stamina(100.0)#set stamina to full
+	attack_cooldown_timer.timeout.connect(_on_attack_cooldown_finished) #function called after attack cooldown is over
 	pass
 
 
@@ -108,6 +110,7 @@ func _take_damage( hurtbox : Hurtbox ) -> void: #take damage function for player
 
 
 func _block_damage( hurtbox : Hurtbox ) -> void:
+	GlobalSignalManager.on_camera_feedback_requested.emit(5, .05, 50)
 	damage_blocked.emit( hurtbox ) # trigger the damage blocked signal passing in the hurtbox
 	pass
 
@@ -131,3 +134,12 @@ func make_invulnerable( _duration : float ) -> void: #make knight invulnerable s
 func revive_player() -> void:
 	update_hp( 99 )
 	knight_state_machine.change_state( idle )
+
+
+func _on_attack_cooldown_finished() -> void:
+	attack_locked = false #allow attacks again
+
+
+func lock_attack() -> void:
+	attack_locked = true #set attacks locked and start cooldown
+	attack_cooldown_timer.start()
