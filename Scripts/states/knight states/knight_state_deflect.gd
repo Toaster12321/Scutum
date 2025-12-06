@@ -2,6 +2,7 @@ class_name KnightStateDeflect extends KnightState
 
 @export var deflect_audio : AudioStream
 @export var deflect_volume : float
+@export var knockback_speed : float = 40.0
 
 @onready var hitbox: Hitbox = $"../../Hitbox"
 @onready var shieldbox: Shieldbox = $"../../ShieldHitbox"
@@ -47,8 +48,8 @@ func handle_input( _event : InputEvent ) -> KnightState:
 
 
 func process( _delta : float ) -> KnightState:
-	knight.velocity = Vector2.ZERO #make player stand still when hit
-	
+	#knight.velocity = Vector2.ZERO #make player stand still when hit
+	knight.velocity.x = knight.facing_direction * -knockback_speed
 	
 	if _anim_finished == true: #if animation is over
 		if Input.is_action_pressed("shield") : #if shield was held the whole time continue to shield

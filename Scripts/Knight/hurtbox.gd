@@ -19,6 +19,7 @@ func entered_area( area : Area2D ) -> void: #pass in the area connecting
 		did_damage.emit()
 		area.take_damage( self ) #take damage to attached entity
 	elif area is Shieldbox: #if it was a shieldbox we are shielding so call signal
-		blocked.emit()
-		area.shield_damage( self ) #shield damage
+		var did_block : bool = area.shield_damage( self ) # returns true if damaged shielded
+		if did_block:
+			blocked.emit() #emit damage blocked signal
 	pass
