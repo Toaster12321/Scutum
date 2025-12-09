@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://bj4rkw7gwpm65"]
+[gd_scene load_steps=66 format=3 uid="uid://bj4rkw7gwpm65"]
 
 [ext_resource type="Script" uid="uid://c1iascmee6h4m" path="res://Scripts/Knight/knight_player.gd" id="1_5m4qd"]
 [ext_resource type="Script" uid="uid://8ctg2co4oaal" path="res://Scripts/states/knight states/knight_state_machine.gd" id="2_vggyu"]
@@ -3384,6 +3384,16 @@ _data = {
 &"default": SubResource("Animation_3xrgn")
 }
 
+[sub_resource type="Gradient" id="Gradient_rxkvb"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5pdnt"]
+gradient = SubResource("Gradient_rxkvb")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="Knight" type="CharacterBody2D"]
 z_index = 1
 collision_mask = 48
@@ -3400,10 +3410,12 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_vl55t")
 
 [node name="CollisionShape2D_Crouch" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_agcwe")
 disabled = true
@@ -3554,6 +3566,7 @@ hframes = 10
 shadow_size = Vector2(0.45, 0.09)
 
 [node name="Hitbox" parent="." instance=ExtResource("18_ch8o0")]
+visible = false
 position = Vector2(0, -18)
 collision_layer = 2
 
@@ -3575,6 +3588,7 @@ shape = SubResource("CapsuleShape2D_2frtv")
 debug_color = Color(0.619411, 0.534763, 3.85046e-07, 0.42)
 
 [node name="Hurtbox" parent="." instance=ExtResource("19_tume3")]
+visible = false
 position = Vector2(0, -18)
 collision_mask = 256
 monitoring = false
@@ -3588,6 +3602,7 @@ debug_color = Color(1, 0.0118072, 0.01923, 0.42)
 [node name="Interactions" type="Node2D" parent="."]
 
 [node name="InteractArea" type="Area2D" parent="Interactions"]
+visible = false
 position = Vector2(0, -10)
 collision_layer = 4
 collision_mask = 0
@@ -3606,3 +3621,9 @@ libraries = {
 
 [node name="AttackCooldownTimer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0, -18)
+color = Color(1, 0.742409, 0.565765, 1)
+energy = 0.2
+texture = SubResource("GradientTexture2D_5pdnt")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=29 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://btokctpq4jymd" path="res://Scenes/enemies/bat.tscn" id="15_bk5qg"]
 [ext_resource type="PackedScene" uid="uid://cplxlbcl2rim0" path="res://Scenes/general/health_pickup.tscn" id="16_iu068"]
 [ext_resource type="PackedScene" uid="uid://546mrmgrbsur" path="res://Scenes/enemies/wolf.tscn" id="17_lpshy"]
+[ext_resource type="Texture2D" uid="uid://cov33l1sqjxtj" path="res://Sprites/Other/light_stream.jpg" id="19_flpb6"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
 offsets = PackedFloat32Array(0.672176, 0.837466, 1)
@@ -458,3 +459,12 @@ position = Vector2(-2467, -178)
 
 [node name="HealthPickup5" parent="." instance=ExtResource("16_iu068")]
 position = Vector2(1632, 943)
+
+[node name="LightSources" type="Node2D" parent="."]
+
+[node name="PointLight2D" type="PointLight2D" parent="LightSources"]
+position = Vector2(-2345, 1158)
+rotation = 0.134458
+color = Color(1, 0.970201, 0.552612, 1)
+energy = 6.16
+texture = ExtResource("19_flpb6")
