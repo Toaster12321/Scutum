@@ -1482,7 +1482,7 @@ tracks/0/path = NodePath("Sprites/fall_sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266667),
+"times": PackedFloat32Array(0, 0.125, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
@@ -1819,6 +1819,7 @@ tracks/13/keys = {
 
 [sub_resource type="Animation" id="Animation_vl55t"]
 resource_name = "idle"
+length = 0.9
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -3385,14 +3386,16 @@ _data = {
 }
 
 [sub_resource type="Gradient" id="Gradient_rxkvb"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.304933, 0.67713, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.738149, 0.738149, 0.738149, 1, 0.418536, 0.418536, 0.418536, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5pdnt"]
 gradient = SubResource("Gradient_rxkvb")
 width = 128
 height = 128
 fill = 1
-fill_from = Vector2(0.5, 0.5)
+fill_from = Vector2(0.542735, 0.525641)
+fill_to = Vector2(1, 0.521368)
 
 [node name="Knight" type="CharacterBody2D"]
 z_index = 1
@@ -3625,5 +3628,5 @@ wait_time = 0.5
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, -18)
 color = Color(1, 0.742409, 0.565765, 1)
-energy = 0.2
+energy = 0.3
 texture = SubResource("GradientTexture2D_5pdnt")
