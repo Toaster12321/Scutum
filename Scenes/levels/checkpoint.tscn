@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ernx66u7qfga" path="res://Sprites/TileMaps/Salt.png" id="1_xo0h8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3m8fp"]
-size = Vector2(54, 163)
+size = Vector2(54, 221)
 
 [sub_resource type="Animation" id="Animation_3m8fp"]
 length = 0.001
@@ -48,8 +48,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3m8fp"]
 gradient = SubResource("Gradient_rxkvb")
-width = 128
-height = 128
+width = 256
+height = 256
 fill = 1
 fill_from = Vector2(0.508547, 0.478632)
 fill_to = Vector2(1, 0.474359)
@@ -59,17 +59,15 @@ script = ExtResource("1_3m8fp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.439049, 0.439049, 0.439049, 1)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_xo0h8")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -24.5)
+position = Vector2(0, 18.5)
 shape = SubResource("RectangleShape2D_3m8fp")
 debug_color = Color(0.382213, 0.612876, 5.77569e-07, 0.42)
 
