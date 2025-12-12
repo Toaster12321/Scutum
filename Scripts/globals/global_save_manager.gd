@@ -83,3 +83,11 @@ func remove_persistence_value( value : String ) -> void:
 func check_persistent_value( value : String ) -> bool:
 	var p = current_save.persistence as Array # get current save's persistence values 
 	return p.has( value ) #if the passed in value is in the array -> return true
+
+
+func has_seen_intro() -> bool:
+	return check_persistent_value("seen_intro")
+
+
+func mark_intro_seen() -> void:
+	add_persistence_value("seen_intro")

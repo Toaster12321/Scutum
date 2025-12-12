@@ -10,6 +10,7 @@ class_name PlayerCutsceneDetection extends Area2D
 @onready var barred_gateway_2: Node2D = $"../BarredGateway2"
 
 signal knight_in_position #emits when knight has reached the target
+signal cutscene_finished
 
 var has_player_entered_area : bool = false
 
@@ -28,15 +29,17 @@ func _ready() -> void:
 	if knight_automove_target: #hide target
 		knight_automove_target.visible = false
 	area_entered.connect( _on_area_entered )
+	cutscene_finished.connect(_on_cutscene_finished)
 
 
 func _on_area_entered( area : Area2D ) -> void:
 	if area is InteractArea: 
 		if has_player_entered_area == false: #make it so we can only enter the area once
 			has_player_entered_area = true
+			
 			if boss_cutscene_detection:
 				play_boss_cutscene() 
-			if intro_cutscene_detection:
+			if intro_cutscene_detection and not GlobalSaveManager.has_seen_intro():
 				play_intro_cutscene()
 			
 	pass
@@ -44,13 +47,13 @@ func _on_area_entered( area : Area2D ) -> void:
 
 func play_boss_cutscene() -> void:
 	GlobalAudioManager.play_music(boss_music)
-	GlobalPlayerManager.knight.run.input_enabled = false #disable input for duration of cutscene
+	GlobalPlayerManager.knight.knight_state_machine.input_enabled = false #disable input for duration of cutscene
 	
 	await _move_knight_to_position(knight_automove_target.global_position) #wait until knight is in position then emit signal
 	knight_in_position.emit()
 	
 	await boss_signal.cutscene_finished
-	GlobalPlayerManager.knight.run.input_enabled = true 
+	GlobalPlayerManager.knight.knight_state_machine.input_enabled = true 
 	pass
 
 
@@ -92,10 +95,8 @@ func _on_boss_dead() -> void:
 
 
 func play_intro_cutscene() -> void:
+	KnightHud.visible = false
 	GlobalSaveManager.save_game()
-	
-	GlobalPlayerManager.knight.knight_state_machine.input_enabled = false
-	GlobalPlayerManager.knight.velocity.x = 0
 	
 	while not GlobalPlayerManager.knight.is_on_floor():
 		await get_tree().physics_frame
@@ -104,6 +105,16 @@ func play_intro_cutscene() -> void:
 	
 	await GlobalPlayerManager.knight.animation_player.animation_finished
 	
+	cutscene_finished.emit()
+	
 	GlobalPlayerManager.knight.animation_player.play("idle")
+	
 	GlobalPlayerManager.knight.knight_state_machine.input_enabled = true
+	KnightHud.visible = true
+	pass
+
+
+func _on_cutscene_finished() -> void:
+	GlobalSaveManager.mark_intro_seen()
+	
 	pass

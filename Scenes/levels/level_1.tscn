@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=41 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://546mrmgrbsur" path="res://Scenes/enemies/wolf.tscn" id="17_lpshy"]
 [ext_resource type="Texture2D" uid="uid://cov33l1sqjxtj" path="res://Sprites/Other/light_stream.jpg" id="19_flpb6"]
 [ext_resource type="PackedScene" uid="uid://dhwogecjnb6dq" path="res://Scenes/levels/torch.tscn" id="20_n3ge2"]
+[ext_resource type="FontFile" uid="uid://bd0umxthosq3g" path="res://Fonts/PixeloidMono-d94EV.ttf" id="21_v6uk5"]
+[ext_resource type="Script" uid="uid://dfyfg1qcgvdlr" path="res://Scripts/general/tutorial.gd" id="21_wxxdo"]
 
 [sub_resource type="Gradient" id="Gradient_dsuda"]
 offsets = PackedFloat32Array(0.672176, 0.837466, 1)
@@ -62,12 +64,84 @@ size = Vector2(71, 16)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_flpb6"]
 blend_mode = 1
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wxxdo"]
+polygon = PackedVector2Array(0.357422, -0.392822, 222.021, 113.501, 225.529, 235.675, -77.6462, 81.5847)
+
 [sub_resource type="Gradient" id="Gradient_flpb6"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_n3ge2"]
 gradient = SubResource("Gradient_flpb6")
 width = 1
+
+[sub_resource type="Animation" id="Animation_4h34a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_dsxye"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.717647)]
+}
+
+[sub_resource type="Animation" id="Animation_nekgx"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.717647), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e3i2i"]
+_data = {
+&"RESET": SubResource("Animation_4h34a"),
+&"fade_in": SubResource("Animation_dsxye"),
+&"fade_out": SubResource("Animation_nekgx")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxxdo"]
+size = Vector2(47, 162)
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_041ro")
@@ -128,7 +202,7 @@ position = Vector2(21, -27)
 position = Vector2(5454, -1109)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(-3772, 798)
+position = Vector2(-2398, 1046)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)
@@ -479,11 +553,15 @@ position = Vector2(1632, 943)
 modulate = Color(1, 0.44324, 0.269822, 1)
 z_index = 99
 material = SubResource("CanvasItemMaterial_flpb6")
-position = Vector2(-2559, 1099)
+position = Vector2(-2624.99, 1003.64)
 rotation = -0.605357
-scale = Vector2(1, 1.12719)
+scale = Vector2(1, 1.35369)
 texture = ExtResource("19_flpb6")
 offset = Vector2(0, 256)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="LightSources/Sprite2D"]
+position = Vector2(-103.357, 281.676)
+occluder = SubResource("OccluderPolygon2D_wxxdo")
 
 [node name="Sprite2D2" type="Sprite2D" parent="LightSources"]
 modulate = Color(1, 0.443137, 0.270588, 1)
@@ -666,3 +744,116 @@ position = Vector2(2576, 384)
 
 [node name="Torch11" parent="LightSources" instance=ExtResource("20_n3ge2")]
 position = Vector2(1856, 213)
+
+[node name="Tutorial" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -2248.0
+offset_top = 1163.0
+offset_right = -2208.0
+offset_bottom = 1203.0
+script = ExtResource("21_wxxdo")
+
+[node name="Label" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = -150.0
+offset_top = 96.0
+offset_right = -96.0
+offset_bottom = 121.0
+theme_override_fonts/font = ExtResource("21_v6uk5")
+theme_override_font_sizes/font_size = 9
+text = "Move with
+'WASD'"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 75.0
+offset_right = 154.0
+offset_bottom = 100.0
+theme_override_fonts/font = ExtResource("21_v6uk5")
+theme_override_font_sizes/font_size = 9
+text = "Jump with
+'SPACE'"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 406.0
+offset_top = 17.0
+offset_right = 472.0
+offset_bottom = 42.0
+theme_override_fonts/font = ExtResource("21_v6uk5")
+theme_override_font_sizes/font_size = 9
+text = "Attack with
+'J'"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 276.0
+offset_top = -223.0
+offset_right = 342.0
+offset_bottom = -198.0
+theme_override_fonts/font = ExtResource("21_v6uk5")
+theme_override_font_sizes/font_size = 9
+text = "Drop Through 
+Platforms with
+'S' + 'SPACE'"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 255.0
+offset_top = -484.0
+offset_right = 339.0
+offset_bottom = -445.0
+theme_override_fonts/font = ExtResource("21_v6uk5")
+theme_override_font_sizes/font_size = 9
+text = "Sprint with
+holding
+'SHIFT'"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = 146.0
+offset_top = -484.0
+offset_right = 230.0
+offset_bottom = -445.0
+theme_override_fonts/font = ExtResource("21_v6uk5")
+theme_override_font_sizes/font_size = 9
+text = "Shield Attacks
+while holding
+'K'"
+horizontal_alignment = 1
+
+[node name="Label7" type="Label" parent="Tutorial"]
+layout_mode = 0
+offset_left = -86.0
+offset_top = -484.0
+offset_right = 16.0
+offset_bottom = -445.0
+theme_override_fonts/font = ExtResource("21_v6uk5")
+theme_override_font_sizes/font_size = 9
+text = "Be Careful
+These two actions
+use stamina"
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial"]
+libraries = {
+&"": SubResource("AnimationLibrary_e3i2i")
+}
+
+[node name="tutorial_finished" type="Area2D" parent="Tutorial"]
+position = Vector2(-726, -498)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tutorial/tutorial_finished"]
+shape = SubResource("RectangleShape2D_wxxdo")
+debug_color = Color(0.239216, 0.988235, 0.431373, 0.564706)

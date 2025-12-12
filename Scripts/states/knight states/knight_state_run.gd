@@ -8,7 +8,6 @@ class_name KnightStateRun extends KnightState
 var current_acceleration : float 
 var current_direction : float = 0
 var target_speed : float
-var input_enabled : bool = true
 var sprint_held : bool = false
 
 
@@ -33,7 +32,7 @@ func exit() -> void:
 
 
 func handle_input( _event : InputEvent ) -> KnightState:
-	if input_enabled:
+	if knight.knight_state_machine.input_enabled:
 		if _event.is_action_pressed("sprint"): #update the target speed to running speed
 			if KnightHud.stamina_progress_bar.value <= 0.1: #prevent sprinting if no stamina
 				target_speed = move_speed 
@@ -69,7 +68,7 @@ func physics_process( _delta : float ) -> KnightState:
 	if not knight.is_on_floor(): # if we arent on the floor we are falling
 		return fall
 	
-	if input_enabled:
+	if knight.knight_state_machine.input_enabled:
 		if direction.x == 0: #if the player isnt holding a direction on any axis return to idle
 			return idle
 		elif direction.y > 0: #pressing the down key 

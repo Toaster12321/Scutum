@@ -7,7 +7,6 @@ class_name KnightStateFall extends KnightState
 
 var coyote_timer : float
 var move_speed : float
-var input_enabled : bool = true
 
 func init() -> void:
 	pass
@@ -30,7 +29,7 @@ func exit() -> void:
 
 
 func handle_input( _event : InputEvent ) -> KnightState:
-	if input_enabled:
+	if knight.knight_state_machine.input_enabled:
 		if coyote_timer > 0: #if there is coyote time jump is still possible despite location
 			if _event.is_action_pressed("jump"):
 				return jump
