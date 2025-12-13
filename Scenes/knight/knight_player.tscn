@@ -898,7 +898,7 @@ tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "clips": [{
-"end_offset": 2.2,
+"end_offset": 2.20304,
 "start_offset": 0.0,
 "stream": ExtResource("9_dd26y")
 }],
@@ -1098,7 +1098,7 @@ tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "clips": [{
-"end_offset": 2.2,
+"end_offset": 2.20456,
 "start_offset": 0.0,
 "stream": ExtResource("9_dd26y")
 }],
@@ -3329,7 +3329,7 @@ height = 36.0
 radius = 26.0192
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0i80"]
-size = Vector2(20, 8)
+size = Vector2(20, 14)
 
 [sub_resource type="Animation" id="Animation_2frtv"]
 length = 0.001
@@ -3569,7 +3569,6 @@ hframes = 10
 shadow_size = Vector2(0.45, 0.09)
 
 [node name="Hitbox" parent="." instance=ExtResource("18_ch8o0")]
-visible = false
 position = Vector2(0, -18)
 collision_layer = 2
 
@@ -3578,7 +3577,6 @@ shape = SubResource("CapsuleShape2D_34edh")
 debug_color = Color(0.619411, 0.534763, 3.85046e-07, 0.42)
 
 [node name="ShieldHitbox" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -18)
 collision_layer = 2
 collision_mask = 0
@@ -3605,7 +3603,6 @@ debug_color = Color(1, 0.0118072, 0.01923, 0.42)
 [node name="Interactions" type="Node2D" parent="."]
 
 [node name="InteractArea" type="Area2D" parent="Interactions"]
-visible = false
 position = Vector2(0, -10)
 collision_layer = 4
 collision_mask = 0
@@ -3613,7 +3610,7 @@ monitoring = false
 script = ExtResource("31_dd26y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/InteractArea"]
-position = Vector2(0, 6)
+position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_c0i80")
 debug_color = Color(0.264474, 0.633552, 9.62615e-07, 0.42)
 

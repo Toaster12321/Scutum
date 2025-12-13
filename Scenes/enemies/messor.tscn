@@ -781,7 +781,6 @@ collision_layer = 256
 collision_mask = 48
 motion_mode = 1
 script = ExtResource("1_g6ebq")
-max_hp = 1
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"

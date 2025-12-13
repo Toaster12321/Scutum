@@ -24,7 +24,8 @@ func enter() -> void:
 
 func exit() -> void:
 	attacking = false
-	knight.animation_player.animation_finished.disconnect( end_attack ) #disconnect the signal
+	if knight.animation_player.animation_finished.is_connected( end_attack ):
+		knight.animation_player.animation_finished.disconnect( end_attack ) #disconnect the signal
 	hurtbox.monitoring =  false #turn off monitoring for hurtbox
 	pass
 

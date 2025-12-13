@@ -27,7 +27,6 @@ func enter() -> void:
 
 func exit() -> void:
 	_anim_finished = false #reset anim finished
-	knight.animation_player.stop()
 	if knight.animation_player.animation_finished.is_connected( _on_anim_finished ):
 		knight.animation_player.animation_finished.disconnect( _on_anim_finished ) #disconnect signal
 

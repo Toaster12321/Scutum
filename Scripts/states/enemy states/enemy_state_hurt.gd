@@ -72,7 +72,7 @@ func _on_enemy_damaged( hurtbox : Hurtbox ) -> void: #when enemy damaged signal 
 				anim = enemy.animation_player.current_animation
 			if anim != "" and anim.begins_with("casting"): #deathbringer casting animation
 				enemy.invulnerable = true
-				enemy.effect_animations.play("flash")
+				effect_animations.play("flash")
 				await get_tree().create_timer(0.4).timeout
 				enemy.invulnerable = false
 				return

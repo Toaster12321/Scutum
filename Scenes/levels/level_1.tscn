@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://bh5be65ovlra8"]
+[gd_scene load_steps=40 format=4 uid="uid://bh5be65ovlra8"]
 
 [ext_resource type="Script" uid="uid://eik7ipt6pm44" path="res://Scripts/general/level.gd" id="1_041ro"]
 [ext_resource type="PackedScene" uid="uid://dm1dngg1xrnm7" path="res://Scenes/levels/tilemaplvl1.tscn" id="2_8ffim"]
@@ -63,9 +63,6 @@ size = Vector2(71, 16)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_flpb6"]
 blend_mode = 1
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wxxdo"]
-polygon = PackedVector2Array(0.357422, -0.392822, 222.021, 113.501, 225.529, 235.675, -77.6462, 81.5847)
 
 [sub_resource type="Gradient" id="Gradient_flpb6"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
@@ -317,12 +314,12 @@ position = Vector2(-3789, -288)
 patrol_range = 200
 
 [node name="PatrolLocation" parent="DeathBringer" instance=ExtResource("11_sskdo")]
-position = Vector2(-128, 1)
+position = Vector2(-128, -6)
 node_number_text = "1"
 wait_time = 1.0
 
 [node name="PatrolLocation2" parent="DeathBringer" instance=ExtResource("11_sskdo")]
-position = Vector2(118, -2)
+position = Vector2(116, -6)
 node_number_text = "2"
 wait_time = 1.0
 
@@ -559,10 +556,6 @@ scale = Vector2(1, 1.35369)
 texture = ExtResource("19_flpb6")
 offset = Vector2(0, 256)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="LightSources/Sprite2D"]
-position = Vector2(-103.357, 281.676)
-occluder = SubResource("OccluderPolygon2D_wxxdo")
-
 [node name="Sprite2D2" type="Sprite2D" parent="LightSources"]
 modulate = Color(1, 0.443137, 0.270588, 1)
 z_index = 99
@@ -579,6 +572,7 @@ scale = Vector2(4168, 909.5)
 color = Color(0.927686, 0.806078, 0.293016, 1)
 energy = 0.9
 blend_mode = 1
+shadow_enabled = true
 texture = SubResource("GradientTexture1D_n3ge2")
 
 [node name="PointLight2D5" type="PointLight2D" parent="LightSources"]

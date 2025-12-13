@@ -11,9 +11,10 @@ enum EnemyType {DEATHBRINGER, WOLF, BAT, WARRIOR}
 var deceleration : float = 60.0
 var _charge_deceleration : float = 50.0
 var _aggro_timer : float = 0.0
-var leap_strength : float = 150
+var leap_strength : float = 180
 var _can_see_player : bool = false
 var _assess_player : bool = false
+var finding_player : bool = false
 var next_state : EnemyState
 var chance : int
 
@@ -82,6 +83,9 @@ func process( _delta : float ) -> EnemyState:
 	
 	if enemy.animation_player.current_animation == "charge": #dont move during charge animation
 		enemy.velocity = Vector2.ZERO
+	
+	if finding_player == true:
+		enemy.velocity = position.direction_to(GlobalPlayerManager.knight.global_position) * 50
 	return null
 
 
@@ -130,7 +134,8 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 		EnemyType.WOLF:
 			if _anim =="charge": #if last animation was charge
 				enemy.animation_player.stop() #stop last animation
-				await get_tree().create_timer(0.1).timeout  
+				_assess_timer.start(0.1)  
+				await _assess_timer.timeout
 				enemy.update_animation("attack") #attack after short pause
 				enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
 			elif _anim == "attack_right" or _anim == "attack_left":
@@ -168,7 +173,10 @@ func _on_attack_animation_finished( _anim : String ) -> void:
 					enemy.update_animation("attack")
 					enemy.velocity = Vector2(leap_strength * enemy.facing_direction, enemy.velocity.y) #update velocity to a leapping burst of speed
 				else:
-					state_machine.change_state(wander)#otherwise wander
+					finding_player = true#otherwise find player and attack as a failsafe
+					await vision_area.player_enetered
+					finding_player = false
+					state_machine.change_state(self)
 			
 		EnemyType.WARRIOR:
 			if _anim == "attack_right" or _anim == "attack_left":
