@@ -45,11 +45,11 @@ func load_new_level(
 	await get_tree().process_frame
 	
 	#ONLY FOR DEBUG, MESSES UP SAVE/LOAD FUNCTIONALITY
-	var level_root = get_tree().current_scene #get current scene
-	if level_root: #if it has a spawn location in scene set spawn position to that location
-		var spawn_location = level_root.get_node_or_null("PlayerSpawn")
-		if spawn_location:
-			GlobalPlayerManager.set_player_position(spawn_location.global_position)
+	#var level_root = get_tree().current_scene #get current scene
+	#if level_root: #if it has a spawn location in scene set spawn position to that location
+		#var spawn_location = level_root.get_node_or_null("PlayerSpawn")
+		#if spawn_location:
+			#GlobalPlayerManager.set_player_position(spawn_location.global_position)
 	
 	level_loaded.emit() #emit level is done loading
 	
