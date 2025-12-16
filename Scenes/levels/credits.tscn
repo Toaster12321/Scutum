@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dff2o8tt1iixq"]
+[gd_scene load_steps=7 format=3 uid="uid://dff2o8tt1iixq"]
 
 [ext_resource type="Script" uid="uid://3jjojnlbsfoe" path="res://Scripts/general/credits.gd" id="1_a3ejy"]
 [ext_resource type="FontFile" uid="uid://bo54k3junwmb3" path="res://Fonts/PixeloidSansBold-PKnYd.ttf" id="1_k63oo"]
+[ext_resource type="AudioStream" uid="uid://d00hs4iwb8jgb" path="res://Audio/BGM/credits.mp3" id="2_01c00"]
 [ext_resource type="FontFile" uid="uid://bd0umxthosq3g" path="res://Fonts/PixeloidMono-d94EV.ttf" id="2_x8r45"]
 [ext_resource type="PackedScene" uid="uid://tis8dvln4oqr" path="res://Scenes/knight/player_spawn.tscn" id="3_btky4"]
 [ext_resource type="FontFile" uid="uid://bydwdw7nvbs45" path="res://Fonts/PixeloidSans-mLxMm.ttf" id="3_vvvsi"]
@@ -14,6 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_a3ejy")
+audio = ExtResource("2_01c00")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -300,13 +302,14 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -50.0
-offset_top = 5.5
-offset_right = 226.0
-offset_bottom = 52.5
+offset_top = 1.5
+offset_right = 262.0
+offset_bottom = 73.5
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_vvvsi")
 theme_override_font_sizes/font_size = 18
 text = "BGM - Tom Feldmann (itch.io)
+Credits Music - Alkakrab (itch.io)
 Effects - Helton Yan (itch.io)"
 
 [node name="Label8" type="Label" parent="Labels"]
@@ -315,9 +318,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -115.0
-offset_top = 2111.0
+offset_top = 2134.0
 offset_right = 87.0
-offset_bottom = 2183.0
+offset_bottom = 2206.0
 grow_horizontal = 2
 theme_override_fonts/font = ExtResource("1_k63oo")
 theme_override_font_sizes/font_size = 18

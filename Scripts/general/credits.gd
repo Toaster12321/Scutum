@@ -1,10 +1,12 @@
 extends Control
 
+@export var audio : AudioStream
+
 @onready var labels: Control = $Labels
 
 
-
 func _ready() -> void:
+	GlobalAudioManager.play_music(audio)
 	GlobalPlayerManager.process_mode = Node.PROCESS_MODE_DISABLED
 	GlobalPlayerManager.knight.visible = false
 	KnightHud.visible = false #turn off hud
@@ -14,7 +16,7 @@ func _ready() -> void:
 
 func start_credits() -> void:
 	var start_pos = Vector2(labels.position.x, size.y - 200) # below screen
-	var end_pos = Vector2(labels.position.x, -labels.size.y - 800) # offscreen above
+	var end_pos = Vector2(labels.position.x, -labels.size.y - 850) # offscreen above
 	
 	labels.position = start_pos
 	

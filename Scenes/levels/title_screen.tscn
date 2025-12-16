@@ -60,6 +60,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(231, 111)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ScutumShield:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_wh42d"]
 resource_name = "default_shield"
@@ -89,6 +101,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(231, 400), Vector2(231, 300), Vector2(231, 200), Vector2(231, 111)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ScutumShield:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_68x5q"]
 _data = {
@@ -109,6 +133,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(0.305882, 0.345098, 0.419608, 0.271895)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ScutumTitle:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_8w5qn"]
@@ -137,6 +173,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.305882, 0.345098, 0.419608, 0), Color(0.305882, 0.345098, 0.419608, 0.254902), Color(0.305882, 0.345098, 0.419608, 0.509804), Color(0.305882, 0.345098, 0.419608, 0.760784), Color(0.305882, 0.345098, 0.419608, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../ScutumTitle:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_02ngo"]
@@ -259,11 +307,13 @@ theme_override_font_sizes/font_size = 9
 text = "Credits"
 
 [node name="ScutumShield" type="Sprite2D" parent="CanvasLayer/Control"]
+visible = false
 modulate = Color(0.803016, 0.806447, 0.797491, 1)
 position = Vector2(231, 111)
 texture = ExtResource("7_nydo7")
 
 [node name="ScutumTitle" type="Sprite2D" parent="CanvasLayer/Control"]
+visible = false
 modulate = Color(0.305882, 0.345098, 0.419608, 0.271895)
 position = Vector2(244, 40)
 scale = Vector2(0.6, 0.6)

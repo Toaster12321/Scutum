@@ -119,6 +119,7 @@ func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
 
 
 func boss_defeated() -> void:
+	timer.stop()
 	GlobalPlayerManager.knight.knight_state_machine.input_enabled = false #disable knight input
 	
 	var tween  = get_tree().create_tween() #tween for smoothing
