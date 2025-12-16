@@ -8,7 +8,7 @@ var knight_spawned : bool = false
 func _ready() -> void:
 	add_player_instance() #add knight on startup
 	await get_tree().create_timer(0.2).timeout #after 0.2 seconds knight has spawned
-	knight_spawned = true 
+	knight_spawned = true
 	pass
 
 
@@ -25,6 +25,7 @@ func set_health( hp : int, max_hp : int ) -> void:
 
 
 func set_player_position( _new_pos : Vector2 ) -> void: #function that sets the knight at a set of coords
+	
 	knight.global_position = _new_pos
 	pass
 

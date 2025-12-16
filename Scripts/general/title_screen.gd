@@ -45,6 +45,7 @@ func setup_title_screen() -> void:
 
 
 func start_game() -> void:
+	GlobalPlayerManager.knight_spawned = false
 	GlobalLevelManager.load_new_level( START_LEVEL, "", Vector2.ZERO ) #load start level
 	pass
 

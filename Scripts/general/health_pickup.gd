@@ -6,7 +6,16 @@ class_name HealthPickup extends Area2D
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+var pickup_id : String = "" 
+
 func _ready() -> void:
+	if pickup_id == "": 
+		pickup_id = scene_file_path + ":" + str(global_position) #set unique ID for each health pickup
+	
+	if GlobalSaveManager.check_persistent_value(pickup_id): #if it has already been picked up queue_free on spawn
+		queue_free()
+		return
+	
 	if audio:
 		audio.stream = pickup_audio #set audio track
 		audio.volume_db = audio_volume
@@ -24,5 +33,6 @@ func _on_player_entered( _area: Area2D ) -> void:
 		
 		GlobalPlayerManager.knight.update_hp(1) #heal 1 hp
 		queue_free() #free node
+		GlobalSaveManager.add_persistence_value(pickup_id) #add to persistence array as picked up
 	else:
 		return

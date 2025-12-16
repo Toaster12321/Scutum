@@ -199,7 +199,7 @@ position = Vector2(21, -27)
 position = Vector2(5454, -1109)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(2455, -215)
+position = Vector2(-2369, 1060)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)
