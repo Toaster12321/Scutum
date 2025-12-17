@@ -396,7 +396,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "clips": [{
-"end_offset": 8.0,
+"end_offset": 8.15,
 "start_offset": 0.05,
 "stream": ExtResource("3_cr2n3")
 }],
@@ -574,11 +574,10 @@ shadow_size = Vector2(0.8, 0.09)
 
 [node name="VisionArea" parent="Sprite" instance=ExtResource("2_31o0l")]
 unique_name_in_owner = true
-visible = false
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite/VisionArea"]
 position = Vector2(-4, -1)
-polygon = PackedVector2Array(40, 10, 40, -50, -80, -50, -80, 10)
+polygon = PackedVector2Array(50, 10, 50, -50, -80, -50, -80, 10)
 
 [node name="Hitbox" parent="." instance=ExtResource("5_vetev")]
 visible = false
