@@ -3440,12 +3440,10 @@ libraries = {
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_vl55t")
 
 [node name="CollisionShape2D_Crouch" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_agcwe")
 disabled = true

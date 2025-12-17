@@ -95,13 +95,12 @@ func show_game_over_screen() -> void:
 	animation_player.play("game_over_screen")
 	await animation_player.animation_finished
 	
-	try_again_button.grab_focus()
 	pass
 
 
 func reset_level() -> void:
 	await fade_to_black()
-	GlobalLevelManager.load_new_level(level_1, "", Vector2.ZERO)
+	GlobalSaveManager.load_game()
 	pass
 
 
