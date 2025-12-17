@@ -86,15 +86,16 @@ func hide_game_over_screen() -> void:
 	game_over.visible = false
 	game_over.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	game_over.modulate = Color(1,1,1,0)
+	print(game_over.mouse_filter)
 
 
 func show_game_over_screen() -> void:
 	game_over.visible = true
 	game_over.mouse_filter = Control.MOUSE_FILTER_STOP
-	
+	print(game_over.mouse_filter)
 	animation_player.play("game_over_screen")
 	await animation_player.animation_finished
-	
+	print(game_over.mouse_filter)
 	pass
 
 

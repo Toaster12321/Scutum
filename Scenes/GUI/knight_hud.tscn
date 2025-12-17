@@ -244,6 +244,7 @@ _data = {
 }
 
 [node name="KnightHUD" type="CanvasLayer"]
+layer = 2
 script = ExtResource("1_em4ri")
 
 [node name="Control" type="Control" parent="."]
