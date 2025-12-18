@@ -48,3 +48,9 @@ func fade_out_and_stop( player : AudioStreamPlayer ) -> void:
 	await tween.finished
 	player.stop()
 	pass
+
+
+func stop_music() -> void:
+	var current_player : AudioStreamPlayer
+	current_player = music_players[ current_music_player ]
+	fade_out_and_stop(current_player)
