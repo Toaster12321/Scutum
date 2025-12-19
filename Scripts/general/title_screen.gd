@@ -9,18 +9,20 @@ const START_LEVEL : String = "res://Scenes/levels/level_1.tscn" #path to 1st lev
 @onready var continue_button: Button = $CanvasLayer/Control/ContinueButton
 @onready var quit_button: Button = $CanvasLayer/Control/QuitButton
 @onready var credits_button: Button = $CanvasLayer/Control/CreditsButton
+@onready var options_button: Button = $CanvasLayer/Control/OptionsButton
 @onready var shield_animation_player: AnimationPlayer = $CanvasLayer/Control/ShieldAnimationPlayer
 @onready var title_animation_player: AnimationPlayer = $CanvasLayer/Control/TitleAnimationPlayer
-
+@onready var options: Control = $CanvasLayer/Control/Options
+@onready var color_rect: ColorRect = $CanvasLayer/Control/ColorRect
 
 
 func _ready() -> void:
 	get_tree().paused = true #pause all other normal functions
-	
-
+	color_rect.visible = false
+	options.visible = false
 	GlobalPlayerManager.knight.visible = false #turn off knight
 	KnightHud.visible = false #turn off hud
-	PauseMenu.process_mode = Node.PROCESS_MODE_DISABLED#turn off pause menu
+	PauseMenu.on_title_screen = true#turn off pause menu
 	
 	if GlobalSaveManager.get_save_file() == null:
 		continue_button.disabled = true
@@ -38,6 +40,7 @@ func setup_title_screen() -> void:
 	quit_button.pressed.connect( quit_game )
 	continue_button.pressed.connect( continue_game )
 	credits_button.pressed.connect( show_credits )
+	options_button.pressed.connect( show_options )
 	start_button.grab_focus()
 	shield_animation_player.play("default_shield") #play animations
 	title_animation_player.play("default_title")
@@ -63,11 +66,17 @@ func quit_game() -> void:
 func exit_title_screen() -> void:
 	GlobalPlayerManager.knight.visible = true # turn on knight
 	KnightHud.visible = true # turn on hud
-	PauseMenu.process_mode = Node.PROCESS_MODE_ALWAYS#turn on pause menu
+	PauseMenu.on_title_screen = false#turn on pause menu
 	self.queue_free() #get rid of title screen
 	pass
 
 
 func show_credits() -> void:
 	GlobalLevelManager.load_new_level("res://Scenes/levels/credits.tscn", "", Vector2.ZERO)
+	pass
+
+
+func show_options() -> void:
+	color_rect.visible = true
+	options.visible = true
 	pass

@@ -1,6 +1,6 @@
 class_name KnightStateJump extends KnightState
 
-@export var jump_velocity : float = 350.0 #jump height
+@export var jump_velocity : float = 400.0 #jump height
 @export var base_move_speed : float = 100
 @export var acceleration : float = 8 #how fast we accelerate the jump
 

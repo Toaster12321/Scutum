@@ -3429,7 +3429,7 @@ z_index = 1
 collision_mask = 48
 floor_constant_speed = true
 floor_block_on_wall = false
-floor_max_angle = 1.15192
+floor_max_angle = 1.22173
 floor_snap_length = 3.0
 script = ExtResource("1_5m4qd")
 
@@ -3473,7 +3473,6 @@ sprint_speed = 175.0
 [node name="Jump" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
 script = ExtResource("5_2frtv")
-jump_velocity = 400.0
 
 [node name="Fall" type="Node2D" parent="KnightStateMachine"]
 unique_name_in_owner = true
@@ -3487,7 +3486,7 @@ script = ExtResource("7_xpw4a")
 [node name="RayCast2D" type="RayCast2D" parent="KnightStateMachine/Crouch"]
 position = Vector2(1, 0)
 enabled = false
-target_position = Vector2(0, 10)
+target_position = Vector2(0, 8)
 collision_mask = 32
 hit_from_inside = true
 

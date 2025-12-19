@@ -1,16 +1,18 @@
 extends Control
 
-@onready var res_option_button: OptionButton = $VBoxContainer2/res_OptionButton
-@onready var resolution_confirmation: Control = $"../ResolutionConfirmation"
-@onready var timer: Timer = $"../ResolutionConfirmation/Timer"
-@onready var timer_label: Label = $"../ResolutionConfirmation/TimerLabel"
-@onready var res_yes_button: Button = $"../ResolutionConfirmation/HBoxContainer/ResYesButton"
-@onready var res_no_button: Button = $"../ResolutionConfirmation/HBoxContainer/ResNoButton"
-@onready var options_menu: Control = $"."
-@onready var fullscreen_checkbox: CheckBox = $VBoxContainer2/FullscreenCheckbox
-@onready var v_sync_check_box: CheckBox = $VBoxContainer2/VSyncCheckBox
-@onready var scale_slider: HSlider = $VBoxContainer2/ScaleBox/ScaleSlider
-@onready var scale_label: Label = $VBoxContainer2/ScaleBox/ScaleLabel
+@onready var res_option_button: OptionButton = $OptionsMenu/VBoxContainer2/res_OptionButton
+@onready var resolution_confirmation: Control = $ResolutionConfirmation
+@onready var timer: Timer = $ResolutionConfirmation/Timer
+@onready var timer_label: Label = $ResolutionConfirmation/TimerLabel
+@onready var res_yes_button: Button = $ResolutionConfirmation/HBoxContainer/ResYesButton
+@onready var res_no_button: Button = $ResolutionConfirmation/HBoxContainer/ResNoButton
+@onready var options_menu: Control = $OptionsMenu
+@onready var fullscreen_checkbox: CheckBox = $OptionsMenu/VBoxContainer2/FullscreenCheckbox
+@onready var v_sync_check_box: CheckBox = $OptionsMenu/VBoxContainer2/VSyncCheckBox
+@onready var scale_slider: HSlider = $OptionsMenu/VBoxContainer2/ScaleBox/ScaleSlider
+@onready var scale_label: Label = $OptionsMenu/VBoxContainer2/ScaleBox/ScaleLabel
+@onready var return_button: Button = $OptionsMenu/ReturnButton
+@onready var color_rect: ColorRect = $"../ColorRect"
 
 var resolutions : Dictionary = {
 	"3840x2160": Vector2i(3840,2160),
@@ -33,9 +35,11 @@ var music_bus = AudioServer.get_bus_index("Music")
 func _ready() -> void:
 	res_yes_button.pressed.connect(_on_res_yes_pressed)
 	res_no_button.pressed.connect(_on_res_no_pressed)
+	return_button.pressed.connect( _on_return_pressed )
 	resolution_confirmation.visible = false
 	add_resolutions() #populate dropdown resolution menu
 	check_variables()
+	update_button_values()
 
 
 func check_variables() -> void:
@@ -176,3 +180,12 @@ func _on_v_sync_check_box_toggled(toggled_on: bool) -> void:
 	else:
 		DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
 	pass # Replace with function body.
+
+
+func _on_return_pressed() -> void:
+	if PauseMenu.on_title_screen == true:
+		visible = false
+		color_rect.visible = false
+	else:
+		PauseMenu.hide_pause_menu()
+	pass

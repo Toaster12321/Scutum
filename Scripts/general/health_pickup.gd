@@ -31,7 +31,7 @@ func _on_player_entered( _area: Area2D ) -> void:
 		audio_player.play() 
 		audio_player.finished.connect(audio_player.queue_free) #queue free the duplicate once done
 		
-		GlobalPlayerManager.knight.update_hp(1) #heal 1 hp
+		GlobalPlayerManager.knight.update_hp(2) #heal 2 hp
 		queue_free() #free node
 		GlobalSaveManager.add_persistence_value(pickup_id) #add to persistence array as picked up
 	else:

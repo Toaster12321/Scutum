@@ -1,6 +1,6 @@
 class_name KnightStateIdle extends KnightState
 
-@export var deceleration : float = 8
+@export var deceleration : float = 16
 
 func init() -> void:
 	pass

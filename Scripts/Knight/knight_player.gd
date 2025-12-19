@@ -28,6 +28,7 @@ var default_cam_position_y : float
 var default_cam_position_x : float
 var default_cam_position : Vector2 = Vector2(default_cam_position_x,default_cam_position_y)
 var facing_direction : float = 1
+var drop_start_y : float = 0.0
 
 signal player_damaged( hurtbox : Hurtbox )
 signal damage_blocked( hurtbox : Hurtbox )
@@ -38,8 +39,8 @@ var hp : int = 6
 var max_hp : int = 6
 
 func _ready() -> void:
-	if !GlobalSaveManager.has_seen_intro(): #check to see if we have seen the intro cutscene yet
-		knight_state_machine.input_enabled = false
+	#if !GlobalSaveManager.has_seen_intro(): #check to see if we have seen the intro cutscene yet
+		#knight_state_machine.input_enabled = false
 		
 	GlobalPlayerManager.knight = self #initialize player manager reference
 	knight_state_machine.init(self) #inistialize state machine to player
@@ -146,3 +147,10 @@ func _on_attack_cooldown_finished() -> void:
 func lock_attack() -> void:
 	attack_locked = true #set attacks locked and start cooldown
 	attack_cooldown_timer.start()
+
+
+func set_platform_collision( enabled : bool ) -> void:
+	if enabled:
+		set_collision_mask_value(6,true) # 6 is one way ground collision
+	else:
+		set_collision_mask_value(6,false)

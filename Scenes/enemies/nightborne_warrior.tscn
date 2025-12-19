@@ -469,8 +469,8 @@ hframes = 23
 vframes = 5
 
 [node name="CastShadow" parent="Sprite/Sprite2D" instance=ExtResource("2_fabfk")]
-position = Vector2(-1.5, 24)
-shadow_size = Vector2(0.4, 0.2)
+position = Vector2(-1.5, 22.5)
+shadow_size = Vector2(0.6, 0.2)
 
 [node name="VisionArea" type="Area2D" parent="Sprite"]
 unique_name_in_owner = true

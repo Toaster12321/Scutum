@@ -45,7 +45,10 @@ func process( _delta : float ) -> KnightState:
 func physics_process( _delta : float ) -> KnightState:
 	coyote_timer -= _delta #count down timer
 	knight.update_velocity( direction.x * move_speed, acceleration )#update our velocity in this state with direction, move speed at a delta of acceleration
-	
 	if knight.is_on_floor():#update to idle state if on floor
+		knight.set_platform_collision(true) #turn collision back on if dropping through platforms
 		return idle
+	if not knight.get_collision_mask_value(6): #if we are falling through a one way platform
+		if knight.global_position.y > knight.drop_start_y + 10.0: #check to see if we've fallen at least 10 pixels before renabling collision
+			knight.set_platform_collision(true)
 	return null

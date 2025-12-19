@@ -14,7 +14,7 @@ signal hidden
 @onready var pause_buttons: VBoxContainer = $Control/Pause/PauseButtons
 @onready var options_menu: Control = $Control/Options
 @onready var pause_menu: Control = $Control/Pause
-@onready var animation_player: AnimationPlayer = $Control/Options/AnimationPlayer
+@onready var animation_player: AnimationPlayer = $Control/AnimationPlayer
 @onready var fade_to_black_rect: ColorRect = $Control/FadeToBlack
 @onready var button_system: Button = $Control/Pause/PauseButtons/Button_System
 @onready var system_menu: Control = $Control/System
@@ -22,6 +22,7 @@ signal hidden
 
 
 var is_paused : bool = false
+var on_title_screen : bool = false
 
 func _ready() -> void:
 	hide_pause_menu() #hide pause UI
@@ -40,13 +41,14 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause"):
-		if is_paused == false:
-			show_pause_menu()
-			options_menu.update_button_values()
-		else:
-			hide_pause_menu()
-		get_viewport().set_input_as_handled() #set the viewport event as handled tpo not be processed by other nodes
+	if ! on_title_screen:
+		if event.is_action_pressed("pause"):
+			if is_paused == false:
+				show_pause_menu()
+				options_menu.update_button_values()
+			else:
+				hide_pause_menu()
+			get_viewport().set_input_as_handled() #set the viewport event as handled tpo not be processed by other nodes
 	pass
 
 
