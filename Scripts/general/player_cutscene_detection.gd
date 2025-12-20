@@ -48,11 +48,16 @@ func _on_area_entered( area : Area2D ) -> void:
 func play_boss_cutscene() -> void:
 	GlobalAudioManager.play_music(boss_music)
 	GlobalPlayerManager.knight.knight_state_machine.input_enabled = false #disable input for duration of cutscene
+	KnightHud.in_cutscene = true #stops stamina from draining
+	KnightHud.visible = false
 	
 	await _move_knight_to_position(knight_automove_target.global_position) #wait until knight is in position then emit signal
 	knight_in_position.emit()
 	
 	await boss_signal.cutscene_finished
+	KnightHud.in_cutscene = false #stamina back to normal
+	KnightHud.set_stamina(100)
+	KnightHud.visible = true
 	GlobalPlayerManager.knight.knight_state_machine.input_enabled = true 
 	pass
 

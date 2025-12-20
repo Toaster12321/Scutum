@@ -45,8 +45,15 @@ func enter() -> void:
 	#knight.update_direction( _normalized_direction.x ) #update knight's facing direction
 	
 	knight.animation_player.play("hit") #play hit + damaged animations and start i-frames
+	
 	knight.make_invulnerable( invulnerable_duration )
-	knight.effect_animation_player.play("damaged")
+	
+	if invulnerable_duration == 1.0:
+		knight.effect_animation_player.play("damaged")
+		print("damaged")
+	else:
+		knight.effect_animation_player.play("damaged_longer")
+		print("damaged longer")
 	
 	#camera shake?
 	pass
@@ -78,6 +85,11 @@ func physics_process( _delta : float ) -> KnightState:
 
 func _player_damaged( _hurtbox : Hurtbox ) -> void:
 	hurtbox = _hurtbox  #get passed hurtbox
+	if hurtbox.hurtbox_type == hurtbox.HurtboxType.BODY:
+		invulnerable_duration = 2.0
+	else:
+		invulnerable_duration = 1.0
+	
 	if knight.hp <= 0:
 		state_machine.change_state( death )
 	else:

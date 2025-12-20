@@ -15,6 +15,7 @@ var decrease_stamina_value : float = 0.0
 var increase_stamina_value : float = 0.0
 var increasing_stamina : bool = false
 var decreasing_stamina : bool = false
+var in_cutscene : bool = false
 var shields : Array[ ShieldGUI ] = [] #array of our shields (life)
 
 func _ready() -> void:
@@ -32,10 +33,11 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if decreasing_stamina:#lose stam
-		stamina_progress_bar.value -= decrease_stamina_value
-	if increasing_stamina:#increase stam
-		stamina_progress_bar.value += decrease_stamina_value
+	if !in_cutscene:
+		if decreasing_stamina:#lose stam
+			stamina_progress_bar.value -= decrease_stamina_value
+		if increasing_stamina:#increase stam
+			stamina_progress_bar.value += decrease_stamina_value
 
 
 func update_hp( _hp : int, _max_hp : int ) -> void:

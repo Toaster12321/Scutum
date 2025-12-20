@@ -598,7 +598,6 @@ shape = SubResource("CapsuleShape2D_op5nv")
 debug_color = Color(0.987006, 0.11121, 0, 0.42)
 
 [node name="AttackHurtbox" parent="." instance=ExtResource("6_36m5f")]
-visible = false
 position = Vector2(-15, -16)
 monitoring = false
 hurtbox_type = 1

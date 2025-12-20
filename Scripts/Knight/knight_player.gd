@@ -107,7 +107,7 @@ func _take_damage( hurtbox : Hurtbox ) -> void: #take damage function for player
 		return 
 	 
 	if hp > 0: #if we have hp decrease it
-		GlobalSignalManager.on_camera_feedback_requested.emit(20, .2, 300)
+		GlobalSignalManager.on_camera_feedback_requested.emit(20, .2, 300)# camera shake
 		update_hp( -hurtbox.damage )
 		player_damaged.emit( hurtbox ) #trigger the player damaged signal with hurtbox passed in
 	pass
