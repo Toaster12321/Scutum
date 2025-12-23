@@ -566,10 +566,10 @@ tracks/4/keys = {
 size = Vector2(35, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4sysc"]
-size = Vector2(52, 54)
+size = Vector2(56, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ctrji"]
-size = Vector2(80, 54)
+size = Vector2(85, 54)
 
 [sub_resource type="Animation" id="Animation_ctrji"]
 resource_name = "skill"
@@ -808,7 +808,6 @@ position = Vector2(0, -31)
 polygon = PackedVector2Array(-13, -30, 49, -30, 49, 28, -13, 28)
 
 [node name="SkillHurtbox" parent="." instance=ExtResource("5_g6ebq")]
-visible = false
 position = Vector2(-1, -31)
 monitoring = false
 damage = 2

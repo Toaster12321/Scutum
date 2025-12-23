@@ -39,8 +39,8 @@ var hp : int = 6
 var max_hp : int = 6
 
 func _ready() -> void:
-	#if !GlobalSaveManager.has_seen_intro(): #check to see if we have seen the intro cutscene yet
-		#knight_state_machine.input_enabled = false
+	if !GlobalSaveManager.has_seen_intro(): #check to see if we have seen the intro cutscene yet
+		knight_state_machine.input_enabled = false
 		
 	GlobalPlayerManager.knight = self #initialize player manager reference
 	knight_state_machine.init(self) #inistialize state machine to player

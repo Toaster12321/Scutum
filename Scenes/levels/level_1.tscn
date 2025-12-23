@@ -200,7 +200,7 @@ position = Vector2(21, -27)
 position = Vector2(5454, -1109)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(2440, -208)
+position = Vector2(-2359, 1053)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)
@@ -685,7 +685,7 @@ texture = ExtResource("19_flpb6")
 offset = Vector2(0, 256)
 
 [node name="Sprite2D7" type="Sprite2D" parent="LightSources/Parallax2D"]
-modulate = Color(0.639216, 0.737255, 1, 0.290196)
+modulate = Color(0.639216, 0.737255, 1, 0.564706)
 z_index = 99
 material = SubResource("CanvasItemMaterial_flpb6")
 position = Vector2(-947, -409)
