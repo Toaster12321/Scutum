@@ -6,7 +6,7 @@ const START_LEVEL : String = "res://Scenes/levels/level_1.tscn" #path to 1st lev
 
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 @onready var start_button: Button = $CanvasLayer/Control/StartButton
-@onready var continue_button: Button = $CanvasLayer/Control/ContinueButton
+#@onready var continue_button: Button = $CanvasLayer/Control/ContinueButton
 @onready var quit_button: Button = $CanvasLayer/Control/QuitButton
 @onready var credits_button: Button = $CanvasLayer/Control/CreditsButton
 @onready var options_button: Button = $CanvasLayer/Control/OptionsButton
@@ -24,7 +24,7 @@ func _ready() -> void:
 	KnightHud.visible = false #turn off hud
 	PauseMenu.on_title_screen = true#turn off pause menu
 	
-	continue_button.disabled = true
+	#continue_button.disabled = true
 	
 	setup_title_screen()
 	
@@ -37,7 +37,7 @@ func setup_title_screen() -> void:
 	GlobalAudioManager.play_music( title_music ) #play music
 	start_button.pressed.connect( start_game ) #connect start button function
 	quit_button.pressed.connect( quit_game )
-	continue_button.pressed.connect( continue_game )
+	#continue_button.pressed.connect( continue_game )
 	credits_button.pressed.connect( show_credits )
 	options_button.pressed.connect( show_options )
 	start_button.grab_focus()
@@ -53,8 +53,8 @@ func start_game() -> void:
 	pass
 
 
-func continue_game() -> void:
-	GlobalSaveManager.load_game()
+#func continue_game() -> void:
+	#GlobalSaveManager.load_game()
 
 
 func quit_game() -> void:
