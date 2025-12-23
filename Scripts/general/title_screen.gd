@@ -24,9 +24,8 @@ func _ready() -> void:
 	KnightHud.visible = false #turn off hud
 	PauseMenu.on_title_screen = true#turn off pause menu
 	
-	if GlobalSaveManager.get_save_file() == null:
-		continue_button.disabled = true
-		
+	continue_button.disabled = true
+	
 	setup_title_screen()
 	
 	GlobalLevelManager.level_load_started.connect( exit_title_screen ) #once level loaded has been emitted
