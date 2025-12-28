@@ -190,7 +190,7 @@ texture = ExtResource("5_uy8f0")
 position = Vector2(-3836, 804)
 
 [node name="Checkpoint" parent="Checkpoints" instance=ExtResource("7_n8oda")]
-position = Vector2(1031, -1043)
+position = Vector2(1070, -1043)
 
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("7_n8oda")]
 z_index = -1
@@ -200,7 +200,7 @@ position = Vector2(21, -27)
 position = Vector2(5454, -1109)
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("10_af3po")]
-position = Vector2(-2359, 1053)
+position = Vector2(-2361, 1060)
 
 [node name="Messor" parent="." node_paths=PackedStringArray("cutscene_detection") instance=ExtResource("7_dsuda")]
 position = Vector2(3074, -245)

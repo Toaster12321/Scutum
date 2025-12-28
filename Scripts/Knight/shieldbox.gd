@@ -4,6 +4,9 @@ class_name Shieldbox extends Area2D
 signal deflected( hurt_box : Hurtbox )
 
 func shield_damage( hurt_box : Hurtbox ) -> bool: #function to shield damage based off passed hurtbox scene
+	if hurt_box.hurtbox_type == Hurtbox.HurtboxType.BODY:
+		return false
+	
 	var shield_owner = get_parent() #owner is the knight
 	if shield_owner == null:
 		return false

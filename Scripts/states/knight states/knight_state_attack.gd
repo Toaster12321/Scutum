@@ -18,7 +18,9 @@ func enter() -> void:
 	await get_tree().create_timer( 0.075 ).timeout #creates slight delay before hitting
 	if attacking:
 		hurtbox.monitoring =  true #turn on monitoring for hurtbox
-	knight.animation_player.animation_finished.connect( end_attack ) #signal to show when the attack has finished
+	
+	if !knight.animation_player.animation_finished.is_connected( end_attack ):
+		knight.animation_player.animation_finished.connect( end_attack ) #signal to show when the attack has finished
 	pass
 
 

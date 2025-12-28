@@ -104,6 +104,7 @@ func anim_direction() -> String: #returns a left or right based on the current d
 
 func _take_damage( hurtbox : Hurtbox ) -> void: #take damage function for player
 	if invulnerable == true: #do nothing if we have been hit already
+		print("invulenrable")
 		return 
 	 
 	if hp > 0: #if we have hp decrease it

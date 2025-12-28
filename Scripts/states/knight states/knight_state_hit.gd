@@ -50,10 +50,8 @@ func enter() -> void:
 	
 	if invulnerable_duration == 1.0:
 		knight.effect_animation_player.play("damaged")
-		print("damaged")
 	else:
 		knight.effect_animation_player.play("damaged_longer")
-		print("damaged longer")
 	
 	#camera shake?
 	pass

@@ -352,6 +352,7 @@ libraries = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,4 +362,5 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.482353)
 
 [node name="Options" parent="CanvasLayer/Control" instance=ExtResource("8_wh42d")]
+visible = false
 layout_mode = 1

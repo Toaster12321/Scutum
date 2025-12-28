@@ -26,7 +26,7 @@ func enter() -> void:
 
 
 func exit() -> void:
-	KnightHud.increase_stamina(0.5) #increase stamina when leaving state
+	KnightHud.increase_stamina(0.2) #increase stamina when leaving state
 	knight.animation_player.speed_scale = 1 #reset animation speed
 	pass
 
@@ -57,7 +57,7 @@ func process( _delta : float ) -> KnightState:
 	if sprint_held: #decrease stam while sprinting 
 		KnightHud.decrease_stamina(0.1)
 	else:
-		KnightHud.increase_stamina(0.5)
+		KnightHud.increase_stamina(0.2)
 	
 	if KnightHud.stamina_progress_bar.value <= 0.1:
 		target_speed = move_speed #prevent sprinting if no stamina

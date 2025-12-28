@@ -53,13 +53,13 @@ func process( _delta : float ) -> KnightState:
 	if shielding:#decrease stamina while shielding
 		KnightHud.decrease_stamina(0.15)
 	elif shielding == false: #if we stop shielding go to idle and increase stam back
-		KnightHud.increase_stamina(0.5)
+		KnightHud.increase_stamina(0.2)
 		return idle
 	
 	knight.update_velocity( direction.x * shielding_speed, deceleration ) #slow player down to shield walk speed
 	
 	if KnightHud.stamina_progress_bar.value <= 0.1: #cant shield if no stamina
-		KnightHud.increase_stamina(0.5)#increase stamina and switch to idle
+		KnightHud.increase_stamina(0.2)#increase stamina and switch to idle
 		return idle 
 	
 	if direction.x == 0: #play shield idle if not moving
