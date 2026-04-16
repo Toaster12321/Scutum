@@ -1,11 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2jn14ge46886"]
+[gd_scene format=3 uid="uid://b2jn14ge46886"]
 
 [ext_resource type="Script" uid="uid://oy8dfwu05617" path="res://Scripts/gui/options.gd" id="1_pen6c"]
 [ext_resource type="FontFile" uid="uid://bo54k3junwmb3" path="res://Fonts/PixeloidSansBold-PKnYd.ttf" id="2_jycwg"]
 [ext_resource type="FontFile" uid="uid://bydwdw7nvbs45" path="res://Fonts/PixeloidSans-mLxMm.ttf" id="3_wsfjm"]
 [ext_resource type="FontFile" uid="uid://bd0umxthosq3g" path="res://Fonts/PixeloidMono-d94EV.ttf" id="4_vdqpd"]
 
-[node name="Options" type="Control"]
+[node name="Options" type="Control" unique_id=1229622731]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pen6c")
 
-[node name="OptionsMenu" type="Control" parent="."]
+[node name="OptionsMenu" type="Control" parent="." unique_id=1365758326]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsMenu" unique_id=109549752]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.041
@@ -34,35 +34,35 @@ offset_right = -3.2
 grow_vertical = 2
 theme_override_constants/separation = 18
 
-[node name="VolumeLabel" type="Label" parent="OptionsMenu/VBoxContainer"]
+[node name="VolumeLabel" type="Label" parent="OptionsMenu/VBoxContainer" unique_id=1317729900]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jycwg")
 theme_override_font_sizes/font_size = 9
 text = " Master Volume:"
 horizontal_alignment = 2
 
-[node name="SFXLabel" type="Label" parent="OptionsMenu/VBoxContainer"]
+[node name="SFXLabel" type="Label" parent="OptionsMenu/VBoxContainer" unique_id=2041147215]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jycwg")
 theme_override_font_sizes/font_size = 9
 text = " SFX Volume:"
 horizontal_alignment = 2
 
-[node name="MusicLabel" type="Label" parent="OptionsMenu/VBoxContainer"]
+[node name="MusicLabel" type="Label" parent="OptionsMenu/VBoxContainer" unique_id=1433516317]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jycwg")
 theme_override_font_sizes/font_size = 9
 text = "Music Volume:"
 horizontal_alignment = 2
 
-[node name="ResolutionLabel" type="Label" parent="OptionsMenu/VBoxContainer"]
+[node name="ResolutionLabel" type="Label" parent="OptionsMenu/VBoxContainer" unique_id=1077393568]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jycwg")
 theme_override_font_sizes/font_size = 9
 text = " Resolution:"
 horizontal_alignment = 2
 
-[node name="ResolutionScaling" type="Label" parent="OptionsMenu/VBoxContainer"]
+[node name="ResolutionScaling" type="Label" parent="OptionsMenu/VBoxContainer" unique_id=340841208]
 process_mode = 4
 visible = false
 layout_mode = 2
@@ -70,21 +70,21 @@ theme_override_fonts/font = ExtResource("2_jycwg")
 text = " Resolution Scaling:"
 horizontal_alignment = 2
 
-[node name="FullscreenLabel" type="Label" parent="OptionsMenu/VBoxContainer"]
+[node name="FullscreenLabel" type="Label" parent="OptionsMenu/VBoxContainer" unique_id=506377617]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jycwg")
 theme_override_font_sizes/font_size = 9
 text = "Fullscreen:"
 horizontal_alignment = 2
 
-[node name="VsyncLabel" type="Label" parent="OptionsMenu/VBoxContainer"]
+[node name="VsyncLabel" type="Label" parent="OptionsMenu/VBoxContainer" unique_id=1997610077]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_jycwg")
 theme_override_font_sizes/font_size = 9
 text = "V-Sync:"
 horizontal_alignment = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsMenu"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="OptionsMenu" unique_id=964973951]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.421
@@ -99,22 +99,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 
-[node name="MasterSlider" type="HSlider" parent="OptionsMenu/VBoxContainer2"]
+[node name="MasterSlider" type="HSlider" parent="OptionsMenu/VBoxContainer2" unique_id=1727609719]
 layout_mode = 2
 size_flags_vertical = 1
 min_value = -30.0
 max_value = 0.0
 step = 0.1
-value = -3.3
+value = -3.3000000000000007
 
-[node name="SFXSlider" type="HSlider" parent="OptionsMenu/VBoxContainer2"]
+[node name="SFXSlider" type="HSlider" parent="OptionsMenu/VBoxContainer2" unique_id=1293465298]
 layout_mode = 2
 min_value = -30.0
 max_value = 0.0
 step = 0.1
 value = -14.6
 
-[node name="MusicSlider" type="HSlider" parent="OptionsMenu/VBoxContainer2"]
+[node name="MusicSlider" type="HSlider" parent="OptionsMenu/VBoxContainer2" unique_id=1275180483]
 texture_filter = 1
 layout_mode = 2
 min_value = -30.0
@@ -122,18 +122,18 @@ max_value = 0.0
 step = 0.1
 value = -11.0
 
-[node name="res_OptionButton" type="OptionButton" parent="OptionsMenu/VBoxContainer2"]
+[node name="res_OptionButton" type="OptionButton" parent="OptionsMenu/VBoxContainer2" unique_id=1176637362]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_wsfjm")
 theme_override_font_sizes/font_size = 9
 
-[node name="ScaleBox" type="VBoxContainer" parent="OptionsMenu/VBoxContainer2"]
+[node name="ScaleBox" type="VBoxContainer" parent="OptionsMenu/VBoxContainer2" unique_id=271078387]
 process_mode = 4
 visible = false
 layout_mode = 2
 theme_override_constants/separation = -2
 
-[node name="ScaleSlider" type="HSlider" parent="OptionsMenu/VBoxContainer2/ScaleBox"]
+[node name="ScaleSlider" type="HSlider" parent="OptionsMenu/VBoxContainer2/ScaleBox" unique_id=2110682500]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 min_value = 50.0
@@ -142,19 +142,19 @@ step = 5.0
 value = 100.0
 ticks_on_borders = true
 
-[node name="ScaleLabel" type="Label" parent="OptionsMenu/VBoxContainer2/ScaleBox"]
+[node name="ScaleLabel" type="Label" parent="OptionsMenu/VBoxContainer2/ScaleBox" unique_id=2021785502]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_vdqpd")
 theme_override_font_sizes/font_size = 11
 text = "100% - 1920x1080"
 
-[node name="FullscreenCheckbox" type="CheckBox" parent="OptionsMenu/VBoxContainer2"]
+[node name="FullscreenCheckbox" type="CheckBox" parent="OptionsMenu/VBoxContainer2" unique_id=2011689885]
 layout_mode = 2
 
-[node name="VSyncCheckBox" type="CheckBox" parent="OptionsMenu/VBoxContainer2"]
+[node name="VSyncCheckBox" type="CheckBox" parent="OptionsMenu/VBoxContainer2" unique_id=2048063176]
 layout_mode = 2
 
-[node name="ReturnButton" type="Button" parent="OptionsMenu"]
+[node name="ReturnButton" type="Button" parent="OptionsMenu" unique_id=1510299167]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.442
@@ -173,8 +173,7 @@ theme_override_fonts/font = ExtResource("2_jycwg")
 theme_override_font_sizes/font_size = 9
 text = "Return"
 
-[node name="ResolutionConfirmation" type="Control" parent="."]
-visible = false
+[node name="ResolutionConfirmation" type="Control" parent="." unique_id=830361747]
 layout_mode = 1
 anchor_left = 0.34
 anchor_top = 0.348
@@ -187,11 +186,11 @@ offset_bottom = -5.04001
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Timer" type="Timer" parent="ResolutionConfirmation"]
+[node name="Timer" type="Timer" parent="ResolutionConfirmation" unique_id=1315071900]
 wait_time = 16.0
 one_shot = true
 
-[node name="ColorRect" type="ColorRect" parent="ResolutionConfirmation"]
+[node name="ColorRect" type="ColorRect" parent="ResolutionConfirmation" unique_id=1604139289]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -204,7 +203,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Label" type="Label" parent="ResolutionConfirmation"]
+[node name="Label" type="Label" parent="ResolutionConfirmation" unique_id=2119858772]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -219,7 +218,7 @@ text = "Do you want to keep
 this resolution?"
 horizontal_alignment = 1
 
-[node name="TimerLabel" type="Label" parent="ResolutionConfirmation"]
+[node name="TimerLabel" type="Label" parent="ResolutionConfirmation" unique_id=63041538]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.423
@@ -235,7 +234,7 @@ theme_override_fonts/font = ExtResource("3_wsfjm")
 theme_override_font_sizes/font_size = 9
 horizontal_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ResolutionConfirmation"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ResolutionConfirmation" unique_id=1032110606]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -250,7 +249,7 @@ grow_vertical = 0
 theme_override_constants/separation = 60
 alignment = 1
 
-[node name="ResYesButton" type="Button" parent="ResolutionConfirmation/HBoxContainer"]
+[node name="ResYesButton" type="Button" parent="ResolutionConfirmation/HBoxContainer" unique_id=1865802651]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
@@ -259,7 +258,7 @@ theme_override_fonts/font = ExtResource("2_jycwg")
 theme_override_font_sizes/font_size = 18
 text = "Yes"
 
-[node name="ResNoButton" type="Button" parent="ResolutionConfirmation/HBoxContainer"]
+[node name="ResNoButton" type="Button" parent="ResolutionConfirmation/HBoxContainer" unique_id=199985323]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
 theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)

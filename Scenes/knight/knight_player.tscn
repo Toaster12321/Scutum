@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://bj4rkw7gwpm65"]
+[gd_scene format=3 uid="uid://bj4rkw7gwpm65"]
 
 [ext_resource type="Script" uid="uid://c1iascmee6h4m" path="res://Scripts/Knight/knight_player.gd" id="1_5m4qd"]
 [ext_resource type="Script" uid="uid://8ctg2co4oaal" path="res://Scripts/states/knight states/knight_state_machine.gd" id="2_vggyu"]
@@ -3442,7 +3442,7 @@ fill = 1
 fill_from = Vector2(0.542735, 0.525641)
 fill_to = Vector2(1, 0.521368)
 
-[node name="Knight" type="CharacterBody2D"]
+[node name="Knight" type="CharacterBody2D" unique_id=2032507785]
 z_index = 1
 collision_mask = 48
 floor_constant_speed = true
@@ -3451,110 +3451,108 @@ floor_max_angle = 1.22173
 floor_snap_length = 3.0
 script = ExtResource("1_5m4qd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_j4ema")
-}
-autoplay = "idle"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=738781577]
+libraries/ = SubResource("AnimationLibrary_j4ema")
+autoplay = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1517403470]
 position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_vl55t")
 
-[node name="CollisionShape2D_Crouch" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D_Crouch" type="CollisionShape2D" parent="." unique_id=342472290]
 position = Vector2(0, -12)
 shape = SubResource("RectangleShape2D_agcwe")
 disabled = true
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1202256072]
 volume_db = -7.0
 max_polyphony = 6
 bus = &"SFX"
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=410143949]
 position = Vector2(0, -51)
 script = ExtResource("4_5pdnt")
 noise_texture = SubResource("NoiseTexture2D_3iy7d")
 
-[node name="KnightStateMachine" type="Node2D" parent="."]
+[node name="KnightStateMachine" type="Node2D" parent="." unique_id=861749881]
 script = ExtResource("2_vggyu")
 
-[node name="Idle" type="Node2D" parent="KnightStateMachine"]
+[node name="Idle" type="Node2D" parent="KnightStateMachine" unique_id=2055274819]
 unique_name_in_owner = true
 script = ExtResource("3_srrma")
 
-[node name="Run" type="Node2D" parent="KnightStateMachine"]
+[node name="Run" type="Node2D" parent="KnightStateMachine" unique_id=1589646896]
 unique_name_in_owner = true
 script = ExtResource("4_t2eej")
 sprint_speed = 175.0
 
-[node name="Jump" type="Node2D" parent="KnightStateMachine"]
+[node name="Jump" type="Node2D" parent="KnightStateMachine" unique_id=1160854888]
 unique_name_in_owner = true
 script = ExtResource("5_2frtv")
 
-[node name="Fall" type="Node2D" parent="KnightStateMachine"]
+[node name="Fall" type="Node2D" parent="KnightStateMachine" unique_id=1440881402]
 unique_name_in_owner = true
 script = ExtResource("6_3xrgn")
 
-[node name="Crouch" type="Node2D" parent="KnightStateMachine"]
+[node name="Crouch" type="Node2D" parent="KnightStateMachine" unique_id=1504909105]
 unique_name_in_owner = true
 position = Vector2(-1, 0)
 script = ExtResource("7_xpw4a")
 
-[node name="RayCast2D" type="RayCast2D" parent="KnightStateMachine/Crouch"]
+[node name="RayCast2D" type="RayCast2D" parent="KnightStateMachine/Crouch" unique_id=759814628]
 position = Vector2(1, 0)
 enabled = false
 target_position = Vector2(0, 8)
 collision_mask = 32
 hit_from_inside = true
 
-[node name="Attack" type="Node2D" parent="KnightStateMachine"]
+[node name="Attack" type="Node2D" parent="KnightStateMachine" unique_id=1807743846]
 unique_name_in_owner = true
 script = ExtResource("8_y66y0")
 
-[node name="Shield" type="Node2D" parent="KnightStateMachine"]
+[node name="Shield" type="Node2D" parent="KnightStateMachine" unique_id=1637464025]
 unique_name_in_owner = true
 script = ExtResource("9_vggyu")
 
-[node name="Deflect" type="Node2D" parent="KnightStateMachine"]
+[node name="Deflect" type="Node2D" parent="KnightStateMachine" unique_id=663243519]
 unique_name_in_owner = true
 script = ExtResource("10_xpw4a")
 deflect_audio = ExtResource("13_dd26y")
 
-[node name="Hit" type="Node2D" parent="KnightStateMachine"]
+[node name="Hit" type="Node2D" parent="KnightStateMachine" unique_id=338430574]
 unique_name_in_owner = true
 script = ExtResource("10_t2eej")
 hit_audio = ExtResource("15_rxkvb")
 hit_volume = -7.0
 
-[node name="Death" type="Node2D" parent="KnightStateMachine"]
+[node name="Death" type="Node2D" parent="KnightStateMachine" unique_id=1246095033]
 unique_name_in_owner = true
 script = ExtResource("11_2frtv")
 
-[node name="Sprites" type="Node2D" parent="."]
+[node name="Sprites" type="Node2D" parent="." unique_id=28501658]
 scale = Vector2(-1, 1)
 
-[node name="idle_sprite" type="Sprite2D" parent="Sprites"]
+[node name="idle_sprite" type="Sprite2D" parent="Sprites" unique_id=155990664]
 texture_filter = 1
 position = Vector2(5, -40)
 texture = ExtResource("9_58ol3")
 hframes = 10
 
-[node name="run_sprite" type="Sprite2D" parent="Sprites"]
+[node name="run_sprite" type="Sprite2D" parent="Sprites" unique_id=1660391637]
 visible = false
 texture_filter = 1
 position = Vector2(5, -40)
 texture = ExtResource("10_a5jte")
 hframes = 10
 
-[node name="jump_sprite" type="Sprite2D" parent="Sprites"]
+[node name="jump_sprite" type="Sprite2D" parent="Sprites" unique_id=1099878730]
 visible = false
 texture_filter = 1
 position = Vector2(5, -40)
 texture = ExtResource("11_c0i80")
 hframes = 3
 
-[node name="fall_sprite" type="Sprite2D" parent="Sprites"]
+[node name="fall_sprite" type="Sprite2D" parent="Sprites" unique_id=597390018]
 visible = false
 texture_filter = 1
 position = Vector2(5, -40)
@@ -3562,7 +3560,7 @@ texture = ExtResource("12_dd26y")
 hframes = 3
 frame = 1
 
-[node name="skid_sprite" type="Sprite2D" parent="Sprites"]
+[node name="skid_sprite" type="Sprite2D" parent="Sprites" unique_id=133843822]
 visible = false
 texture_filter = 1
 position = Vector2(3, -40)
@@ -3570,21 +3568,21 @@ texture = ExtResource("13_rxkvb")
 hframes = 3
 frame = 1
 
-[node name="crouch_sprite" type="Sprite2D" parent="Sprites"]
+[node name="crouch_sprite" type="Sprite2D" parent="Sprites" unique_id=275977048]
 visible = false
 texture_filter = 1
 position = Vector2(3, -40)
 texture = ExtResource("14_5pdnt")
 hframes = 3
 
-[node name="attack_sprite" type="Sprite2D" parent="Sprites"]
+[node name="attack_sprite" type="Sprite2D" parent="Sprites" unique_id=1848131977]
 visible = false
 texture_filter = 1
 position = Vector2(-3, -40)
 texture = ExtResource("15_3iy7d")
 hframes = 4
 
-[node name="attack2_sprite" type="Sprite2D" parent="Sprites"]
+[node name="attack2_sprite" type="Sprite2D" parent="Sprites" unique_id=53979793]
 visible = false
 texture_filter = 1
 position = Vector2(-3, -40)
@@ -3592,7 +3590,7 @@ texture = ExtResource("16_fehsq")
 hframes = 6
 frame = 1
 
-[node name="shield_sprite" type="Sprite2D" parent="Sprites"]
+[node name="shield_sprite" type="Sprite2D" parent="Sprites" unique_id=822235097]
 visible = false
 texture_filter = 1
 position = Vector2(-3, -40)
@@ -3600,25 +3598,25 @@ texture = ExtResource("17_cic2m")
 hframes = 4
 vframes = 2
 
-[node name="hit_death_sprite" type="Sprite2D" parent="Sprites"]
+[node name="hit_death_sprite" type="Sprite2D" parent="Sprites" unique_id=1087840441]
 visible = false
 texture_filter = 1
 position = Vector2(6, -40)
 texture = ExtResource("19_srrma")
 hframes = 10
 
-[node name="CastShadow" parent="Sprites" instance=ExtResource("20_uun74")]
+[node name="CastShadow" parent="Sprites" unique_id=888774449 instance=ExtResource("20_uun74")]
 shadow_size = Vector2(0.45, 0.09)
 
-[node name="Hitbox" parent="." instance=ExtResource("18_ch8o0")]
+[node name="Hitbox" parent="." unique_id=1849285077 instance=ExtResource("18_ch8o0")]
 position = Vector2(0, -18)
 collision_layer = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=2115441468]
 shape = SubResource("CapsuleShape2D_34edh")
 debug_color = Color(0.619411, 0.534763, 3.85046e-07, 0.42)
 
-[node name="ShieldHitbox" type="Area2D" parent="."]
+[node name="ShieldHitbox" type="Area2D" parent="." unique_id=368875888]
 position = Vector2(0, -18)
 collision_layer = 2
 collision_mask = 0
@@ -3626,45 +3624,43 @@ monitoring = false
 monitorable = false
 script = ExtResource("24_3xrgn")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldHitbox" unique_id=2110781394]
 shape = SubResource("CapsuleShape2D_2frtv")
 debug_color = Color(0.619411, 0.534763, 3.85046e-07, 0.42)
 
-[node name="Hurtbox" parent="." instance=ExtResource("19_tume3")]
+[node name="Hurtbox" parent="." unique_id=1724522336 instance=ExtResource("19_tume3")]
 visible = false
 position = Vector2(0, -18)
 collision_mask = 256
 monitoring = false
 hurtbox_type = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=319368576]
 position = Vector2(4, -1)
 shape = SubResource("CircleShape2D_fyb73")
 debug_color = Color(1, 0.0118072, 0.01923, 0.42)
 
-[node name="Interactions" type="Node2D" parent="."]
+[node name="Interactions" type="Node2D" parent="." unique_id=1711316372]
 
-[node name="InteractArea" type="Area2D" parent="Interactions"]
+[node name="InteractArea" type="Area2D" parent="Interactions" unique_id=982890114]
 position = Vector2(0, -10)
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 script = ExtResource("31_dd26y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/InteractArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactions/InteractArea" unique_id=563616715]
 position = Vector2(0, 3)
 shape = SubResource("RectangleShape2D_c0i80")
 debug_color = Color(0.264474, 0.633552, 9.62615e-07, 0.42)
 
-[node name="EffectAnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_3xrgn")
-}
+[node name="EffectAnimationPlayer" type="AnimationPlayer" parent="." unique_id=1331658041]
+libraries/ = SubResource("AnimationLibrary_3xrgn")
 
-[node name="AttackCooldownTimer" type="Timer" parent="."]
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=906054992]
 wait_time = 0.7
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1213101784]
 position = Vector2(0, -18)
 color = Color(1, 0.742409, 0.565765, 1)
 energy = 0.3

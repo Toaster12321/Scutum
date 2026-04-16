@@ -121,6 +121,7 @@ func _on_damage_taken( _hurtbox : Hurtbox ) ->  void:
 func boss_defeated() -> void:
 	timer.stop()
 	GlobalPlayerManager.knight.knight_state_machine.input_enabled = false #disable knight input
+	GlobalPlayerManager.knight.knight_state_machine.change_state(GlobalPlayerManager.knight.idle)
 	
 	var tween  = get_tree().create_tween() #tween for smoothing
 	tween.tween_property(GlobalPlayerManager.knight.camera_2d, "global_position:x", global_position.x, 1) #move cam to messor position

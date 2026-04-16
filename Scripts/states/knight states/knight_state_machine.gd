@@ -23,7 +23,7 @@ func _process( _delta : float) -> void:
 		current_state.direction = Vector2(
 			sign( Input.get_axis( "move_left","move_right" ) ), #gets input axis, left for negative, right for pos, sign makes value range from -1 to 1 without half values
 			sign( Input.get_axis( "jump", "crouch" ) )#gets input axis, jump(up) for negative, down for pos
-			)
+			).normalized()
 	
 	var new_state = current_state.process( _delta ) #obtaining new state information then change state if neccessary
 	change_state( new_state )
