@@ -25,7 +25,6 @@ func load_new_level(
 	_target_transition : String,
 	_position_offset : Vector2
 ) -> void:
-	
 	get_tree().paused = true #pause scene functions
 	target_transition = _target_transition
 	position_offset = _position_offset
@@ -43,6 +42,7 @@ func load_new_level(
 	get_tree().paused = false #turn back on scene functions
 	
 	await get_tree().process_frame
+	
 	
 	#ONLY FOR DEBUG, MESSES UP SAVE/LOAD FUNCTIONALITY
 	#var level_root = get_tree().current_scene #get current scene

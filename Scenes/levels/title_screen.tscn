@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://on6ukamx5hyv"]
+[gd_scene format=4 uid="uid://on6ukamx5hyv"]
 
 [ext_resource type="Script" uid="uid://umd34ayrbcfn" path="res://Scripts/general/title_screen.gd" id="1_7lmyf"]
 [ext_resource type="PackedScene" uid="uid://nc4h1qu30a7c" path="res://Scenes/levels/tile_map_background.tscn" id="1_hqlkm"]
@@ -194,36 +194,36 @@ _data = {
 &"default_title": SubResource("Animation_8w5qn")
 }
 
-[node name="TitleScreen" type="Node2D"]
+[node name="TitleScreen" type="Node2D" unique_id=96385515]
 script = ExtResource("1_7lmyf")
 title_music = ExtResource("2_rhshc")
 
-[node name="TileMap_Background" parent="." instance=ExtResource("1_hqlkm")]
+[node name="TileMap_Background" parent="." unique_id=1717428352 instance=ExtResource("1_hqlkm")]
 position = Vector2(-6, 9)
 tile_map_data = PackedByteArray("AAAAAAUABQARAAYAAAAAAAYABQARAAcAAAAAAAcABQARAAgAAAABAAUABQASAAYAAAABAAYABQASAAcAAAABAAcABQASAAgAAAACAAUABQATAAYAAAACAAYABQATAAcAAAACAAcABQATAAgAAAADAAUABQAUAAYAAAADAAYABQAUAAcAAAADAAcABQAUAAgAAAAEAAUABQAVAAYAAAAEAAYABQAVAAcAAAAEAAcABQAVAAgAAAAFAAUABQAWAAYAAAAFAAYABQAWAAcAAAAFAAcABQAWAAgAAAD//wUABQAQAAYAAAD//wYABQAQAAcAAAD//wcABQAQAAgAAAAKAAMABQADAAQAAAAKAAQABQADAAUAAAAKAAUABQADAAYAAAAKAAYABQADAAcAAAALAAMABQAEAAQAAAALAAQABQAEAAUAAAALAAUABQAEAAYAAAALAAYABQAEAAcAAAAMAAMABQAFAAQAAAAMAAQABQAFAAUAAAAMAAUABQAFAAYAAAAMAAYABQAFAAcAAAANAAMABQAGAAQAAAANAAQABQAGAAUAAAANAAUABQAGAAYAAAANAAYABQAGAAcAAAANAAcABQAGAAgAAAANAAgABQAGAAkAAAAOAAMABQAHAAQAAAAOAAQABQAHAAUAAAAOAAUABQAHAAYAAAAOAAYABQAHAAcAAAAOAAcABQAHAAgAAAAOAAgABQAHAAkAAAAPAAMABQAIAAQAAAAPAAQABQAIAAUAAAAPAAUABQAIAAYAAAAPAAYABQAIAAcAAAAPAAcABQAIAAgAAAAPAAgABQAIAAkAAAAQAAQABQAJAAUAAAAQAAUABQAJAAYAAAAQAAYABQAJAAcAAAAQAAcABQAJAAgAAAAQAAgABQAJAAkAAAARAAYABQAKAAcAAAARAAcABQAKAAgAAAARAAgABQAKAAkAAAAKAAcABQADAAgAAAAKAAgABQADAAkAAAALAAcABQAEAAgAAAALAAgABQAEAAkAAAAMAAcABQAFAAgAAAAMAAgABQAFAAkAAAAJAAcABQACAAgAAAAIAAYABQABAAcAAAAJAAYABQACAAcAAAAJAAQABQACAAUAAAAJAAUABQACAAYAAAAIAAUABQABAAYAAAAAAAEABQARAAIAAAAAAAIABQARAAMAAAAAAAMABQARAAQAAAAAAAQABQARAAUAAAABAAEABQASAAIAAAABAAIABQASAAMAAAABAAMABQASAAQAAAABAAQABQASAAUAAAACAAEABQATAAIAAAACAAIABQATAAMAAAACAAMABQATAAQAAAACAAQABQATAAUAAAADAAMABQAUAAQAAAADAAQABQAUAAUAAAAGAAUABQAXAAYAAAAGAAYABQAXAAcAAAAHAAUABQAAAAYAAAAHAAYABQAAAAcAAAAHAAgABQAAAAkAAAABAAgABQASAAkAAAACAAgABQATAAkAAAADAAgABQAUAAkAAAAEAAgABQAVAAkAAAAGAAgABQAXAAkAAAAFAAgABQAWAAkAAAAIAAgABQABAAkAAAAJAAgABQACAAkAAAAGAAcABQAXAAgAAAAHAAcABQAAAAgAAAAIAAcABQABAAgAAAAEAAQABQAVAAUAAAD//wEABQAQAAIAAAD//wIABQAQAAMAAAD//wMABQAQAAQAAAD//wQABQAQAAUAAAD//wgABQAQAAkAAAAAAAgABQARAAkAAAA=")
 
-[node name="TileMap" parent="." instance=ExtResource("2_44qkn")]
+[node name="TileMap" parent="." unique_id=1988577422 instance=ExtResource("2_44qkn")]
 
-[node name="Parallax2D" type="Parallax2D" parent="."]
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=595528902]
 process_mode = 3
 z_index = -100
 scroll_offset = Vector2(-744, 343)
 repeat_size = Vector2(768, 0)
 autoscroll = Vector2(1, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D" unique_id=285323304]
 position = Vector2(235, -194)
 texture = ExtResource("3_7lmyf")
 
-[node name="PlayerSpawn" parent="." instance=ExtResource("4_44qkn")]
+[node name="PlayerSpawn" parent="." unique_id=48407346 instance=ExtResource("4_44qkn")]
 position = Vector2(231, 191)
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1389130837]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1175583122]
 process_mode = 3
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1395844296]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -231,7 +231,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartButton" type="Button" parent="CanvasLayer/Control"]
+[node name="StartButton" type="Button" parent="CanvasLayer/Control" unique_id=1745463620]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -250,7 +250,7 @@ theme_override_fonts/font = ExtResource("9_8w5qn")
 theme_override_font_sizes/font_size = 18
 text = "Start"
 
-[node name="ContinueButton" type="Button" parent="CanvasLayer/Control"]
+[node name="ContinueButton" type="Button" parent="CanvasLayer/Control" unique_id=83425897]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.508
@@ -269,7 +269,7 @@ theme_override_fonts/font = ExtResource("9_8w5qn")
 theme_override_font_sizes/font_size = 18
 text = "Continue"
 
-[node name="QuitButton" type="Button" parent="CanvasLayer/Control"]
+[node name="QuitButton" type="Button" parent="CanvasLayer/Control" unique_id=864262659]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -288,7 +288,7 @@ theme_override_fonts/font = ExtResource("9_8w5qn")
 theme_override_font_sizes/font_size = 18
 text = "Quit"
 
-[node name="CreditsButton" type="Button" parent="CanvasLayer/Control"]
+[node name="CreditsButton" type="Button" parent="CanvasLayer/Control" unique_id=314980491]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -307,7 +307,7 @@ theme_override_fonts/font = ExtResource("9_8w5qn")
 theme_override_font_sizes/font_size = 9
 text = "Credits"
 
-[node name="OptionsButton" type="Button" parent="CanvasLayer/Control"]
+[node name="OptionsButton" type="Button" parent="CanvasLayer/Control" unique_id=1200554648]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -327,31 +327,27 @@ theme_override_font_sizes/font_size = 9
 text = "Options
 "
 
-[node name="ScutumShield" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="ScutumShield" type="Sprite2D" parent="CanvasLayer/Control" unique_id=1033859110]
 visible = false
 modulate = Color(0.803016, 0.806447, 0.797491, 1)
 position = Vector2(231, 111)
 texture = ExtResource("7_nydo7")
 
-[node name="ScutumTitle" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="ScutumTitle" type="Sprite2D" parent="CanvasLayer/Control" unique_id=1449171952]
 visible = false
 modulate = Color(0.305882, 0.345098, 0.419608, 0.271895)
 position = Vector2(244, 40)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("8_4ocko")
 
-[node name="ShieldAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
-libraries = {
-&"": SubResource("AnimationLibrary_68x5q")
-}
+[node name="ShieldAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control" unique_id=1342233889]
+libraries/ = SubResource("AnimationLibrary_68x5q")
 
-[node name="TitleAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control"]
+[node name="TitleAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/Control" unique_id=1237779557]
 root_node = NodePath("../ShieldAnimationPlayer")
-libraries = {
-&"": SubResource("AnimationLibrary_02ngo")
-}
+libraries/ = SubResource("AnimationLibrary_02ngo")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=384773452]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -361,6 +357,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.482353)
 
-[node name="Options" parent="CanvasLayer/Control" instance=ExtResource("8_wh42d")]
+[node name="Options" parent="CanvasLayer/Control" unique_id=1030506142 instance=ExtResource("8_wh42d")]
 visible = false
 layout_mode = 1

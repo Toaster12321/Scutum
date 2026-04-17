@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://br1jbgrmkfqyq"]
+[gd_scene format=3 uid="uid://br1jbgrmkfqyq"]
 
 [ext_resource type="Script" uid="uid://dwpltabebuurs" path="res://Scripts/general/scene_transition.gd" id="1_67e3y"]
 
@@ -73,11 +73,11 @@ _data = {
 &"fade_out": SubResource("Animation_aolvv")
 }
 
-[node name="SceneTransition" type="CanvasLayer"]
+[node name="SceneTransition" type="CanvasLayer" unique_id=2041293690]
 process_mode = 3
 script = ExtResource("1_67e3y")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=95908373]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,7 +85,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control"]
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=1677685760]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,8 +94,6 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control"]
-libraries = {
-&"": SubResource("AnimationLibrary_2g10q")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control" unique_id=1190425893]
+libraries/ = SubResource("AnimationLibrary_2g10q")
+autoplay = &"default"

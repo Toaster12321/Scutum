@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://oxt5541jjuur"]
+[gd_scene format=3 uid="uid://oxt5541jjuur"]
 
 [ext_resource type="PackedScene" uid="uid://btmp2t1immgq" path="res://Scenes/GUI/shield_life.tscn" id="1_abr8p"]
 [ext_resource type="Script" uid="uid://bpep5kh5d6icx" path="res://Scripts/gui/knight_hud.gd" id="1_em4ri"]
@@ -243,11 +243,11 @@ _data = {
 &"save_fade_in_out": SubResource("Animation_u2s6b")
 }
 
-[node name="KnightHUD" type="CanvasLayer"]
+[node name="KnightHUD" type="CanvasLayer" unique_id=1191289840]
 layer = 2
 script = ExtResource("1_em4ri")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1612402750]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,23 +255,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ShieldContainer" type="HFlowContainer" parent="Control"]
+[node name="ShieldContainer" type="HFlowContainer" parent="Control" unique_id=549762378]
 layout_mode = 1
 offset_left = 7.0
 offset_top = 7.0
 offset_right = 67.0
 offset_bottom = 24.0
 
-[node name="ShieldLife" parent="Control/ShieldContainer" instance=ExtResource("1_abr8p")]
+[node name="ShieldLife" parent="Control/ShieldContainer" unique_id=1383233697 instance=ExtResource("1_abr8p")]
 layout_mode = 2
 
-[node name="ShieldLife2" parent="Control/ShieldContainer" instance=ExtResource("1_abr8p")]
+[node name="ShieldLife2" parent="Control/ShieldContainer" unique_id=1394400370 instance=ExtResource("1_abr8p")]
 layout_mode = 2
 
-[node name="ShieldLife3" parent="Control/ShieldContainer" instance=ExtResource("1_abr8p")]
+[node name="ShieldLife3" parent="Control/ShieldContainer" unique_id=180385354 instance=ExtResource("1_abr8p")]
 layout_mode = 2
 
-[node name="StaminaBarContainer" type="HFlowContainer" parent="Control"]
+[node name="StaminaBarContainer" type="HFlowContainer" parent="Control" unique_id=1105955979]
 layout_mode = 1
 offset_left = 7.0
 offset_top = 25.0
@@ -279,7 +279,7 @@ offset_right = 77.0
 offset_bottom = 37.0
 alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Control/StaminaBarContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="Control/StaminaBarContainer" unique_id=1820886688]
 custom_minimum_size = Vector2(70, 7)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_r0plh")
@@ -288,7 +288,7 @@ step = 0.1
 value = 100.0
 show_percentage = false
 
-[node name="GameOver" type="Control" parent="Control"]
+[node name="GameOver" type="Control" parent="Control" unique_id=1787372390]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -297,7 +297,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="Control/GameOver"]
+[node name="ColorRect" type="ColorRect" parent="Control/GameOver" unique_id=2139884938]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -306,7 +306,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0666667, 0, 0, 0.8)
 
-[node name="Label" type="Label" parent="Control/GameOver"]
+[node name="Label" type="Label" parent="Control/GameOver" unique_id=1230574741]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -325,7 +325,7 @@ theme_override_fonts/font = ExtResource("3_vjivq")
 theme_override_font_sizes/font_size = 18
 text = "YOU FAILED"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/GameOver"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/GameOver" unique_id=1748341634]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -341,7 +341,7 @@ grow_vertical = 2
 theme_override_constants/separation = 80
 alignment = 1
 
-[node name="TryAgainButton" type="Button" parent="Control/GameOver/HBoxContainer"]
+[node name="TryAgainButton" type="Button" parent="Control/GameOver/HBoxContainer" unique_id=569043056]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
 theme_override_colors/font_pressed_color = Color(0.480745, 0.429944, 0.25451, 1)
@@ -349,7 +349,7 @@ theme_override_fonts/font = ExtResource("4_r0plh")
 theme_override_font_sizes/font_size = 9
 text = "     TRY AGAIN      "
 
-[node name="TitleButton" type="Button" parent="Control/GameOver/HBoxContainer"]
+[node name="TitleButton" type="Button" parent="Control/GameOver/HBoxContainer" unique_id=708246783]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.682353, 0.619608, 0.403922, 1)
 theme_override_colors/font_pressed_color = Color(0.482353, 0.431373, 0.254902, 1)
@@ -357,7 +357,7 @@ theme_override_fonts/font = ExtResource("4_r0plh")
 theme_override_font_sizes/font_size = 9
 text = "RETURN TO TITLE"
 
-[node name="FadeToBlack" type="ColorRect" parent="Control/GameOver"]
+[node name="FadeToBlack" type="ColorRect" parent="Control/GameOver" unique_id=1598130731]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -367,12 +367,10 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/GameOver"]
-libraries = {
-&"": SubResource("AnimationLibrary_r0plh")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/GameOver" unique_id=438117955]
+libraries/ = SubResource("AnimationLibrary_r0plh")
 
-[node name="AutosavePopup" type="Control" parent="Control"]
+[node name="AutosavePopup" type="Control" parent="Control" unique_id=488684930]
 layout_mode = 1
 anchor_top = 0.852
 anchor_right = 0.31
@@ -381,7 +379,7 @@ offset_top = -0.0400085
 offset_right = 0.199997
 grow_vertical = 0
 
-[node name="Label" type="Label" parent="Control/AutosavePopup"]
+[node name="Label" type="Label" parent="Control/AutosavePopup" unique_id=1922888423]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = -1
@@ -399,7 +397,5 @@ theme_override_fonts/font = ExtResource("5_r0plh")
 theme_override_font_sizes/font_size = 9
 text = "Auto-save Complete!"
 
-[node name="AutoSave_AnimationPlayer" type="AnimationPlayer" parent="Control/AutosavePopup"]
-libraries = {
-&"": SubResource("AnimationLibrary_u2s6b")
-}
+[node name="AutoSave_AnimationPlayer" type="AnimationPlayer" parent="Control/AutosavePopup" unique_id=1107338892]
+libraries/ = SubResource("AnimationLibrary_u2s6b")

@@ -18,6 +18,10 @@ var decreasing_stamina : bool = false
 var in_cutscene : bool = false
 var shields : Array[ ShieldGUI ] = [] #array of our shields (life)
 
+
+func _enter_tree() -> void:
+	visible = false
+
 func _ready() -> void:
 	for child in $Control/ShieldContainer.get_children(): #for each shield in the container append them to array 
 		if child is ShieldGUI:
@@ -124,4 +128,3 @@ func save_popup() -> void:
 func return_to_title() -> void:
 	await fade_to_black()
 	GlobalLevelManager.load_new_level(title_screen, "", Vector2.ZERO)
-	pass

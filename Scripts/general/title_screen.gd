@@ -29,7 +29,7 @@ func _ready() -> void:
 		
 	setup_title_screen()
 	
-	GlobalLevelManager.level_load_started.connect( exit_title_screen ) #once level loaded has been emitted
+	GlobalLevelManager.level_load_started.connect( exit_title_screen ) #once level starts loading
 	
 	pass
 
@@ -65,8 +65,7 @@ func quit_game() -> void:
 
 func exit_title_screen() -> void:
 	GlobalPlayerManager.knight.visible = true # turn on knight
-	KnightHud.visible = true # turn on hud
-	PauseMenu.on_title_screen = false#turn on pause menu
+	PauseMenu.on_title_screen = false#turn off pause menu
 	self.queue_free() #get rid of title screen
 	pass
 
